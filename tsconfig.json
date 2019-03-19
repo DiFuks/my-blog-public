@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "baseUrl": ".",
+      "target": "es6",
+      "module": "es6",
+      "moduleResolution": "node",
+      "declaration": false,
+      "noImplicitAny": true,
+      "jsx": "react",
+      "sourceMap": true,
+      "paths": {
+        "@app/*": ["src/app/*"]
+      }
+    }
+  }
