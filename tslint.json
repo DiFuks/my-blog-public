@@ -5,6 +5,8 @@
       "indent": [true, "spaces", 2],
       "eofline": true,
       "ordered-imports": false,
-      "arrow-parens": [true, "ban-single-arg-parens"]
+      "arrow-parens": [true, "ban-single-arg-parens"],
+      "no-implicit-dependencies": false,
+      "no-submodule-imports": false
     }
   }
