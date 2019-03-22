@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { Layout } from './Layout';
+import { Layout } from '@app/layout';
 
 export const Root: React.FunctionComponent<{}> = () => (
-  <Layout>
+  <Layout title='Главная страница'>
     <div>Главная</div>
   </Layout>
 );

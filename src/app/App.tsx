@@ -7,8 +7,8 @@ import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router';
 
 import { createRootReducer } from '@app/reducers';
-import { Routes } from '@app/common/constants';
-import { Root } from '@app/common/pages';
+import { Routes, RoutesNames } from '@app/common/constants';
+import { List, Root } from '@app/common/pages';
 import { Theme } from '@app/common/Theme';
 
 const history = createBrowserHistory();
@@ -28,7 +28,8 @@ export const App: React.FunctionComponent<{}> = () => (
       <ConnectedRouter history={history}>
         <Theme>
           <Switch>
-            <Route path={Routes.ROOT} name='Root' component={Root} />
+            <Route path={Routes.ROOT} exact={true} name={RoutesNames.ROOT} component={Root} />
+            <Route path={Routes.LIST} exact={true} name={RoutesNames.LIST} component={List} />
           </Switch>
         </Theme>
       </ConnectedRouter>

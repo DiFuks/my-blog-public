@@ -3,6 +3,7 @@ import * as WebFont from 'webfontloader';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import { ScreenWidthBreakpoints } from './constants';
+import 'normalize.css';
 
 const theme = {
   breakpoints: [
@@ -16,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: 10px;
     height: 100%;
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
   body {
     height: 100%;
@@ -29,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
 
 WebFont.load({
   google: {
-    families: ['Roboto:300,400,700&amp;subset=cyrillic', 'sans-serif'],
+    families: ['Montserrat:300,400&amp;subset=cyrillic', 'sans-serif'],
   },
 });
 
