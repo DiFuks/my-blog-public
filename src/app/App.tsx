@@ -8,7 +8,7 @@ import { Route, Switch } from 'react-router';
 
 import { createRootReducer } from '@app/reducers';
 import { Routes, RoutesNames } from '@app/common/constants';
-import { List, Root } from '@app/common/pages';
+import { List, Post, Root } from '@app/common/pages';
 import { Theme } from '@app/common/Theme';
 
 const history = createBrowserHistory();
@@ -30,6 +30,7 @@ export const App: React.FunctionComponent<{}> = () => (
           <Switch>
             <Route path={Routes.ROOT} exact={true} name={RoutesNames.ROOT} component={Root} />
             <Route path={Routes.LIST} exact={true} name={RoutesNames.LIST} component={List} />
+            <Route path={Routes.POST} exact={true} name={RoutesNames.POST} component={Post} />
           </Switch>
         </Theme>
       </ConnectedRouter>
