@@ -19,6 +19,10 @@ const ContentStyled = styled(Flex)`
   flex-grow: 1;
 `;
 
+const ContentWrapperStyled = styled(Flex)`
+  padding: 3rem;
+`;
+
 export interface IProps {
   children: React.ReactChild;
   title: string;
@@ -32,7 +36,9 @@ export const Layout: React.FunctionComponent<IProps> = ({children, title}) => (
     <ContentStyled>
       <Menu/>
       <Submenu/>
-      {children}
+      <ContentWrapperStyled>
+        {children}
+      </ContentWrapperStyled>
     </ContentStyled>
   </LayoutStyled>
 );
