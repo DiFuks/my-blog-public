@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router';
+import createSagaMiddleware from 'redux-saga';
 
 import { createRootReducer } from '@app/reducers';
 import { Routes, RoutesNames } from '@app/common/constants';
@@ -18,6 +19,7 @@ const store = createStore(
   composeWithDevTools(
     applyMiddleware(
       routerMiddleware(history),
+      createSagaMiddleware(),
     ),
   ),
 );
