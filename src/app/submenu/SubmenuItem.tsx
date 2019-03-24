@@ -5,6 +5,10 @@ import { Box } from 'grid-styled';
 import { Colors } from '@app/common/constants';
 import { Link } from 'react-router-dom';
 
+export interface IProps {
+  id: number;
+}
+
 const SubmenuItemStyled = styled(Link)`
   height: 5rem;
   align-items: center;
@@ -20,12 +24,12 @@ const SubmenuItemStyled = styled(Link)`
   }
 `;
 
-export const SubmenuItem: React.FunctionComponent<{}> = () => (
-  <SubmenuItemStyled to={'/list/10'}>
+export const SubmenuItem: React.FunctionComponent<IProps> = ({id}) => (
+  <SubmenuItemStyled to={`/list/${id}`}>
       <Box
         px={'20px'}
       >
-        1.
+        {id}.
       </Box>
       Пункт меню
   </SubmenuItemStyled>

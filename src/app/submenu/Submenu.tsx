@@ -32,9 +32,9 @@ const SubmenuStyled = styled(Flex)<IPropsStyled>`
 
 export const Submenu: React.FunctionComponent<IProps> = ({isActive}) => (
   <SubmenuStyled show={isActive ? 1 : 0}>
-    <SubmenuItem/>
-    <SubmenuItem/>
-    <SubmenuItem/>
-    <SubmenuItem/>
+    <SubmenuItem id={1}/>
+    <SubmenuItem id={2}/>
+    <SubmenuItem id={3}/>
+    <SubmenuItem id={4}/>
   </SubmenuStyled>
 );

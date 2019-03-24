@@ -8,21 +8,26 @@ import { Route, Switch } from 'react-router';
 import createSagaMiddleware from 'redux-saga';
 
 import { createRootReducer } from '@app/reducers';
+import { sagas } from '@app/sagas';
 import { Routes, RoutesNames } from '@app/common/constants';
 import { List, Post, Root } from '@app/common/pages';
 import { Theme } from '@app/common/Theme';
 
 const history = createBrowserHistory();
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   createRootReducer(history),
   composeWithDevTools(
     applyMiddleware(
       routerMiddleware(history),
-      createSagaMiddleware(),
+      sagaMiddleware,
     ),
   ),
 );
+
+sagaMiddleware.run(sagas);
 
 export const App: React.FunctionComponent<{}> = () => (
   <React.Fragment>

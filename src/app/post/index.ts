@@ -1,1 +1,1 @@
-export { Post } from './Post';
+export { PostContainer as Post } from './PostContainer';
