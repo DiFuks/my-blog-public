@@ -28,6 +28,7 @@ export class Post extends React.Component<IProps> {
       <div>{Object.keys(this.props.data).map(key => (
           <div key={key}>{key} : {this.props.data[key].toString()}<br/></div>
         ))}
-      </div>);
+      </div>
+    );
   }
 }

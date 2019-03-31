@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export interface IProps {
   id: number;
+  children: React.ReactChild;
 }
 
 const SubmenuItemStyled = styled(Link)`
@@ -24,13 +25,13 @@ const SubmenuItemStyled = styled(Link)`
   }
 `;
 
-export const SubmenuItem: React.FunctionComponent<IProps> = ({id}) => (
+export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children}) => (
   <SubmenuItemStyled to={`/list/${id}`}>
       <Box
         px={'20px'}
       >
         {id}.
       </Box>
-      Пункт меню
+      {children}
   </SubmenuItemStyled>
 );

@@ -11,10 +11,10 @@ const MenuStyled = styled(Flex)`
   background: ${Colors.GREY_51};
   width: 5rem;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
-const MenuBottomStyled = styled(Flex)`
-  margin-top: 5rem;
+const MenuWrapperStyled = styled(Flex)`
   flex-direction: column;
 `;
 
@@ -24,21 +24,23 @@ export interface IProps {
 
 export const Menu: React.FunctionComponent<IProps> = ({activePathName}) => (
   <MenuStyled>
-    <Link to={Routes.ROOT}>
-      <MenuItem
-        isActive={Routes.ROOT === activePathName}
-      >
-        <Icon icon={Icons.HOME}/>
-      </MenuItem>
-    </Link>
-    <Link to={Routes.LIST}>
-      <MenuItem
-        isActive={Routes.LIST === activePathName}
-      >
-        <Icon icon={Icons.LIST}/>
-      </MenuItem>
-    </Link>
-    <MenuBottomStyled>
+    <MenuWrapperStyled>
+      <Link to={Routes.ROOT}>
+        <MenuItem
+          isActive={Routes.ROOT === activePathName}
+        >
+          <Icon icon={Icons.HOME}/>
+        </MenuItem>
+      </Link>
+      <Link to={Routes.LIST}>
+        <MenuItem
+          isActive={Routes.LIST === activePathName}
+        >
+          <Icon icon={Icons.LIST}/>
+        </MenuItem>
+      </Link>
+    </MenuWrapperStyled>
+    <MenuWrapperStyled>
       <a
         href='https://vk.com/difuks'
         target='_blank'
@@ -71,6 +73,6 @@ export const Menu: React.FunctionComponent<IProps> = ({activePathName}) => (
           <Icon icon={Icons.INSTAGRAM}/>
         </MenuItem>
       </a>
-    </MenuBottomStyled>
+    </MenuWrapperStyled>
   </MenuStyled>
 );
