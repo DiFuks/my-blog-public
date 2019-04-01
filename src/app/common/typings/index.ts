@@ -1,1 +1,0 @@
-export { IRootState } from './state';

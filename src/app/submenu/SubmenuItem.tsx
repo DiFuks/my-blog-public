@@ -2,12 +2,13 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Box } from 'grid-styled';
 
-import { Colors } from '@app/common/constants';
+import { Colors, Routes } from '@app/common/constants';
 import { Link } from 'react-router-dom';
 
 export interface IProps {
   id: number;
   children: React.ReactChild;
+  submenuDisable: () => void;
 }
 
 const SubmenuItemStyled = styled(Link)`
@@ -25,8 +26,11 @@ const SubmenuItemStyled = styled(Link)`
   }
 `;
 
-export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children}) => (
-  <SubmenuItemStyled to={`/list/${id}`}>
+export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, submenuDisable}) => (
+  <SubmenuItemStyled
+    to={Routes.POST.replace(':id', id.toString())}
+    onClick={() => submenuDisable()}
+  >
       <Box
         px={'20px'}
       >

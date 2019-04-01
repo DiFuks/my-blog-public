@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import { Layout } from '@app/layout';
+import { Layout } from '../layout';
+import { Info } from '../info';
 
 export const Root: React.FunctionComponent<{}> = () => (
   <Layout title='Главная страница'>
-    <div>Главная</div>
+    <Info/>
   </Layout>
 );

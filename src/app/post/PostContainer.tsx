@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
+import { IRootState } from '@app/reducers';
 import { Creators } from './duck/actions';
 import { Post } from './Post';
-import { IRootState } from '@app/common/typings';
 
 const mapStateToProps = (state: IRootState) => ({
   data: state.post.data,

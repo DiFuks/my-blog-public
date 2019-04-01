@@ -12,6 +12,7 @@ export interface IPropsStyled {
 export interface IProps {
   children: React.ReactChild;
   isActive?: boolean;
+  onClick?: () => void;
 }
 
 const MenuItemStyled = styled(Flex)<IPropsStyled>`
@@ -25,9 +26,10 @@ const MenuItemStyled = styled(Flex)<IPropsStyled>`
   }
 `;
 
-export const MenuItem: React.FunctionComponent<IProps> = ({children, isActive = false}) => (
+export const MenuItem: React.FunctionComponent<IProps> = ({children, isActive = false, onClick = null}) => (
   <MenuItemStyled
     white={isActive ? 1 : 0}
+    onClick={() => onClick && onClick()}
   >
     {children}
   </MenuItemStyled>

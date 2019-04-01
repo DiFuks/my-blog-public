@@ -4,14 +4,13 @@ import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router';
 import createSagaMiddleware from 'redux-saga';
 
-import { createRootReducer } from '@app/reducers';
 import { sagas } from '@app/sagas';
 import { Routes, RoutesNames } from '@app/common/constants';
-import { List, Post, Root } from '@app/common/pages';
+import { Router } from '@app/pages';
 import { Theme } from '@app/common/Theme';
+import { createRootReducer } from './reducers';
 
 const history = createBrowserHistory();
 
@@ -34,11 +33,7 @@ export const App: React.FunctionComponent<{}> = () => (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Theme>
-          <Switch>
-            <Route path={Routes.ROOT} exact={true} name={RoutesNames.ROOT} component={Root} />
-            <Route path={Routes.LIST} exact={true} name={RoutesNames.LIST} component={List} />
-            <Route path={Routes.POST} exact={true} name={RoutesNames.POST} component={Post} />
-          </Switch>
+          <Router/>
         </Theme>
       </ConnectedRouter>
     </Provider>

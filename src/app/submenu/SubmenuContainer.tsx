@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 
-import { IRootState } from '@app/common/typings';
-import { Routes } from '@app/common/constants';
+import { IRootState } from '@app/reducers';
 import { Submenu } from './Submenu';
 
 const mapStateToProps = (state: IRootState) => ({
-  isActive: state.router.location.pathname === Routes.LIST,
+  isActive: state.submenu.isActive,
 });
 
 export const SubmenuContainer = connect(

@@ -9,26 +9,23 @@ export interface IProps {
   fetchStatus: DefaultFetchingStatuses;
 }
 
-export class Post extends React.Component<IProps> {
+export const Post: React.FunctionComponent<IProps> = ({id, changeActive, data, fetchStatus}) => {
+  React.useEffect(() => {
+    changeActive(id);
+  }, [id]);
 
-  public componentWillMount(): void {
-    this.props.changeActive(this.props.id);
+  if (fetchStatus === DefaultFetchingStatuses.IN_PROGRESS) {
+    return (<div>Загрузка</div>);
   }
 
-  public render() {
-    if (this.props.fetchStatus === DefaultFetchingStatuses.IN_PROGRESS) {
-      return (<div>Загрузка</div>);
-    }
-
-    if (this.props.fetchStatus === DefaultFetchingStatuses.FAILED) {
-      return (<div>Ошибка</div>);
-    }
-
-    return (
-      <div>{Object.keys(this.props.data).map(key => (
-          <div key={key}>{key} : {this.props.data[key].toString()}<br/></div>
-        ))}
-      </div>
-    );
+  if (fetchStatus === DefaultFetchingStatuses.FAILED) {
+    return (<div>Ошибка</div>);
   }
-}
+
+  return (
+    <div>{Object.keys(data).map(key => (
+        <div key={key}>{key} : {data[key].toString()}<br/></div>
+      ))}
+    </div>
+  );
+};

@@ -28,18 +28,18 @@ const initialState: IState = {
   fetchStatus: DefaultFetchingStatuses.NONE,
 };
 
-const postChangeActive = (state = initialState, action: IChangeActive) => ({
+const postChangeActive = (state = initialState, action: IChangeActive): IState => ({
   ...state,
   id: action.id,
 });
 
-const postRefreshData = (state = initialState, action: IRefreshData) => ({
+const postRefreshData = (state = initialState, action: IRefreshData): IState => ({
   ...state,
   data: action.data,
   fetchStatus: DefaultFetchingStatuses.SUCCESS,
 });
 
-const postChangeFetchStatus = (state = initialState, action: IChangeFetchStatus) => ({
+const postChangeFetchStatus = (state = initialState, action: IChangeFetchStatus): IState => ({
   ...state,
   fetchStatus: action.status,
 });

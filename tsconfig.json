@@ -12,6 +12,10 @@
       "experimentalDecorators": true,
       "paths": {
         "@app/*": ["src/app/*"]
-      }
-    }
+      },
+      "typeRoots": ["./src/typings"]
+    },
+    "include": [
+      "src/**/*.ts"
+    ]
   }

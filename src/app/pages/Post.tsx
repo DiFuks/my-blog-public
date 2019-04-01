@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Layout } from '@app/layout';
-import { Post as PostComponent } from '@app/post';
+import { Layout } from '../layout';
+import { Post as PostComponent } from '../post';
 
 interface IProps {
   match: {
