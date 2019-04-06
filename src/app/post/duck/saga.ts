@@ -12,7 +12,7 @@ function* refreshData(action: IChangeActive) {
   yield put(Creators.postRefreshFetchStatus(DefaultFetchingStatuses.IN_PROGRESS));
 
   try {
-    const response =  yield call(fetch, `https://jsonplaceholder.typicode.com/todos/${action.id}`);
+    const response =  yield call(fetch, `http://localhost:8091/api/public/post/${action.id}`);
     const data = yield response.json();
 
     yield put(Creators.postRefreshData(data));
