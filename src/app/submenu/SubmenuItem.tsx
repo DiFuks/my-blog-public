@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export interface IProps {
   id: number;
+  url: string;
   children: React.ReactChild;
   submenuDisable: () => void;
 }
@@ -26,9 +27,9 @@ const SubmenuItemStyled = styled(Link)`
   }
 `;
 
-export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, submenuDisable}) => (
+export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, submenuDisable, url}) => (
   <SubmenuItemStyled
-    to={Routes.POST.replace(':id', id.toString())}
+    to={Routes.POST.replace(':url', url)}
     onClick={() => submenuDisable()}
   >
       <Box

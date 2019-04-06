@@ -1,6 +1,7 @@
 import { ActionCreators, createActions } from 'reduxsauce';
 
 import { DefaultFetchingStatuses } from '@app/common/constants';
+import { IPost } from '@app/post/duck/reducer';
 
 export const enum Types {
   POST_CHANGE_ACTIVE = 'POST_CHANGE_ACTIVE',
@@ -9,13 +10,13 @@ export const enum Types {
 }
 
 interface ICreators extends ActionCreators {
-  postChangeActive: (id: number) => { type: Types.POST_CHANGE_ACTIVE };
-  postRefreshData: (data: object) => { type: Types.POST_REFRESH_DATA };
+  postChangeActive: (url: string) => { type: Types.POST_CHANGE_ACTIVE };
+  postRefreshData: (data: IPost) => { type: Types.POST_REFRESH_DATA };
   postRefreshFetchStatus: (status: DefaultFetchingStatuses) => { type: Types.POST_REFRESH_FETCH_STATUS };
 }
 
 const CreatedActions = createActions({
-  postChangeActive: ['id'],
+  postChangeActive: ['url'],
   postRefreshData: ['data'],
   postRefreshFetchStatus: ['status'],
 });

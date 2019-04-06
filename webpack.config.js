@@ -2,6 +2,10 @@ const Encore = require('@symfony/webpack-encore');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const dotenv = require('dotenv');
+const webpack = require('webpack');
+
+dotenv.config();
 
 Encore.setOutputPath('public')
   .setPublicPath('/')
@@ -22,6 +26,9 @@ Encore.setOutputPath('public')
       },
     })
   )
+  .addPlugin(new webpack.DefinePlugin({
+    'API_URL': JSON.stringify(process.env.API_URL),
+  }))
   .addLoader({
     test: /\.tsx?$/,
     enforce: 'pre',

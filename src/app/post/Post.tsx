@@ -1,20 +1,21 @@
 import * as React from 'react';
 
 import { DefaultFetchingStatuses } from '@app/common/constants';
+import { IPost } from '@app/post/duck/reducer';
 
 export interface IProps {
-  id: number;
-  changeActive: (id: number) => void;
-  data: any;
+  url: string;
+  changeActive: (url: string) => void;
+  data: IPost;
   fetchStatus: DefaultFetchingStatuses;
 }
 
-export const Post: React.FunctionComponent<IProps> = ({id, changeActive, data, fetchStatus}) => {
+export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, fetchStatus}) => {
   React.useEffect(() => {
-    changeActive(id);
-  }, [id]);
+    changeActive(url);
+  }, [url]);
 
-  if (fetchStatus === DefaultFetchingStatuses.IN_PROGRESS) {
+  if (fetchStatus === DefaultFetchingStatuses.IN_PROGRESS || fetchStatus === DefaultFetchingStatuses.NONE) {
     return (<div>Загрузка</div>);
   }
 
@@ -23,9 +24,9 @@ export const Post: React.FunctionComponent<IProps> = ({id, changeActive, data, f
   }
 
   return (
-    <div>{Object.keys(data).map(key => (
-        <div key={key}>{key} : {data[key].toString()}<br/></div>
-      ))}
+    <div>
+      <h1>{data.title}</h1>
+      <div>{data.content}</div>
     </div>
   );
 };

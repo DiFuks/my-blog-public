@@ -1,18 +1,18 @@
 import * as React from 'react';
 
-import { Layout } from '../layout';
-import { Post as PostComponent } from '../post';
+import { Layout } from '@app/layout';
+import { Post as PostComponent } from '@app/post';
 
 interface IProps {
   match: {
     params: {
-      id: number,
+      url: string,
     },
   };
 }
 
-export const Post: React.FunctionComponent<IProps> = ({match: {params: {id}}}) => (
-  <Layout title={`Конкретный пост с id ${id}`}>
-    <PostComponent id={id}/>
+export const Post: React.FunctionComponent<IProps> = ({match: {params: {url}}}) => (
+  <Layout title={url}>
+    <PostComponent url={url}/>
   </Layout>
 );

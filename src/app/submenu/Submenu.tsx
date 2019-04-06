@@ -5,6 +5,7 @@ import { Flex } from 'grid-styled';
 import { Colors } from '@app/common/constants';
 import { SubmenuItemContainer as SubmenuItem } from './SubmenuItemContainer';
 import { SubmenuStates } from '@app/submenu/duck/constants';
+import { IMenuItem } from '@app/submenu/duck/reducer';
 
 export interface IPropsStyled {
   show: SubmenuStates;
@@ -12,6 +13,8 @@ export interface IPropsStyled {
 
 export interface IProps {
   isActive: SubmenuStates;
+  items: IMenuItem[];
+  init: () => void;
 }
 
 const animationIn = keyframes`
@@ -43,9 +46,22 @@ const SubmenuStyled = styled(Flex)<IPropsStyled>`
   flex-direction: column;
 `;
 
-export const Submenu: React.FunctionComponent<IProps> = ({isActive}) => (
-  <SubmenuStyled show={isActive}>
-    <SubmenuItem id={1}>Quick Basic. Школа.</SubmenuItem>
-    <SubmenuItem id={2}>C++. Первый курс.</SubmenuItem>
-  </SubmenuStyled>
-);
+export const Submenu: React.FunctionComponent<IProps> = ({isActive, init, items}) => {
+  React.useEffect(() => {
+    init();
+  }, []);
+
+  return (
+    <SubmenuStyled show={isActive}>
+      {items.map((item, index) => (
+        <SubmenuItem
+          key={item.url}
+          id={index + 1}
+          url={item.url}
+        >
+          {item.title}
+        </SubmenuItem>
+      ))}
+    </SubmenuStyled>
+  );
+};

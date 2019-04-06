@@ -4,18 +4,23 @@ import { AnyAction } from 'redux';
 import { Types } from './actions';
 import { DefaultFetchingStatuses } from '@app/common/constants';
 
+export interface IPost {
+  content: string;
+  title: string;
+}
+
 export interface IState {
-  id: number;
-  data: object;
+  url: string;
+  data: IPost;
   fetchStatus: DefaultFetchingStatuses;
 }
 
 export interface IChangeActive extends AnyAction {
-  id: number;
+  url: string;
 }
 
 export interface IRefreshData extends AnyAction {
-  data: object;
+  data: IPost;
 }
 
 export interface IChangeFetchStatus extends AnyAction {
@@ -23,14 +28,14 @@ export interface IChangeFetchStatus extends AnyAction {
 }
 
 const initialState: IState = {
-  id: null,
-  data: {},
+  url: null,
+  data: null,
   fetchStatus: DefaultFetchingStatuses.NONE,
 };
 
 const postChangeActive = (state = initialState, action: IChangeActive): IState => ({
   ...state,
-  id: action.id,
+  url: action.url,
 });
 
 const postRefreshData = (state = initialState, action: IRefreshData): IState => ({

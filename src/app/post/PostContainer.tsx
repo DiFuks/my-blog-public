@@ -12,7 +12,7 @@ const mapStateToProps = (state: IRootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changeActive: (id: number) => dispatch(Creators.postChangeActive(id)),
+  changeActive: (url: string) => dispatch(Creators.postChangeActive(url)),
 });
 
 export const PostContainer = connect(

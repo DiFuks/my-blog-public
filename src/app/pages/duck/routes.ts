@@ -1,6 +1,6 @@
 export const enum Routes {
   ROOT = '/',
-  POST = '/post/:id',
+  POST = '/post/:url',
 }
 
 export const enum RoutesNames {
