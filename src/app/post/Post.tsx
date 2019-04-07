@@ -32,13 +32,16 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
       {data.content.map((content, index) => {
         if (content.type === PostTypes.TEXT) {
           return (
-            <div dangerouslySetInnerHTML={{__html: content.content}}/>
+            <div
+              key={`${content.type}${index}`}
+              dangerouslySetInnerHTML={{__html: content.content}}
+            />
           );
         }
 
         return (
           <SyntaxHighlighter
-            key={`item.type${index}`}
+            key={`${content.type}${index}`}
             showLineNumbers={true}
             language={content.type}
             useInlineStyles={true}
