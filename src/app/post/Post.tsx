@@ -1,7 +1,10 @@
 import * as React from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { darcula } from 'react-syntax-highlighter/dist/styles/hljs';
 
 import { DefaultFetchingStatuses } from '@app/common/constants';
 import { IPost } from '@app/post/duck/reducer';
+import { PostTypes } from '@app/common/constants/postTypes';
 
 export interface IProps {
   url: string;
@@ -26,7 +29,25 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
   return (
     <div>
       <h1>{data.title}</h1>
-      <div>{data.content}</div>
+      {data.content.map((content, index) => {
+        if (content.type === PostTypes.TEXT) {
+          return (
+            <div dangerouslySetInnerHTML={{__html: content.content}}/>
+          );
+        }
+
+        return (
+          <SyntaxHighlighter
+            key={`item.type${index}`}
+            showLineNumbers={true}
+            language={content.type}
+            useInlineStyles={true}
+            style={darcula}
+          >
+            {content.content}
+          </SyntaxHighlighter>
+        );
+      })}
     </div>
   );
 };

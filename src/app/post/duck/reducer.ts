@@ -3,9 +3,15 @@ import { AnyAction } from 'redux';
 
 import { Types } from './actions';
 import { DefaultFetchingStatuses } from '@app/common/constants';
+import { PostTypes } from '@app/common/constants/postTypes';
+
+export type PostContent = Array<{
+  'type': PostTypes
+  'content': string,
+}>;
 
 export interface IPost {
-  content: string;
+  content: PostContent;
   title: string;
 }
 
