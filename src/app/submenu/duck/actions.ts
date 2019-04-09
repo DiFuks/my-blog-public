@@ -1,24 +1,37 @@
-import { ActionCreators, createActions } from 'reduxsauce';
+import { createActions } from 'reduxsauce';
+import { Action } from 'redux';
 
 import { SubmenuStates } from '@app/submenu/duck/constants';
 import { IMenuItem } from '@app/submenu/duck/reducer';
 
-export const enum Types {
+const enum TypesNames {
   SUBMENU_CHANGE_ACTIVE = 'SUBMENU_CHANGE_ACTIVE',
   SUBMENU_REFRESH_ITEMS = 'SUBMENU_REFRESH_ITEMS',
   SUBMENU_INIT = 'SUBMENU_INIT',
 }
 
-interface ICreators extends ActionCreators {
-  submenuChangeActive: (isActive: SubmenuStates) => { type: Types.SUBMENU_CHANGE_ACTIVE };
-  submenuRefreshItems: (menuItems: IMenuItem[]) => { type: Types.SUBMENU_REFRESH_ITEMS };
-  submenuInit: (isInit: boolean) => { type: Types.SUBMENU_INIT };
+export interface IChangeActive extends Action<TypesNames.SUBMENU_CHANGE_ACTIVE> {
+  isActive: SubmenuStates;
 }
 
-const CreatedActions = createActions({
+export interface IRefreshItems extends Action<TypesNames.SUBMENU_REFRESH_ITEMS> {
+  items: IMenuItem[];
+}
+
+export interface IChangeInit extends Action<TypesNames.SUBMENU_INIT> {
+  isInit: boolean;
+}
+
+export const { Types, Creators } = createActions<{
+  [TypesNames.SUBMENU_CHANGE_ACTIVE]: string;
+  [TypesNames.SUBMENU_REFRESH_ITEMS]: string;
+  [TypesNames.SUBMENU_INIT]: string;
+}, {
+  submenuChangeActive: (isActive: SubmenuStates) => IChangeActive;
+  submenuRefreshItems: (menuItems: IMenuItem[]) => IRefreshItems;
+  submenuInit: (isInit: boolean) => IChangeInit;
+}>({
   submenuChangeActive: ['isActive'],
   submenuRefreshItems: ['items'],
   submenuInit: ['isInit'],
 });
-
-export const Creators = CreatedActions.Creators as ICreators;

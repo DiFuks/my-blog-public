@@ -1,8 +1,7 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import * as httpStatusCodes from 'http-status-codes';
 
-import { Creators, Types } from './actions';
-import { IChangeActive } from './reducer';
+import { Creators, Types, IChangeActive } from './actions';
 import { DefaultFetchingStatuses } from '@app/common/constants';
 import { fetchData } from '@app/common/fetchData';
 

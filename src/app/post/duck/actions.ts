@@ -1,24 +1,37 @@
-import { ActionCreators, createActions } from 'reduxsauce';
+import { createActions } from 'reduxsauce';
+import { Action } from 'redux';
 
 import { DefaultFetchingStatuses } from '@app/common/constants';
 import { IPost } from '@app/post/duck/reducer';
 
-export const enum Types {
+const enum TypesNames {
   POST_CHANGE_ACTIVE = 'POST_CHANGE_ACTIVE',
   POST_REFRESH_DATA = 'POST_REFRESH_DATA',
   POST_REFRESH_FETCH_STATUS = 'POST_REFRESH_FETCH_STATUS',
 }
 
-interface ICreators extends ActionCreators {
-  postChangeActive: (url: string) => { type: Types.POST_CHANGE_ACTIVE };
-  postRefreshData: (data: IPost) => { type: Types.POST_REFRESH_DATA };
-  postRefreshFetchStatus: (status: DefaultFetchingStatuses) => { type: Types.POST_REFRESH_FETCH_STATUS };
+export interface IChangeActive extends Action<TypesNames.POST_CHANGE_ACTIVE> {
+  url: string;
 }
 
-const CreatedActions = createActions({
+export interface IRefreshData extends Action<TypesNames.POST_REFRESH_DATA> {
+  data: IPost;
+}
+
+export interface IChangeFetchStatus extends Action<TypesNames.POST_REFRESH_FETCH_STATUS> {
+  status: DefaultFetchingStatuses;
+}
+
+export const { Types, Creators } = createActions<{
+  [TypesNames.POST_CHANGE_ACTIVE]: string;
+  [TypesNames.POST_REFRESH_DATA]: string;
+  [TypesNames.POST_REFRESH_FETCH_STATUS]: string;
+}, {
+  postChangeActive: (url: string) => IChangeActive;
+  postRefreshData: (data: IPost) => IRefreshData;
+  postRefreshFetchStatus: (status: DefaultFetchingStatuses) => IChangeFetchStatus;
+}>({
   postChangeActive: ['url'],
   postRefreshData: ['data'],
   postRefreshFetchStatus: ['status'],
 });
-
-export const Creators = CreatedActions.Creators as ICreators;

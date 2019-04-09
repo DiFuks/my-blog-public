@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 
 import { sagas } from '@app/sagas';
-import { Routes, RoutesNames } from '@app/common/constants';
 import { Router } from '@app/pages';
 import { Theme } from '@app/common/Theme';
 import { createRootReducer } from './reducers';
