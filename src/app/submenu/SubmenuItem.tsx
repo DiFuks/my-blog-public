@@ -42,7 +42,7 @@ const SubmenuItemStyled = styled(Link)<IPropsStyled>`
   display: flex;
   color: ${Colors.WHITE};
   text-decoration: none;
-  ${props => props.active && css`
+  ${props => props.active === 'true' && css`
     background: ${Colors.GREY_45};
   `}
   &:hover {
