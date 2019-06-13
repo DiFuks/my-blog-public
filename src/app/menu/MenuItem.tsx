@@ -15,17 +15,6 @@ export interface IProps {
   onClick?: () => void;
 }
 
-const MenuItemStyled = styled(Flex)<IPropsStyled>`
-  height: 5rem;
-  padding: 1.2rem;
-  color: ${props => props.white ? Colors.WHITE : Colors.GREY_160};
-  cursor: pointer;
-  transition: color .2s ease;
-  &:hover {
-    color: ${Colors.WHITE};
-  }
-`;
-
 export const MenuItem: React.FunctionComponent<IProps> = ({children, isActive = false, onClick = null}) => (
   <MenuItemStyled
     white={isActive ? 1 : 0}
@@ -34,3 +23,16 @@ export const MenuItem: React.FunctionComponent<IProps> = ({children, isActive = 
     {children}
   </MenuItemStyled>
 );
+
+const MenuItemStyled = styled(Flex)<IPropsStyled>`
+  padding: 1.2rem;
+  height: 5rem;
+  color: ${props => props.white ? Colors.WHITE : Colors.GREY_160};
+  cursor: pointer;
+  transition: color .2s ease;
+  flex-direction: column;
+  font-size: 1rem;
+  &:hover {
+    color: ${Colors.WHITE};
+  }
+`;

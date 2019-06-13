@@ -4,7 +4,15 @@ import { Icon } from '../icon';
 import { Icons } from '../common/constants';
 
 export const MenuSocials: React.FunctionComponent<{}> = () => (
-  <React.Fragment>
+  <>
+    <a
+      href='https://stihi.ru/avtor/difuks'
+      target='_blank'
+    >
+      <MenuItem>
+        <Icon icon={Icons.QUILL}/>
+      </MenuItem>
+    </a>
     <a
       href='https://vk.com/difuks'
       target='_blank'
@@ -37,5 +45,5 @@ export const MenuSocials: React.FunctionComponent<{}> = () => (
         <Icon icon={Icons.INSTAGRAM}/>
       </MenuItem>
     </a>
-  </React.Fragment>
+  </>
 );

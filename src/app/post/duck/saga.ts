@@ -1,7 +1,7 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import * as httpStatusCodes from 'http-status-codes';
 
-import { Creators, Types, IChangeActive } from './actions';
+import { Creators, Types } from './actions';
 import { DefaultFetchingStatuses } from '@app/common/constants';
 import { fetchData } from '@app/common/fetchData';
 
@@ -9,7 +9,11 @@ function* onChangeActive() {
   yield takeEvery(Types.POST_CHANGE_ACTIVE, refreshData);
 }
 
-function* refreshData(action: IChangeActive) {
+function* refreshData(action: ReturnType<typeof Creators.postChangeActive>) {
+  if (action.url === null) {
+    return;
+  }
+
   yield put(Creators.postRefreshFetchStatus(DefaultFetchingStatuses.IN_PROGRESS));
 
   try {

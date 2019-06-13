@@ -1,1 +1,1 @@
-export { Layout } from './Layout';
+export { LayoutContainer as Layout } from './LayoutContainer';

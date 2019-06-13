@@ -2,7 +2,17 @@ import * as React from 'react';
 import { Flex } from 'grid-styled';
 import styled from 'styled-components';
 
-import { Colors } from '@app/common/constants';
+import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
+
+export interface IProps {
+  children: string;
+}
+
+export const Header: React.FunctionComponent<IProps> = ({children}) => (
+  <HeaderStyled>
+    {children}
+  </HeaderStyled>
+);
 
 const HeaderStyled = styled(Flex)`
   width: 100%;
@@ -14,14 +24,9 @@ const HeaderStyled = styled(Flex)`
   font-size: 1.4rem;
   font-weight: 300;
   letter-spacing: 0.03rem;
+  flex-shrink: 0;
+  @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
+    position: fixed;
+    z-index: 10;
+  }
 `;
-
-export interface IProps {
-  children: string;
-}
-
-export const Header: React.FunctionComponent<IProps> = ({children}) => (
-  <HeaderStyled>
-    {children}
-  </HeaderStyled>
-);

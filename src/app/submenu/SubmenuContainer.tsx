@@ -8,6 +8,7 @@ import { Creators } from '@app/submenu/duck';
 const mapStateToProps = (state: IRootState) => ({
   isActive: state.submenu.isActive,
   items: state.submenu.items,
+  activeUrl: state.post.url,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

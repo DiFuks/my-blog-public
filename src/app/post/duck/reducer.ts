@@ -1,8 +1,6 @@
-import { createReducer } from 'reduxsauce';
-
-import { IChangeFetchStatus, IRefreshData, Types, IChangeActive } from './actions';
 import { DefaultFetchingStatuses } from '@app/common/constants';
 import { PostTypes } from '@app/common/constants/postTypes';
+import { Creators, Types } from './actions';
 
 export type PostContent = Array<{
   type: PostTypes,
@@ -20,22 +18,27 @@ export interface IState {
   fetchStatus: DefaultFetchingStatuses;
 }
 
-export const reducer = createReducer<IState, IChangeActive | IRefreshData | IChangeFetchStatus>({
+const initState: IState = {
   url: null,
   data: null,
   fetchStatus: DefaultFetchingStatuses.NONE,
-}, {
-  [Types.POST_CHANGE_ACTIVE]: (state, action: IChangeActive) => ({
+};
+
+type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
+
+export const reducer = (state = initState, action: ActionTypes): IState => (
+  action.type === Types.POST_CHANGE_ACTIVE && {
     ...state,
     url: action.url,
-  }),
-  [Types.POST_REFRESH_DATA]: (state, action: IRefreshData) => ({
+  } ||
+  action.type === Types.POST_REFRESH_DATA && {
     ...state,
     data: action.data,
     fetchStatus: DefaultFetchingStatuses.SUCCESS,
-  }),
-  [Types.POST_REFRESH_FETCH_STATUS]: (state, action: IChangeFetchStatus) => ({
+  } ||
+  action.type === Types.POST_REFRESH_FETCH_STATUS && {
     ...state,
     fetchStatus: action.status,
-  }),
-});
+  } ||
+  state
+);

@@ -10,6 +10,8 @@
       "no-submodule-imports": false,
       "jsx-no-multiline-js": false,
       "object-literal-sort-keys": false,
-      "jsx-no-lambda": false
+      "jsx-no-lambda": false,
+      "object-literal-shorthand": false,
+      "no-object-literal-type-assertion": false
     }
   }

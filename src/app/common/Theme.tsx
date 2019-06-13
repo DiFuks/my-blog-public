@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as WebFont from 'webfontloader';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-import { ScreenWidthBreakpoints } from './constants';
+import { Colors, ScreenWidthBreakpoints } from './constants';
 import 'normalize.css';
 
 const theme = {
@@ -18,10 +18,14 @@ const GlobalStyle = createGlobalStyle`
     font-size: 10px;
     height: 100%;
     font-family: "Montserrat", sans-serif;
+    background: ${Colors.GREY_30};
   }
   body {
-    height: 100%;
     font-size: 1.6rem;
+    min-height: 100%;
+    @media (min-width: ${ScreenWidthBreakpoints.TABLET}px) {
+      height: 100%;
+    }
   }
   #app {
     height: 100%;

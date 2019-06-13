@@ -6,13 +6,14 @@ export const Info: React.FunctionComponent<{}> = () => (
     flexDirection={'column'}
   >
     <Box
-      fontSize={'25px'}
-      mb={'20px'}
+      fontSize={'2.5rem'}
+      mb={'2rem'}
+      mt={'3rem'}
     >
       Привет!
     </Box>
     <Box
-      mb={'20px'}
+      mb={'2rem'}
     >
       <p>Этот сайт был сделан в качестве портфолио.</p>
       <p>Но не хочется, чтобы он был совсем без души.</p>

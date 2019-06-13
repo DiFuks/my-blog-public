@@ -9,6 +9,7 @@ import { Post } from './Post';
 const mapStateToProps = (state: IRootState) => ({
   data: state.post.data,
   fetchStatus: state.post.fetchStatus,
+  menuIsOpen: state.submenu.isActive,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

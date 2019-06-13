@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Box } from 'grid-styled';
 
 import { Colors, Routes } from '@app/common/constants';
@@ -10,9 +10,29 @@ export interface IProps {
   url: string;
   children: React.ReactChild;
   submenuDisable: () => void;
+  isActive: boolean;
 }
 
-const SubmenuItemStyled = styled(Link)`
+export interface IPropsStyled {
+  active: 'false' | 'true';
+}
+
+export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, submenuDisable, url, isActive}) => (
+  <SubmenuItemStyled
+    to={Routes.POST.replace(':url', url)}
+    onClick={() => submenuDisable()}
+    active={isActive && 'true' || 'false'}
+  >
+      <Box
+        px={'2rem'}
+      >
+        {id}.
+      </Box>
+      {children}
+  </SubmenuItemStyled>
+);
+
+const SubmenuItemStyled = styled(Link)<IPropsStyled>`
   height: 5rem;
   align-items: center;
   font-size: 1.4rem;
@@ -22,21 +42,10 @@ const SubmenuItemStyled = styled(Link)`
   display: flex;
   color: ${Colors.WHITE};
   text-decoration: none;
+  ${props => props.active && css`
+    background: ${Colors.GREY_45};
+  `}
   &:hover {
     background: ${Colors.GREY_45};
   }
 `;
-
-export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, submenuDisable, url}) => (
-  <SubmenuItemStyled
-    to={Routes.POST.replace(':url', url)}
-    onClick={() => submenuDisable()}
-  >
-      <Box
-        px={'20px'}
-      >
-        {id}.
-      </Box>
-      {children}
-  </SubmenuItemStyled>
-);

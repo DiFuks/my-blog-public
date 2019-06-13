@@ -1,21 +1,29 @@
+import { DefaultFetchingStatuses } from '@app/common/constants';
+import { PostTypes } from '@app/common/constants/postTypes';
+import { IPost } from '@app/post/duck/reducer';
+import { SubmenuStates } from '@app/submenu/duck/constants';
 import * as React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/styles/hljs';
-
-import { DefaultFetchingStatuses } from '@app/common/constants';
-import { IPost } from '@app/post/duck/reducer';
-import { PostTypes } from '@app/common/constants/postTypes';
+import styled, { css } from 'styled-components';
 
 export interface IProps {
   url: string;
   changeActive: (url: string) => void;
   data: IPost;
   fetchStatus: DefaultFetchingStatuses;
+  menuIsOpen: SubmenuStates;
 }
 
-export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, fetchStatus}) => {
+export interface IPropsStyled {
+  menuIsOpen: SubmenuStates;
+}
+
+export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, fetchStatus, menuIsOpen}) => {
   React.useEffect(() => {
     changeActive(url);
+
+    return () => changeActive(null);
   }, [url]);
 
   if (fetchStatus === DefaultFetchingStatuses.IN_PROGRESS || fetchStatus === DefaultFetchingStatuses.NONE) {
@@ -27,7 +35,9 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
   }
 
   return (
-    <div>
+    <PostStyled
+      menuIsOpen={menuIsOpen}
+    >
       <h1>{data.title}</h1>
       {data.content.map((content, index) => {
         if (content.type === PostTypes.TEXT) {
@@ -51,6 +61,15 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
           </SyntaxHighlighter>
         );
       })}
-    </div>
+    </PostStyled>
   );
 };
+
+const PostStyled = styled.div<IPropsStyled>`
+  height: 100%;
+  overflow: scroll;
+  line-height: 1.4;
+  ${props => props.menuIsOpen === SubmenuStates.ACTIVE && css`
+    overflow: hidden;
+  `}
+`;

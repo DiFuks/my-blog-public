@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 dotenv.config();
 
@@ -16,6 +17,11 @@ Encore.setOutputPath('public')
   .enableReactPreset()
   .enableTypeScriptLoader()
   .enableSingleRuntimeChunk()
+  .configureBabel(babelConfig => {
+    babelConfig.plugins = [
+      'babel-plugin-styled-components',
+    ];
+  })
   .addPlugin(
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/app/index.html'),
@@ -28,6 +34,11 @@ Encore.setOutputPath('public')
   )
   .addPlugin(new webpack.DefinePlugin({
     'API_URL': JSON.stringify(process.env.API_URL),
+  }))
+  .addPlugin(new CircularDependencyPlugin({
+    exclude: /a\.js|node_modules/,
+    failOnError: true,
+    cwd: process.cwd(),
   }))
   .addLoader({
     test: /\.tsx?$/,

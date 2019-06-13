@@ -1,7 +1,6 @@
-import { createReducer } from 'reduxsauce';
-
-import { IChangeActive, IChangeInit, IRefreshItems, Types } from './actions';
 import { SubmenuStates } from '@app/submenu/duck/constants';
+
+import { Creators, Types } from './actions';
 
 export interface IMenuItem {
   url: string;
@@ -14,21 +13,26 @@ export interface IState {
   isInit: boolean;
 }
 
-export const reducer = createReducer<IState, IChangeActive | IRefreshItems | IChangeInit>({
+const initialState: IState = {
   isActive: SubmenuStates.INIT,
   items: [],
   isInit: false,
-}, {
-  [Types.SUBMENU_CHANGE_ACTIVE]: (state, action: IChangeActive) => ({
+};
+
+type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
+
+export const reducer = (state = initialState, action: ActionTypes): IState => (
+  action.type === Types.SUBMENU_CHANGE_ACTIVE && {
     ...state,
     isActive: action.isActive,
-  }),
-  [Types.SUBMENU_REFRESH_ITEMS]: (state, action: IRefreshItems) => ({
+  } ||
+  action.type === Types.SUBMENU_REFRESH_ITEMS && {
     ...state,
     items: action.items,
-  }),
-  [Types.SUBMENU_INIT]: (state, action: IChangeInit) => ({
+  } ||
+  action.type === Types.SUBMENU_INIT && {
     ...state,
     isInit: action.isInit,
-  }),
-});
+  } ||
+  state
+);
