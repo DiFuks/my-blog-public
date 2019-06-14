@@ -1,5 +1,4 @@
-import { SubmenuStates } from '@app/submenu/duck/constants';
-
+import { SubmenuStates } from './constants';
 import { Creators, Types } from './actions';
 
 export interface IMenuItem {

@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { Flex } from 'grid-styled';
-import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
-import { Colors, Icons, Routes, ScreenWidthBreakpoints } from '@app/common/constants';
-import { MenuItem } from '@app/menu/MenuItem';
-import { Icon } from '@app/icon';
-import { MenuSocials } from '@app/menu/MenuSocials';
+import { Colors, Icons, Routes, ScreenWidthBreakpoints, StringBoolean } from '@app/common/constants';
+import { getStringByBoolean } from '@app/common/getStringByBoolean';
+import { Icon } from '@app/icon/Icon';
 import { SubmenuStates } from '@app/submenu/duck/constants';
+
+import { MenuSocials } from './MenuSocials';
+import { MenuItem } from './MenuItem';
 
 export interface IProps {
   activePathName: string;
@@ -19,7 +21,7 @@ export interface IProps {
 
 export interface IPropsStyled {
   position: 'top' | 'bottom';
-  hide?: 'false' | 'true';
+  hide?: StringBoolean;
 }
 
 export const Menu: React.FunctionComponent<IProps> = ({
@@ -47,7 +49,7 @@ export const Menu: React.FunctionComponent<IProps> = ({
     <MenuStyled>
       <MenuWrapperStyled
         position='top'
-        hide={menuNeedHide && 'true' || 'false'}
+        hide={getStringByBoolean(menuNeedHide)}
       >
         <Link to={Routes.ROOT}>
           <MenuItem
@@ -72,7 +74,7 @@ export const Menu: React.FunctionComponent<IProps> = ({
       </MenuWrapperStyled>
       <MenuWrapperStyled
         position='bottom'
-        hide={menuNeedHide && 'true' || 'false'}
+        hide={getStringByBoolean(menuNeedHide)}
       >
         <MenuSocials/>
       </MenuWrapperStyled>
@@ -104,13 +106,13 @@ const MenuWrapperStyled = styled(Flex)<IPropsStyled>`
     ${props => props.position === 'top' && css`
       top: 2.5rem;
     `};
-    ${props => props.hide === 'true' && props.position === 'top' && css`
+    ${props => props.hide === StringBoolean.TRUE && props.position === 'top' && css`
       top: -5rem;
     `};
     ${props => props.position === 'bottom' && css`
       bottom: 0;
     `};
-    ${props => props.hide === 'true' && props.position === 'bottom' && css`
+    ${props => props.hide === StringBoolean.TRUE && props.position === 'bottom' && css`
       bottom: -5rem;
     `};
   }

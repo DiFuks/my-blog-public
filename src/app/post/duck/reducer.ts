@@ -1,5 +1,5 @@
-import { DefaultFetchingStatuses } from '@app/common/constants';
-import { PostTypes } from '@app/common/constants/postTypes';
+import { FetchingStatuses, PostTypes } from '@app/common/constants';
+
 import { Creators, Types } from './actions';
 
 export type PostContent = Array<{
@@ -10,18 +10,19 @@ export type PostContent = Array<{
 export interface IPost {
   content: PostContent;
   title: string;
+  id: string;
 }
 
 export interface IState {
   url: string;
   data: IPost;
-  fetchStatus: DefaultFetchingStatuses;
+  fetchStatus: FetchingStatuses;
 }
 
 const initState: IState = {
   url: null,
   data: null,
-  fetchStatus: DefaultFetchingStatuses.NONE,
+  fetchStatus: FetchingStatuses.NONE,
 };
 
 type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
@@ -34,7 +35,7 @@ export const reducer = (state = initState, action: ActionTypes): IState => (
   action.type === Types.POST_REFRESH_DATA && {
     ...state,
     data: action.data,
-    fetchStatus: DefaultFetchingStatuses.SUCCESS,
+    fetchStatus: FetchingStatuses.SUCCESS,
   } ||
   action.type === Types.POST_REFRESH_FETCH_STATUS && {
     ...state,

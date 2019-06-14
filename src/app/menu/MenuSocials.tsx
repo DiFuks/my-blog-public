@@ -1,7 +1,9 @@
 import * as React from 'react';
+
+import { Icon } from '@app/icon/Icon';
+import { Icons } from '@app/common/constants/icons';
+
 import { MenuItem } from './MenuItem';
-import { Icon } from '../icon';
-import { Icons } from '../common/constants';
 
 export const MenuSocials: React.FunctionComponent<{}> = () => (
   <>

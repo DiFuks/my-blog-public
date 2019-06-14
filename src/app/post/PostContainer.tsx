@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IRootState } from '@app/reducers';
+
 import { Creators } from './duck/actions';
 import { Post } from './Post';
 

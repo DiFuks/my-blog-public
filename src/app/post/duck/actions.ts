@@ -1,5 +1,6 @@
-import { DefaultFetchingStatuses } from '@app/common/constants';
-import { IPost } from '@app/post/duck/reducer';
+import { FetchingStatuses } from '@app/common/constants';
+
+import { IPost } from './reducer';
 
 export const enum Types {
   POST_CHANGE_ACTIVE = 'POST_CHANGE_ACTIVE',
@@ -16,7 +17,7 @@ export const Creators = {
     type: Types.POST_REFRESH_DATA,
     data: data,
   } as const),
-  postRefreshFetchStatus: (status: DefaultFetchingStatuses) => ({
+  postRefreshFetchStatus: (status: FetchingStatuses) => ({
     type: Types.POST_REFRESH_FETCH_STATUS,
     status: status,
   } as const),

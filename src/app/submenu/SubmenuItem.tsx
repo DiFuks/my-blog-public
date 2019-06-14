@@ -1,9 +1,10 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
 import { Box } from 'grid-styled';
-
-import { Colors, Routes } from '@app/common/constants';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+
+import { Colors, Routes, StringBoolean } from '@app/common/constants';
+import { getStringByBoolean } from '@app/common/getStringByBoolean';
 
 export interface IProps {
   id: number;
@@ -14,14 +15,14 @@ export interface IProps {
 }
 
 export interface IPropsStyled {
-  active: 'false' | 'true';
+  active?: StringBoolean;
 }
 
 export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, submenuDisable, url, isActive}) => (
   <SubmenuItemStyled
     to={Routes.POST.replace(':url', url)}
     onClick={() => submenuDisable()}
-    active={isActive && 'true' || 'false'}
+    active={getStringByBoolean(isActive)}
   >
       <Box
         px={'2rem'}
@@ -48,7 +49,7 @@ const SubmenuItemStyled = styled(Link)<IPropsStyled>`
   :last-child {
     border-bottom: none;
   }
-  ${props => props.active === 'true' && css`
+  ${props => props.active === StringBoolean.TRUE && css`
     background-color: ${Colors.GREY_45};
   `}
   &:hover {

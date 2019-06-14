@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { Menu } from './Menu';
 import { IRootState } from '@app/reducers';
-import { Creators as SubmenuCreators } from '@app/submenu/duck';
-import { Creators as Creators } from './duck';
+import { Creators as SubmenuCreators } from '@app/submenu/duck/actions';
 import { SubmenuStates } from '@app/submenu/duck/constants';
+
+import { Creators } from './duck/actions';
+import { Menu } from './Menu';
 
 const mapStateToProps = (state: IRootState) => ({
   activePathName: state.router.location.pathname,

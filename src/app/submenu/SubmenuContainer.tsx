@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import { IRootState } from '@app/reducers';
+
 import { Submenu } from './Submenu';
-import { Creators } from '@app/submenu/duck';
-import { SubmenuStates } from '@app/submenu/duck/constants';
+import { Creators } from './duck/actions';
+import { SubmenuStates } from './duck/constants';
 
 const mapStateToProps = (state: IRootState) => ({
   isActive: state.submenu.isActive,

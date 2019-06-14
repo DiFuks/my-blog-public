@@ -1,5 +1,5 @@
-import { SubmenuStates } from '@app/submenu/duck/constants';
-import { IMenuItem } from '@app/submenu/duck/reducer';
+import { SubmenuStates } from './constants';
+import { IMenuItem } from './reducer';
 
 export const enum Types {
   SUBMENU_CHANGE_ACTIVE = 'SUBMENU_CHANGE_ACTIVE',

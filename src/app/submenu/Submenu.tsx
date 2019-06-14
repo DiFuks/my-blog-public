@@ -2,9 +2,10 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
+
+import { SubmenuStates } from './duck/constants';
+import { IMenuItem } from './duck/reducer';
 import { SubmenuItemContainer as SubmenuItem } from './SubmenuItemContainer';
-import { SubmenuStates } from '@app/submenu/duck/constants';
-import { IMenuItem } from '@app/submenu/duck/reducer';
 
 export interface IPropsStyled {
   show: SubmenuStates;

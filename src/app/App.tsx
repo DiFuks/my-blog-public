@@ -7,8 +7,9 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 
 import { sagas } from '@app/sagas';
-import { Router } from '@app/pages';
+import { Router } from '@app/pages/Router';
 import { Theme } from '@app/common/Theme';
+
 import { createRootReducer } from './reducers';
 
 const history = createBrowserHistory();

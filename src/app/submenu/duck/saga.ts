@@ -1,7 +1,8 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import { Creators, Types } from './actions';
 import { fetchData } from '@app/common/fetchData';
+
+import { Creators, Types } from './actions';
 
 function* onInit() {
   yield takeEvery(Types.SUBMENU_INIT, refreshData);

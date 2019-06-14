@@ -1,2 +1,3 @@
 declare const API_URL: string;
-declare type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
+declare const SITE_URL: string;
+declare const DISQUS_SHORTNAME: string;

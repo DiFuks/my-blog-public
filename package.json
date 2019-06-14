@@ -32,6 +32,8 @@
     "babel-polyfill": "^6.26.0",
     "circular-dependency-plugin": "^5.0.2",
     "connected-react-router": "^6.3.2",
+    "copy-webpack-plugin": "^5.0.3",
+    "disqus-react": "^1.0.5",
     "dotenv": "^7.0.0",
     "fs": "^0.0.1-security",
     "grid-styled": "^5.0.2",

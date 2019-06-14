@@ -3,16 +3,16 @@ import { Flex } from 'grid-styled';
 import styled, { css } from 'styled-components';
 
 import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
-import { Header } from '@app/header';
-import { Menu } from '@app/menu';
-import { Submenu } from '@app/submenu';
+import { Header } from '@app/header/Header';
+import { MenuContainer as Menu } from '@app/menu/MenuContainer';
+import { SubmenuContainer as Submenu } from '@app/submenu/SubmenuContainer';
 import { SubmenuStates } from '@app/submenu/duck/constants';
 
 export interface IProps {
   children: React.ReactChild;
   title: string;
   menuIsOpen: SubmenuStates;
-  submenuDisable: () => void;
+  submenuDisable: (menuIsOpen: SubmenuStates) => void;
 }
 
 export interface IPropsStyled {
@@ -30,7 +30,7 @@ export const Layout: React.FunctionComponent<IProps> = ({children, title, menuIs
         <Submenu/>
         <ContentWrapperStyled
           menu_is_open={menuIsOpen}
-          onClick={() => submenuDisable()}
+          onClick={() => submenuDisable(menuIsOpen)}
         >
           {children}
         </ContentWrapperStyled>
@@ -62,6 +62,6 @@ const ContentWrapperStyled = styled(Flex)<IPropsStyled>`
   ${props => props.menu_is_open === SubmenuStates.ACTIVE && css`
     overflow: hidden;
     filter: blur(3px);
-    transform: scale(.95);
+    transform: scale(.98);
   `}
 `;

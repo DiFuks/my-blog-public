@@ -2,13 +2,9 @@ import { combineReducers } from 'redux';
 import { connectRouter, RouterState } from 'connected-react-router';
 import { History } from 'history';
 
-import { reducer as postReducer } from '@app/post/duck';
-import { reducer as submenuReducer } from '@app/submenu/duck';
-import { reducer as menuReducer } from '@app/menu/duck';
-
-import { IState as IPostState } from '@app/post/duck/reducer';
-import { IState as ISubmenuState } from '@app/submenu/duck/reducer';
-import { IState as IMenuState } from '@app/menu/duck/reducer';
+import { reducer as postReducer, IState as IPostState } from '@app/post/duck/reducer';
+import { reducer as submenuReducer, IState as ISubmenuState } from '@app/submenu/duck/reducer';
+import { reducer as menuReducer, IState as IMenuState } from '@app/menu/duck/reducer';
 
 export interface IRootState {
   router: RouterState;
