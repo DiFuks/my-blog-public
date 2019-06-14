@@ -6,9 +6,10 @@ import { DiscussionEmbed } from 'disqus-react';
 
 import { FetchingStatuses, Routes, PostTypes } from '@app/common/constants';
 import { LoremText } from '@app/common/LoremText';
-import { IPost } from '@app/post/duck/reducer';
 import { SubmenuStates } from '@app/submenu/duck/constants';
 import { setTitle } from '@app/common/setTitle';
+
+import { IPost } from './duck/reducer';
 
 export interface IProps {
   url: string;
