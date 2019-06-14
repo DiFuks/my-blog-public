@@ -52,12 +52,6 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
     );
   }
 
-  const disqusConfig = {
-    url: `${SITE_URL}${Routes.POST.replace(':url', url)}`,
-    identifier: data.id,
-    title: data.title,
-  };
-
   return (
     <PostStyled
       menu_is_open={menuIsOpen}
@@ -87,7 +81,11 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
       })}
       <DiscussionEmbed
         shortname={DISQUS_SHORTNAME}
-        config={disqusConfig}
+        config={{
+          url: `${SITE_URL}${Routes.POST.replace(':url', url)}`,
+          identifier: data.id,
+          title: data.title,
+        }}
       />
     </PostStyled>
   );
