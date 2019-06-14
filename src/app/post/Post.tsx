@@ -37,7 +37,6 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
 
   if (fetchStatus === FetchingStatuses.IN_PROGRESS || fetchStatus === FetchingStatuses.NONE) {
     return (
-
       <PostStyled
         menu_is_open={menuIsOpen}
         fetch_status={fetchStatus}
