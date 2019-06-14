@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import { IRootState } from '@app/reducers';
 import { Submenu } from './Submenu';
 import { Creators } from '@app/submenu/duck';
+import { SubmenuStates } from '@app/submenu/duck/constants';
 
 const mapStateToProps = (state: IRootState) => ({
   isActive: state.submenu.isActive,
@@ -13,6 +14,7 @@ const mapStateToProps = (state: IRootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   init: () => dispatch(Creators.submenuInit(true)),
+  submenuDisable: () => dispatch(Creators.submenuChangeActive(SubmenuStates.DISABLE)),
 });
 
 export const SubmenuContainer = connect(

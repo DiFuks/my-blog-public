@@ -28,13 +28,11 @@ const store = createStore(
 sagaMiddleware.run(sagas);
 
 export const App: React.FunctionComponent<{}> = () => (
-  <React.Fragment>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Theme>
-          <Router/>
-        </Theme>
-      </ConnectedRouter>
-    </Provider>
-  </React.Fragment>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Theme>
+        <Router/>
+      </Theme>
+    </ConnectedRouter>
+  </Provider>
 );

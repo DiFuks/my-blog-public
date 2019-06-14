@@ -1,11 +1,12 @@
-import { DefaultFetchingStatuses } from '@app/common/constants';
-import { PostTypes } from '@app/common/constants/postTypes';
-import { IPost } from '@app/post/duck/reducer';
-import { SubmenuStates } from '@app/submenu/duck/constants';
 import * as React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/styles/hljs';
 import styled, { css } from 'styled-components';
+
+import { DefaultFetchingStatuses } from '@app/common/constants';
+import { PostTypes } from '@app/common/constants/postTypes';
+import { IPost } from '@app/post/duck/reducer';
+import { SubmenuStates } from '@app/submenu/duck/constants';
 
 export interface IProps {
   url: string;
@@ -16,7 +17,7 @@ export interface IProps {
 }
 
 export interface IPropsStyled {
-  menuIsOpen: SubmenuStates;
+  menu_is_open: SubmenuStates;
 }
 
 export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, fetchStatus, menuIsOpen}) => {
@@ -36,7 +37,7 @@ export const Post: React.FunctionComponent<IProps> = ({url, changeActive, data, 
 
   return (
     <PostStyled
-      menuIsOpen={menuIsOpen}
+      menu_is_open={menuIsOpen}
     >
       <h1>{data.title}</h1>
       {data.content.map((content, index) => {
@@ -69,7 +70,7 @@ const PostStyled = styled.div<IPropsStyled>`
   height: 100%;
   overflow: scroll;
   line-height: 1.4;
-  ${props => props.menuIsOpen === SubmenuStates.ACTIVE && css`
+  ${props => props.menu_is_open === SubmenuStates.ACTIVE && css`
     overflow: hidden;
   `}
 `;

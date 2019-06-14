@@ -15,11 +15,24 @@ export interface IProps {
   items: IMenuItem[];
   init: () => void;
   activeUrl: string;
+  submenuDisable: () => void;
 }
 
-export const Submenu: React.FunctionComponent<IProps> = ({isActive, init, items, activeUrl}) => {
+export const Submenu: React.FunctionComponent<IProps> = ({isActive, init, items, activeUrl, submenuDisable}) => {
   React.useEffect(() => {
     init();
+  }, []);
+
+  React.useEffect(() => {
+    const onEscDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        submenuDisable();
+      }
+    };
+
+    document.addEventListener('keydown', onEscDown);
+
+    return () => document.removeEventListener('keydown', onEscDown);
   }, []);
 
   React.useEffect(() => {
@@ -84,6 +97,7 @@ const SubmenuStyled = styled.div<IPropsStyled>`
   position: absolute;
   z-index: 1;
   opacity: .9;
+  user-select: none;
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
      position: fixed;
      top: 7.5rem;

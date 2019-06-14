@@ -1,11 +1,12 @@
+import * as React from 'react';
+import { Flex } from 'grid-styled';
+import styled, { css } from 'styled-components';
+
 import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
 import { Header } from '@app/header';
 import { Menu } from '@app/menu';
 import { Submenu } from '@app/submenu';
 import { SubmenuStates } from '@app/submenu/duck/constants';
-import { Flex } from 'grid-styled';
-import * as React from 'react';
-import styled, { css } from 'styled-components';
 
 export interface IProps {
   children: React.ReactChild;
@@ -15,7 +16,7 @@ export interface IProps {
 }
 
 export interface IPropsStyled {
-  menuisopen: SubmenuStates;
+  menu_is_open: SubmenuStates;
 }
 
 export const Layout: React.FunctionComponent<IProps> = ({children, title, menuIsOpen, submenuDisable}) => {
@@ -28,7 +29,7 @@ export const Layout: React.FunctionComponent<IProps> = ({children, title, menuIs
         <Menu/>
         <Submenu/>
         <ContentWrapperStyled
-          menuisopen={menuIsOpen}
+          menu_is_open={menuIsOpen}
           onClick={() => submenuDisable()}
         >
           {children}
@@ -40,7 +41,7 @@ export const Layout: React.FunctionComponent<IProps> = ({children, title, menuIs
 
 const LayoutStyled = styled(Flex)`
   height: 100%;
-  color: ${Colors.WHITE};
+  color: ${Colors.GREY_200};
   flex-direction: column;
   font-weight: 300;
 `;
@@ -58,7 +59,7 @@ const ContentWrapperStyled = styled(Flex)<IPropsStyled>`
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
     padding: 7.5rem 3rem;
   }
-  ${props => props.menuisopen === SubmenuStates.ACTIVE && css`
+  ${props => props.menu_is_open === SubmenuStates.ACTIVE && css`
     overflow: hidden;
     filter: blur(3px);
     transform: scale(.95);

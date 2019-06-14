@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as WebFont from 'webfontloader';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import 'normalize.css';
 
 import { Colors, ScreenWidthBreakpoints } from './constants';
-import 'normalize.css';
 
 const theme = {
   breakpoints: [
@@ -43,10 +43,10 @@ export interface IProps {
 }
 
 export const Theme: React.FunctionComponent<IProps> = ({children}) => (
-  <React.Fragment>
+  <>
     <GlobalStyle/>
     <ThemeProvider theme={theme}>
       {children}
     </ThemeProvider>
-  </React.Fragment>
+  </>
 );

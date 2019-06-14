@@ -26,7 +26,7 @@ export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, subm
       <Box
         px={'2rem'}
       >
-        {id}.
+        {id}
       </Box>
       {children}
   </SubmenuItemStyled>
@@ -40,12 +40,18 @@ const SubmenuItemStyled = styled(Link)<IPropsStyled>`
   width: 25rem;
   flex-shrink: 0;
   display: flex;
-  color: ${Colors.WHITE};
+  color: ${Colors.GREY_200};
+  border-bottom: 1px solid ${Colors.GREY_60};
   text-decoration: none;
+  font-weight: 600;
+  transition: background .2s linear;
+  :last-child {
+    border-bottom: none;
+  }
   ${props => props.active === 'true' && css`
-    background: ${Colors.GREY_45};
+    background-color: ${Colors.GREY_45};
   `}
   &:hover {
-    background: ${Colors.GREY_45};
+    background-color: ${Colors.GREY_45};
   }
 `;
