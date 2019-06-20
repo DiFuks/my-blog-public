@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 import { Colors, Routes, StringBoolean } from '@app/common/constants';
-import { getStringByBoolean } from '@app/common/getStringByBoolean';
+import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
 
 export interface IProps {
   id: number;

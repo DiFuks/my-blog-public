@@ -3,7 +3,7 @@ import * as WebFont from 'webfontloader';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import 'normalize.css';
 
-import { Colors, ScreenWidthBreakpoints } from './constants';
+import { Colors, ScreenWidthBreakpoints } from '../constants';
 
 const theme = {
   breakpoints: [

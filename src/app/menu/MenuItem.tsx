@@ -3,7 +3,7 @@ import { Flex } from 'grid-styled';
 import styled from 'styled-components';
 
 import { Colors, StringBoolean } from '@app/common/constants';
-import { getStringByBoolean } from '@app/common/getStringByBoolean';
+import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
 
 export interface IPropsStyled {
   white: StringBoolean;

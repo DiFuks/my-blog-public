@@ -8,7 +8,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import { sagas } from '@app/sagas';
 import { Router } from '@app/pages/Router';
-import { Theme } from '@app/common/Theme';
+import { Theme } from '@app/common/components/Theme';
 
 import { createRootReducer } from './reducers';
 

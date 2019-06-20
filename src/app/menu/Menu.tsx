@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 import { Colors, Icons, Routes, ScreenWidthBreakpoints, StringBoolean } from '@app/common/constants';
-import { getStringByBoolean } from '@app/common/getStringByBoolean';
+import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
 import { Icon } from '@app/icon/Icon';
 import { SubmenuStates } from '@app/submenu/duck/constants';
 

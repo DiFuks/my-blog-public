@@ -5,9 +5,9 @@ import styled, { css, keyframes } from 'styled-components';
 import { DiscussionEmbed } from 'disqus-react';
 
 import { FetchingStatuses, Routes, PostTypes } from '@app/common/constants';
-import { LoremText } from '@app/common/LoremText';
+import { LoremText } from '@app/common/components/LoremText';
 import { SubmenuStates } from '@app/submenu/duck/constants';
-import { setTitle } from '@app/common/setTitle';
+import { setTitle } from '@app/common/helpers/setTitle';
 
 import { IPost } from './duck/reducer';
 

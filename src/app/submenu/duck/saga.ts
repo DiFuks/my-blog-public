@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import { fetchData } from '@app/common/fetchData';
+import { fetchData } from '@app/common/helpers/fetchData';
 
 import { Creators, Types } from './actions';
 
