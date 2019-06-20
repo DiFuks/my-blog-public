@@ -12,17 +12,19 @@ export interface IProps {
   children: React.ReactChild;
   submenuDisable: () => void;
   isActive: boolean;
+  isDisableTabindex: boolean;
 }
 
 export interface IPropsStyled {
   active?: StringBoolean;
 }
 
-export const SubmenuItem: React.FC<IProps> = ({id, children, submenuDisable, url, isActive}) => (
+export const SubmenuItem: React.FC<IProps> = ({id, children, submenuDisable, url, isActive, isDisableTabindex}) => (
   <SubmenuItemStyled
     to={Routes.POST.replace(':url', url)}
     onClick={() => submenuDisable()}
     active={getStringByBoolean(isActive)}
+    tabIndex={isDisableTabindex ? -1 : 0}
   >
     <Box
       px={'2rem'}

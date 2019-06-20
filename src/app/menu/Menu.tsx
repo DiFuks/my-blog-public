@@ -51,7 +51,10 @@ export const Menu: React.FC<IProps> = ({
         position='top'
         hide={getStringByBoolean(menuNeedHide)}
       >
-        <Link to={Routes.ROOT}>
+        <Link
+          to={Routes.ROOT}
+          tabIndex={0}
+        >
           <MenuItem
             isActive={Routes.ROOT === activePathName}
             onClick={() => changeSubmenuActive(submenuIsActive === SubmenuStates.ACTIVE
@@ -62,15 +65,19 @@ export const Menu: React.FC<IProps> = ({
             <Icon icon={Icons.HOME}/>
           </MenuItem>
         </Link>
-        <MenuItem
-          isActive={submenuIsActive === SubmenuStates.ACTIVE}
+        <ButtonStyled
           onClick={() => changeSubmenuActive(submenuIsActive === SubmenuStates.ACTIVE
             ? SubmenuStates.DISABLE
             : SubmenuStates.ACTIVE,
           )}
+          tabIndex={0}
         >
-          <Icon icon={Icons.LIST}/>
-        </MenuItem>
+          <MenuItem
+            isActive={submenuIsActive === SubmenuStates.ACTIVE}
+          >
+            <Icon icon={Icons.LIST}/>
+          </MenuItem>
+        </ButtonStyled>
       </MenuWrapperStyled>
       <MenuWrapperStyled
         position='bottom'
@@ -116,4 +123,10 @@ const MenuWrapperStyled = styled(Flex)<IPropsStyled>`
       bottom: -5rem;
     `};
   }
+`;
+
+const ButtonStyled = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
 `;

@@ -64,6 +64,7 @@ export const Submenu: React.FC<IProps> = ({
           id={index + 1}
           url={item.url}
           isActive={item.url === activeUrl}
+          isDisableTabindex={isActive !== SubmenuStates.ACTIVE}
         >
           {item.title}
         </SubmenuItem>

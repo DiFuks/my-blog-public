@@ -51,7 +51,9 @@ const LayoutStyled = styled(Flex)`
   font-weight: 300;
 `;
 
-const ContentStyled = styled(Flex)`
+const ContentStyled = styled.main`
+  display: flex;
+  box-sizing: border-box;
   flex-grow: 1;
 `;
 

@@ -50,6 +50,7 @@ export const Post: React.FC<IProps> = ({url, changeActive, data, fetchStatus, me
   return (
     <PostStyled
       menu_is_open={menuIsOpen}
+      tabIndex={0}
     >
       <h1>{data.title}</h1>
       {data.content.map((content, index) => {
