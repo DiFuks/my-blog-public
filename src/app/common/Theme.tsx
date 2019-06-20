@@ -42,11 +42,11 @@ export interface IProps {
   children: React.ReactChild;
 }
 
-export const Theme: React.FunctionComponent<IProps> = ({children}) => (
+export const Theme: React.FC<IProps> = React.memo(({children}) => (
   <>
     <GlobalStyle/>
     <ThemeProvider theme={theme}>
       {children}
     </ThemeProvider>
   </>
-);
+));

@@ -5,7 +5,7 @@ import { Icons } from '@app/common/constants/icons';
 
 import { MenuItem } from './MenuItem';
 
-export const MenuSocials: React.FunctionComponent<{}> = () => (
+export const MenuSocials: React.FC = React.memo(() => (
   <>
     <a
       href='https://stihi.ru/avtor/difuks'
@@ -48,4 +48,4 @@ export const MenuSocials: React.FunctionComponent<{}> = () => (
       </MenuItem>
     </a>
   </>
-);
+));

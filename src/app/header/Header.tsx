@@ -8,11 +8,11 @@ export interface IProps {
   children: string;
 }
 
-export const Header: React.FunctionComponent<IProps> = ({children}) => (
+export const Header: React.FC<IProps> = React.memo(({children}) => (
   <HeaderStyled>
     {children}
   </HeaderStyled>
-);
+));
 
 const HeaderStyled = styled(Flex)`
   width: 100%;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Flex } from 'grid-styled';
 
-export const Info: React.FunctionComponent<{}> = () => (
+export const Info: React.FC = React.memo(() => (
   <Flex
     flexDirection={'column'}
   >
@@ -21,4 +21,4 @@ export const Info: React.FunctionComponent<{}> = () => (
     </Box>
     <Box>А может ещё что-то.</Box>
   </Flex>
-);
+));

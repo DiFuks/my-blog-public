@@ -19,25 +19,23 @@ export interface IPropsStyled {
   menu_is_open: SubmenuStates;
 }
 
-export const Layout: React.FunctionComponent<IProps> = ({children, title, menuIsOpen, submenuDisable}) => {
-  return (
-    <LayoutStyled>
-      <Header>
-        {title}
-      </Header>
-      <ContentStyled>
-        <Menu/>
-        <Submenu/>
-        <ContentWrapperStyled
-          menu_is_open={menuIsOpen}
-          onClick={() => submenuDisable(menuIsOpen)}
-        >
-          {children}
-        </ContentWrapperStyled>
-      </ContentStyled>
-    </LayoutStyled>
-  );
-};
+export const Layout: React.FC<IProps> = React.memo(({children, title, menuIsOpen, submenuDisable}) => (
+  <LayoutStyled>
+    <Header>
+      {title}
+    </Header>
+    <ContentStyled>
+      <Menu/>
+      <Submenu/>
+      <ContentWrapperStyled
+        menu_is_open={menuIsOpen}
+        onClick={() => submenuDisable(menuIsOpen)}
+      >
+        {children}
+      </ContentWrapperStyled>
+    </ContentStyled>
+  </LayoutStyled>
+));
 
 const LayoutStyled = styled(Flex)`
   height: 100%;

@@ -4,7 +4,7 @@ import { LayoutContainer as Layout } from '@app/layout/LayoutContainer';
 import { Info } from '@app/info/Info';
 import { setTitle } from '@app/common/setTitle';
 
-export const Root: React.FunctionComponent<{}> = () => {
+export const Root: React.FC = React.memo(() => {
   React.useEffect(() => {
     setTitle('Главная страница');
   }, []);
@@ -14,4 +14,4 @@ export const Root: React.FunctionComponent<{}> = () => {
       <Info/>
     </Layout>
   );
-};
+});

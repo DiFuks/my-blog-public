@@ -18,7 +18,7 @@ export interface IPropsStyled {
   active?: StringBoolean;
 }
 
-export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, submenuDisable, url, isActive}) => (
+export const SubmenuItem: React.FC<IProps> = React.memo(({id, children, submenuDisable, url, isActive}) => (
   <SubmenuItemStyled
     to={Routes.POST.replace(':url', url)}
     onClick={() => submenuDisable()}
@@ -31,7 +31,7 @@ export const SubmenuItem: React.FunctionComponent<IProps> = ({id, children, subm
       </Box>
       {children}
   </SubmenuItemStyled>
-);
+));
 
 const SubmenuItemStyled = styled(Link)<IPropsStyled>`
   height: 5rem;

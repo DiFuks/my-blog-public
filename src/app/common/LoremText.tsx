@@ -1,7 +1,7 @@
 /* tslint:disable */
 import * as React from 'react';
 
-export const LoremText = () => (
+export const LoremText: React.FC = React.memo(() => (
   <div>
     <h1>Загрузка</h1>
     <p>
@@ -47,4 +47,4 @@ export const LoremText = () => (
       Aenean vehicula diam sit amet porttitor sagittis. Vivamus condimentum diam nec nisl molestie, sed sollicitudin velit volutpat. Pellentesque mattis sem eget libero ullamcorper egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla facilisi. Mauris pretium accumsan elit eu malesuada. Suspendisse sed nisl consequat, hendrerit urna dictum, vulputate enim. Praesent pulvinar blandit convallis. Vivamus et facilisis dui. Duis laoreet finibus lectus, eu tincidunt felis blandit at. Donec tempor purus ac suscipit consectetur.
     </p>
   </div>
-);
+));

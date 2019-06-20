@@ -28,7 +28,7 @@ const store = createStore(
 
 sagaMiddleware.run(sagas);
 
-export const App: React.FunctionComponent<{}> = () => (
+export const App: React.FC<{}> = React.memo(() => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Theme>
@@ -36,4 +36,4 @@ export const App: React.FunctionComponent<{}> = () => (
       </Theme>
     </ConnectedRouter>
   </Provider>
-);
+));

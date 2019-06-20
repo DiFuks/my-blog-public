@@ -7,7 +7,7 @@ export interface IProps {
   viewBox?: string;
 }
 
-export const Icon: React.FunctionComponent<IProps> = ({icon, viewBox = '0 0 32 32'}) => (
+export const Icon: React.FC<IProps> = React.memo(({icon, viewBox = '0 0 32 32'}) => (
   <svg
     viewBox={viewBox}
     width={30}
@@ -16,4 +16,4 @@ export const Icon: React.FunctionComponent<IProps> = ({icon, viewBox = '0 0 32 3
   >
     <path d={icon}/>
   </svg>
-);
+));

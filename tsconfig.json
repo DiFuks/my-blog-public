@@ -17,6 +17,7 @@
       "typeRoots": ["./src/typings"]
     },
     "include": [
-      "src/**/*.ts"
+      "src/**/*.ts",
+      "src/**/*.tsx"
     ]
   }

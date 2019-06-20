@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Flex } from 'grid-styled';
 import styled from 'styled-components';
 
-import { Colors } from '@app/common/constants';
+import { Colors, StringBoolean } from '@app/common/constants';
+import { getStringByBoolean } from '@app/common/getStringByBoolean';
 
-// https://github.com/styled-components/styled-components/issues/1198
 export interface IPropsStyled {
-  white: number;
+  white: StringBoolean;
 }
 
 export interface IProps {
@@ -15,19 +15,19 @@ export interface IProps {
   onClick?: () => void;
 }
 
-export const MenuItem: React.FunctionComponent<IProps> = ({children, isActive = false, onClick = null}) => (
+export const MenuItem: React.FC<IProps> = React.memo(({children, isActive = false, onClick = null}) => (
   <MenuItemStyled
-    white={isActive ? 1 : 0}
+    white={getStringByBoolean(isActive)}
     onClick={() => onClick && onClick()}
   >
     {children}
   </MenuItemStyled>
-);
+));
 
 const MenuItemStyled = styled(Flex)<IPropsStyled>`
   padding: 1.2rem;
   height: 5rem;
-  color: ${props => props.white ? Colors.WHITE : Colors.GREY_160};
+  color: ${props => props.white === StringBoolean.TRUE ? Colors.WHITE : Colors.GREY_160};
   cursor: pointer;
   transition: color .2s ease;
   flex-direction: column;
