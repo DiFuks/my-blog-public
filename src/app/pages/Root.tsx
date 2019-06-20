@@ -2,16 +2,11 @@ import * as React from 'react';
 
 import { LayoutContainer as Layout } from '@app/layout/LayoutContainer';
 import { Info } from '@app/info/Info';
-import { setTitle } from '@app/common/helpers/setTitle';
 
-export const Root: React.FC = React.memo(() => {
-  React.useEffect(() => {
-    setTitle('Главная страница');
-  }, []);
+export const Root: React.FC = React.memo(() => (
+  <Layout title='Главная страница'>
+    <Info/>
+  </Layout>
+));
 
-  return (
-    <Layout title='Главная страница'>
-      <Info/>
-    </Layout>
-  );
-});
+export { Root as default };

@@ -24,12 +24,12 @@ export const SubmenuItem: React.FC<IProps> = ({id, children, submenuDisable, url
     onClick={() => submenuDisable()}
     active={getStringByBoolean(isActive)}
   >
-      <Box
-        px={'2rem'}
-      >
-        {id}
-      </Box>
-      {children}
+    <Box
+      px={'2rem'}
+    >
+      {id}
+    </Box>
+    {children}
   </SubmenuItemStyled>
 );
 

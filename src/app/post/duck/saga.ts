@@ -18,7 +18,7 @@ function* refreshData(action: ReturnType<typeof Creators.postChangeActive>) {
   yield put(Creators.postRefreshFetchStatus(FetchingStatuses.IN_PROGRESS));
 
   try {
-    const response: Response =  yield call(fetchData, `/post/detail/${action.url}`);
+    const response: Response = yield call(fetchData, `/post/detail/${action.url}`);
 
     if (response.status !== httpStatusCodes.OK) {
       yield put(Creators.postRefreshFetchStatus(FetchingStatuses.FAILED));

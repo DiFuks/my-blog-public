@@ -96,10 +96,10 @@ const SubmenuStyled = styled.div<IPropsStyled>`
   width: ${props => props.show !== SubmenuStates.ACTIVE ? '0' : '25rem'};
   overflow: hidden;
   animation: ${props => props.show !== SubmenuStates.INIT
-    ? (props.show === SubmenuStates.ACTIVE
+  ? (props.show === SubmenuStates.ACTIVE
       ? animationIn
       : animationOut
-    ) : 'none'} .3s ease;
+  ) : 'none'} .3s ease;
   flex-direction: column;
   flex-shrink: 0;
   left: 5rem;

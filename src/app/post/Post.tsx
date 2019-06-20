@@ -105,7 +105,7 @@ const PostStyled = styled.div<IPropsStyled>`
   transition: filter 1s ease;
   filter: blur(0);
   ${props => (props.fetch_status === FetchingStatuses.IN_PROGRESS || props.fetch_status === FetchingStatuses.NONE) &&
-    css`
+  css`
       animation: ${fadeId} 1s infinite;
       filter: blur(4px);
   `}

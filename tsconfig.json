@@ -3,7 +3,7 @@
       "esModuleInterop": true,
       "baseUrl": ".",
       "target": "es6",
-      "module": "es6",
+      "module": "esnext",
       "moduleResolution": "node",
       "declaration": false,
       "noImplicitAny": true,

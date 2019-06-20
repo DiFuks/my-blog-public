@@ -7,9 +7,10 @@ import { Header } from '@app/header/Header';
 import { MenuContainer as Menu } from '@app/menu/MenuContainer';
 import { SubmenuContainer as Submenu } from '@app/submenu/SubmenuContainer';
 import { SubmenuStates } from '@app/submenu/duck/constants';
+import { setTitle } from '@app/common/helpers/setTitle';
 
 export interface IProps {
-  children: React.ReactChild;
+  children?: React.ReactChild;
   title: string;
   menuIsOpen: SubmenuStates;
   submenuDisable: (menuIsOpen: SubmenuStates) => void;
@@ -19,23 +20,29 @@ export interface IPropsStyled {
   menu_is_open: SubmenuStates;
 }
 
-export const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDisable}) => (
-  <LayoutStyled>
-    <Header>
-      {title}
-    </Header>
-    <ContentStyled>
-      <Menu/>
-      <Submenu/>
-      <ContentWrapperStyled
-        menu_is_open={menuIsOpen}
-        onClick={() => submenuDisable(menuIsOpen)}
-      >
-        {children}
-      </ContentWrapperStyled>
-    </ContentStyled>
-  </LayoutStyled>
-);
+export const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDisable}) => {
+  React.useEffect(() => {
+    setTitle(title);
+  }, [title]);
+
+  return (
+    <LayoutStyled>
+      <Header>
+        {title}
+      </Header>
+      <ContentStyled>
+        <Menu/>
+        <Submenu/>
+        <ContentWrapperStyled
+          menu_is_open={menuIsOpen}
+          onClick={() => submenuDisable(menuIsOpen)}
+        >
+          {children}
+        </ContentWrapperStyled>
+      </ContentStyled>
+    </LayoutStyled>
+  );
+};
 
 const LayoutStyled = styled(Flex)`
   height: 100%;

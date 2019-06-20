@@ -13,3 +13,5 @@ const mapStateToProps = (state: IRootState) => ({
 export const PostPageContainer = connect(
   mapStateToProps,
 )(PostPage);
+
+export { PostPageContainer as default };
