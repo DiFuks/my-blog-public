@@ -24,7 +24,7 @@ export interface IPropsStyled {
   fetch_status?: FetchingStatuses;
 }
 
-export const Post: React.FC<IProps> = React.memo(({url, changeActive, data, fetchStatus, menuIsOpen}) => {
+export const Post: React.FC<IProps> = ({url, changeActive, data, fetchStatus, menuIsOpen}) => {
   React.useEffect(() => {
     setTitle(data && data.title);
   }, [data]);
@@ -89,7 +89,7 @@ export const Post: React.FC<IProps> = React.memo(({url, changeActive, data, fetc
       />
     </PostStyled>
   );
-});
+};
 
 const fadeId = keyframes`
   0% {

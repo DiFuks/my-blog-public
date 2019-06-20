@@ -19,7 +19,7 @@ export interface IProps {
   submenuDisable: () => void;
 }
 
-export const Submenu: React.FC<IProps> = React.memo(({isActive, init, items, activeUrl, submenuDisable}) => {
+export const Submenu: React.FC<IProps> = ({isActive, init, items, activeUrl, submenuDisable}) => {
   React.useEffect(() => {
     init();
   }, []);
@@ -60,7 +60,7 @@ export const Submenu: React.FC<IProps> = React.memo(({isActive, init, items, act
       ))}
     </SubmenuStyled>
   );
-});
+};
 
 const animationIn = keyframes`
   0% {

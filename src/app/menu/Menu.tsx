@@ -24,7 +24,7 @@ export interface IPropsStyled {
   hide?: StringBoolean;
 }
 
-export const Menu: React.FC<IProps> = React.memo(({
+export const Menu: React.FC<IProps> = ({
   activePathName,
   submenuIsActive,
   changeSubmenuActive,
@@ -80,7 +80,7 @@ export const Menu: React.FC<IProps> = React.memo(({
       </MenuWrapperStyled>
     </MenuStyled>
   );
-});
+};
 
 const MenuStyled = styled(Flex)`
   background: ${Colors.GREY_51};

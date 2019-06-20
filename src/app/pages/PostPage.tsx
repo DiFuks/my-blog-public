@@ -12,8 +12,8 @@ interface IProps {
   title: string;
 }
 
-export const PostPage: React.FC<IProps> = React.memo(({match: {params: {url}}, title}) => (
+export const PostPage: React.FC<IProps> = ({match: {params: {url}}, title}) => (
   <Layout title={title}>
     <Post url={url}/>
   </Layout>
-));
+);

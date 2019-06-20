@@ -19,7 +19,7 @@ export interface IPropsStyled {
   menu_is_open: SubmenuStates;
 }
 
-export const Layout: React.FC<IProps> = React.memo(({children, title, menuIsOpen, submenuDisable}) => (
+export const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDisable}) => (
   <LayoutStyled>
     <Header>
       {title}
@@ -35,7 +35,7 @@ export const Layout: React.FC<IProps> = React.memo(({children, title, menuIsOpen
       </ContentWrapperStyled>
     </ContentStyled>
   </LayoutStyled>
-));
+);
 
 const LayoutStyled = styled(Flex)`
   height: 100%;
