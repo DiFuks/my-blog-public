@@ -7,7 +7,6 @@ import { DiscussionEmbed } from 'disqus-react';
 import { FetchingStatuses, Routes, PostTypes } from '@app/common/constants';
 import { LoremText } from '@app/common/components/LoremText';
 import { SubmenuStates } from '@app/submenu/duck/constants';
-import { setTitle } from '@app/common/helpers/setTitle';
 
 import { IPost } from './duck/reducer';
 
@@ -25,10 +24,6 @@ export interface IPropsStyled {
 }
 
 export const Post: React.FC<IProps> = ({url, changeActive, data, fetchStatus, menuIsOpen}) => {
-  React.useEffect(() => {
-    setTitle(data && data.title);
-  }, [data]);
-
   React.useEffect(() => {
     changeActive(url);
 
