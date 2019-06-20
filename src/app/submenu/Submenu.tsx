@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
+import { Colors, FetchingStatuses, ScreenWidthBreakpoints } from '@app/common/constants';
 
 import { SubmenuStates } from './duck/constants';
 import { IMenuItem } from './duck/reducer';
@@ -17,12 +17,22 @@ export interface IProps {
   init: () => void;
   activeUrl: string;
   submenuDisable: () => void;
+  fetchStatus: FetchingStatuses;
 }
 
-export const Submenu: React.FC<IProps> = ({isActive, init, items, activeUrl, submenuDisable}) => {
+export const Submenu: React.FC<IProps> = ({
+  isActive,
+  init,
+  items,
+  activeUrl,
+  submenuDisable,
+  fetchStatus,
+}) => {
   React.useEffect(() => {
-    init();
-  }, []);
+    if (fetchStatus === FetchingStatuses.NONE) {
+      init();
+    }
+  }, [fetchStatus]);
 
   React.useEffect(() => {
     const onEscDown = (event: KeyboardEvent) => {

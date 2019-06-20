@@ -11,6 +11,7 @@ const mapStateToProps = (state: IRootState) => ({
   isActive: state.submenu.isActive,
   items: state.submenu.items,
   activeUrl: state.post.url,
+  fetchStatus: state.submenu.fetchStatus,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
