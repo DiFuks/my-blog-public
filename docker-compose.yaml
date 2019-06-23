@@ -1,0 +1,20 @@
+version: '2.4'
+
+services:
+  frontend-nodejs:
+    container_name: frontend-nodejs
+    image: node:10.13.0-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+  frontend-nginx:
+    container_name: frontend-nginx
+    image: nginx:1.15-alpine
+    volumes:
+      - ./public:/var/www/public
+      - ./docker/nginx:/etc/nginx/conf.d
+
+networks:
+  default:
+    external:
+      name: my-blog
