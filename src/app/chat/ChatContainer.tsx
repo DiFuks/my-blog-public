@@ -14,7 +14,7 @@ const mapStateToProps = (state: IRootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   requestId: () => dispatch(Creators.chatRequestId()),
-  sendMessage: (id: string, name: string, text: string) => dispatch(Creators.chatSendMessage(id, name, text)),
+  sendMessage: (id: string, text: string) => dispatch(Creators.chatSendMessage(id, text)),
   chatInit: (id: string) => dispatch(Creators.chatInit(id)),
 });
 

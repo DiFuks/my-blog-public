@@ -16,10 +16,9 @@ export const Creators = {
     type: Types.CHAT_REFRESH_ID,
     id: id,
   } as const),
-  chatSendMessage: (id: string, name: string, text: string) => ({
+  chatSendMessage: (id: string, text: string) => ({
     type: Types.CHAT_SEND_MESSAGE,
     id: id,
-    name: name,
     message: text,
   } as const),
   chatRefreshMessages: (messages: IMessage[]) => ({

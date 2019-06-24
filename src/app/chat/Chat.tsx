@@ -10,12 +10,12 @@ import { IMessage } from './duck/reducer';
 export interface IProps {
   id: string;
   requestId: () => void;
-  sendMessage: (id: string, name: string, text: string) => void;
+  sendMessage: (id: string, text: string) => void;
   chatInit: (id: string) => void;
   messages: IMessage[];
 }
 
-export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, messages}) => {
+export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, messages}, context) => {
   React.useEffect(() => {
     if (!id) {
       requestId();
@@ -31,11 +31,11 @@ export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, me
       <ChatTitleStyled>Чат</ChatTitleStyled>
       <ChatSubtitleStyled>сообщения приходят мне в telegram</ChatSubtitleStyled>
       <ChatWrapperStyled>
-        <Box>
+        <ChatListStyled>
           {messages.map(item => (
-            <Box mb='10px'>{item.type === ChatMessageTypes.USER ? 'Я: ' : 'Дима: '}{item.message}</Box>
+            <Box mb='10px'>{item.type === ChatMessageTypes.USER ? 'Я:' + '\u00A0' : 'Дима: '}{item.message}</Box>
           ))}
-        </Box>
+        </ChatListStyled>
         <TextAreaWrapperStyled>
           <TextAreaStyled
             placeholder='Сообщение'
@@ -43,7 +43,7 @@ export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, me
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
           />
           <ButtonStyled onClick={() => {
-            sendMessage(id, name, message);
+            sendMessage(id, message);
             setMessage('');
           }}>
             <Icon
@@ -69,11 +69,19 @@ const ChatWrapperStyled = styled(Flex)`
   flex-direction: column;
   padding: 1rem;
   font-size: 1.2rem;
+  width: 22rem;
+  word-wrap: break-word;
 `;
 
 const ChatTitleStyled = styled(Flex)`
   background: ${Colors.GREY_37};
   padding: 1rem 1rem 0;
+`;
+
+const ChatListStyled = styled(Box)`
+  max-height: 16rem;
+  overflow: auto;
+  line-height: 2rem;
 `;
 
 const ChatSubtitleStyled = styled(Flex)`

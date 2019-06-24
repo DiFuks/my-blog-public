@@ -40,7 +40,6 @@ function* sendMessage(action: ReturnType<typeof Creators.chatSendMessage>) {
     method: 'POST',
     body: JSON.stringify({
       id: action.id,
-      name: action.name,
       message: action.message,
     }),
   });
@@ -51,7 +50,7 @@ function* sendMessage(action: ReturnType<typeof Creators.chatSendMessage>) {
 }
 
 function* chatInit(action: ReturnType<typeof Creators.chatInit>) {
-  const response = yield call(fetchData, `/bot/getMessages?id=${action.id}`);
+  const response = yield call(fetchData, `/bot/getMessages/${action.id}`);
 
   const data: IMessage[] = yield response.json();
 
