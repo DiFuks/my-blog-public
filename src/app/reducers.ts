@@ -5,12 +5,14 @@ import { History } from 'history';
 import { reducer as postReducer, IState as IPostState } from '@app/post/duck/reducer';
 import { reducer as submenuReducer, IState as ISubmenuState } from '@app/submenu/duck/reducer';
 import { reducer as menuReducer, IState as IMenuState } from '@app/menu/duck/reducer';
+import { reducer as chatReducer, IState as IChatState } from '@app/chat/duck/reducer';
 
 export interface IRootState {
   router: RouterState;
   submenu: ISubmenuState;
   post: IPostState;
   menu: IMenuState;
+  chat: IChatState;
 }
 
 export const createRootReducer = (history: History) => combineReducers<IRootState>({
@@ -18,4 +20,5 @@ export const createRootReducer = (history: History) => combineReducers<IRootStat
   submenu: submenuReducer,
   post: postReducer,
   menu: menuReducer,
+  chat: chatReducer,
 });
