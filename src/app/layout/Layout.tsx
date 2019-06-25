@@ -8,7 +8,8 @@ import { MenuContainer as Menu } from '@app/menu/MenuContainer';
 import { SubmenuContainer as Submenu } from '@app/submenu/SubmenuContainer';
 import { SubmenuStates } from '@app/submenu/duck/constants';
 import { setTitle } from '@app/common/helpers/setTitle';
-import { ChatContainer as Chat } from '@app/chat/ChatContainer';
+
+const Chat = React.lazy(() => import('@app/chat/ChatContainer'));
 
 export interface IProps {
   children?: React.ReactChild;
@@ -40,7 +41,9 @@ export const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDi
         >
           {children}
         </ContentWrapperStyled>
-        <Chat/>
+        <React.Suspense fallback={<div/>}>
+          <Chat/>
+        </React.Suspense>
       </ContentStyled>
     </LayoutStyled>
   );

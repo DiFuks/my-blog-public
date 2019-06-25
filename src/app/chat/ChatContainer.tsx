@@ -22,3 +22,5 @@ export const ChatContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Chat);
+
+export { ChatContainer as default };

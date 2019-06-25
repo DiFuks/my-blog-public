@@ -2,10 +2,12 @@ import * as React from 'react';
 import { Box, Flex } from 'grid-styled';
 import styled from 'styled-components';
 
-import { ChatMessageTypes, Colors, Icons } from '@app/common/constants';
+import { Colors, Icons } from '@app/common/constants';
 import { Icon } from '@app/icon/Icon';
 
 import { IMessage } from './duck/reducer';
+import { ChatList } from './ChatList';
+import { ChatMover } from './ChatMover';
 
 export interface IProps {
   id: string;
@@ -15,7 +17,9 @@ export interface IProps {
   messages: IMessage[];
 }
 
-export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, messages}, context) => {
+export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, messages}) => {
+  const [message, setMessage] = React.useState('');
+
   React.useEffect(() => {
     if (!id) {
       requestId();
@@ -24,66 +28,73 @@ export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, me
     }
   }, []);
 
-  const [message, setMessage] = React.useState('');
-
   return (
-    <ChatStyled>
-      <ChatTitleStyled>Чат</ChatTitleStyled>
-      <ChatSubtitleStyled>сообщения приходят мне в telegram</ChatSubtitleStyled>
-      <ChatWrapperStyled>
-        <ChatListStyled>
-          {messages.map(item => (
-            <Box mb='10px'>{item.type === ChatMessageTypes.USER ? 'Я:' + '\u00A0' : 'Дима: '}{item.message}</Box>
-          ))}
-        </ChatListStyled>
-        <TextAreaWrapperStyled>
-          <TextAreaStyled
-            placeholder='Сообщение'
-            value={message}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
-          />
-          <ButtonStyled onClick={() => {
-            sendMessage(id, message);
-            setMessage('');
-          }}>
-            <Icon
-              viewBox='0 0 334.5 334.5'
-              icon={Icons.SEND}
+    <ChatMover>
+      <ChatStyled>
+        <ChatHeadStyled
+          className='head'
+        >
+          <ChatTitleStyled>Чат</ChatTitleStyled>
+          <ChatSubtitleStyled>сообщения приходят мне в telegram</ChatSubtitleStyled>
+        </ChatHeadStyled>
+        <ChatWrapperStyled>
+          <ChatListWrapperStyled>
+            <ChatList
+              messages={messages}
             />
-          </ButtonStyled>
-        </TextAreaWrapperStyled>
-      </ChatWrapperStyled>
-    </ChatStyled>
+          </ChatListWrapperStyled>
+          <TextAreaWrapperStyled>
+            <TextAreaStyled
+              placeholder='Сообщение'
+              value={message}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
+            />
+            <ButtonStyled onClick={() => {
+              sendMessage(id, message);
+              setMessage('');
+            }}>
+              <Icon
+                viewBox='0 0 334.5 334.5'
+                icon={Icons.SEND}
+              />
+            </ButtonStyled>
+          </TextAreaWrapperStyled>
+        </ChatWrapperStyled>
+      </ChatStyled>
+    </ChatMover>
   );
 };
 
 const ChatStyled = styled(Flex)`
-  position: fixed;
-  right: 2rem;
-  bottom: 2rem;
   background: ${Colors.GREY_60};
   flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 `;
 
 const ChatWrapperStyled = styled(Flex)`
   flex-direction: column;
   padding: 1rem;
   font-size: 1.2rem;
-  width: 22rem;
+  width: 100%;
   word-wrap: break-word;
+  flex-grow: 1;
+  justify-content: space-between;
+`;
+
+const ChatHeadStyled = styled(Box)`
+  cursor: move;
+`;
+
+const ChatListWrapperStyled = styled(Box)`
+  height: 100%;
+  overflow: auto;
 `;
 
 const ChatTitleStyled = styled(Flex)`
   background: ${Colors.GREY_37};
   padding: 1rem 1rem 0;
 `;
-
-const ChatListStyled = styled(Box)`
-  max-height: 16rem;
-  overflow: auto;
-  line-height: 2rem;
-`;
-
 const ChatSubtitleStyled = styled(Flex)`
   background: ${Colors.GREY_37};
   font-size: 1rem;
@@ -102,7 +113,7 @@ const TextAreaStyled = styled.textarea`
   box-sizing: border-box;
   resize: none;
   font-size: 1.2rem;
-  width: 20rem;
+  width: 100%;
 `;
 
 const ButtonStyled = styled.button`
