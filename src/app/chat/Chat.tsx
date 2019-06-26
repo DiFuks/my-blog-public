@@ -1,139 +1,107 @@
 import * as React from 'react';
-import { Box, Flex } from 'grid-styled';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { Colors, Icons } from '@app/common/constants';
+import { Colors, Icons, LocalStorageKeys, ScreenWidthBreakpoints, StringBoolean } from '@app/common/constants';
 import { Icon } from '@app/icon/Icon';
+import { localStorageRemove, localStorageSet } from '@app/common/helpers/localStorageData';
+import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
 
-import { IMessage } from './duck/reducer';
-import { ChatList } from './ChatList';
+import { ChatWindowContainer as ChatWindow } from './ChatWindowContainer';
 import { ChatMover } from './ChatMover';
 
 export interface IProps {
-  id: string;
-  requestId: () => void;
-  sendMessage: (id: string, text: string) => void;
-  chatInit: (id: string) => void;
-  messages: IMessage[];
+  isOpen: boolean;
+  toggleIsOpen: (isOpen: boolean) => void;
+  menuNeedHide: boolean;
 }
 
-export const Chat: React.FC<IProps> = ({id, requestId, sendMessage, chatInit, messages}) => {
-  const [message, setMessage] = React.useState('');
+export interface IPropsStyled {
+  isHide: StringBoolean;
+}
 
-  React.useEffect(() => {
-    if (!id) {
-      requestId();
-    } else {
-      chatInit(id);
-    }
-  }, []);
+export const Chat: React.FC<IProps> = ({isOpen, toggleIsOpen, menuNeedHide}) => {
+  const onChatHidden = () => {
+    toggleIsOpen(false);
+    localStorageRemove(LocalStorageKeys.CHAT_IS_OPEN);
+  };
 
   return (
-    <ChatMover>
-      <ChatStyled>
-        <ChatHeadStyled
-          className='head'
+    <>
+      {!isOpen && (
+        <ChatButtonStyled
+          isHide={getStringByBoolean(menuNeedHide)}
+          onClick={() => {
+            toggleIsOpen(true);
+            localStorageSet(LocalStorageKeys.CHAT_IS_OPEN, '1');
+          }}
         >
-          <ChatTitleStyled>Чат</ChatTitleStyled>
-          <ChatSubtitleStyled>сообщения приходят мне в telegram</ChatSubtitleStyled>
-        </ChatHeadStyled>
-        <ChatWrapperStyled>
-          <ChatListWrapperStyled>
-            <ChatList
-              messages={messages}
-            />
-          </ChatListWrapperStyled>
-          <TextAreaWrapperStyled>
-            <TextAreaStyled
-              placeholder='Сообщение'
-              value={message}
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
-            />
-            <ButtonStyled onClick={() => {
-              sendMessage(id, message);
-              setMessage('');
-            }}>
-              <Icon
-                viewBox='0 0 334.5 334.5'
-                icon={Icons.SEND}
+          <Icon
+            icon={Icons.CHAT}
+          />
+        </ChatButtonStyled>
+      )}
+      {isOpen && (
+        <>
+          <DesktopWindowStyled>
+            <ChatMover>
+              <ChatWindow
+                onHiddenClick={onChatHidden}
               />
-            </ButtonStyled>
-          </TextAreaWrapperStyled>
-        </ChatWrapperStyled>
-      </ChatStyled>
-    </ChatMover>
+            </ChatMover>
+          </DesktopWindowStyled>
+          <MobileWindowStyled>
+            <ChatWindow
+              onHiddenClick={onChatHidden}
+            />
+          </MobileWindowStyled>
+        </>
+      )}
+    </>
   );
 };
 
-const ChatStyled = styled(Flex)`
+const ChatButtonStyled = styled.button<IPropsStyled>`
+  position: fixed;
+  padding: 1rem 2rem 1rem 1rem;
   background: ${Colors.GREY_60};
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
-`;
-
-const ChatWrapperStyled = styled(Flex)`
-  flex-direction: column;
-  padding: 1rem;
-  font-size: 1.2rem;
-  width: 100%;
-  word-wrap: break-word;
-  flex-grow: 1;
-  justify-content: space-between;
-`;
-
-const ChatHeadStyled = styled(Box)`
-  cursor: move;
-`;
-
-const ChatListWrapperStyled = styled(Box)`
-  height: 100%;
-  overflow: auto;
-`;
-
-const ChatTitleStyled = styled(Flex)`
-  background: ${Colors.GREY_37};
-  padding: 1rem 1rem 0;
-`;
-const ChatSubtitleStyled = styled(Flex)`
-  background: ${Colors.GREY_37};
-  font-size: 1rem;
-  padding: .5rem 1rem 1rem;
-`;
-
-const TextAreaWrapperStyled = styled(Box)`
-  position: relative;
-`;
-
-const TextAreaStyled = styled.textarea`
-  background: ${Colors.GREY_60};
-  color: ${Colors.GREY_200};
-  height: 6rem;
-  padding: 1rem 6rem 1rem 1rem;
-  box-sizing: border-box;
-  resize: none;
-  font-size: 1.2rem;
-  width: 100%;
-`;
-
-const ButtonStyled = styled.button`
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background: transparent;
+  right: -1rem;
+  bottom: 8rem;
+  transition: color .2s ease, right .2s ease, box-shadow .2s ease;
   cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: none;
-  color: ${Colors.GREY_160};
-  transition: color .2s ease;
-  transform: translateY(-50%) scale(.8);
-  :hover {
+  box-shadow: 0 0 8px 0 ${Colors.GREY_120};
+  color: ${Colors.GREY_200};
+  border-radius: 10px 0 0 10px;
+  @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
+    opacity: .9;
+  }
+  ${props => props.isHide === StringBoolean.TRUE && css`
+    right: -8rem;
+  `}
+  &:hover {
     color: ${Colors.WHITE};
+    right: -.1rem;
+    box-shadow: 0 0 5px 0 ${Colors.WHITE};
+  }
+`;
+
+const MobileWindowStyled = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  @media (min-width: ${ScreenWidthBreakpoints.DESKTOP}px) {
+    display: none;
+  }
+`;
+
+const DesktopWindowStyled = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  @media (max-width: ${ScreenWidthBreakpoints.DESKTOP}px) {
+    display: none;
   }
 `;

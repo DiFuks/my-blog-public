@@ -10,7 +10,7 @@ export interface IProps {
   messages: IMessage[];
 }
 
-export const ChatList: React.FC<IProps> = ({messages}) => {
+export const ChatList: React.FC<IProps> = React.memo(({messages}) => {
   React.useEffect(() => {
     chatList.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -30,10 +30,9 @@ export const ChatList: React.FC<IProps> = ({messages}) => {
         <div ref={chatList}/>
       </ChatListStyled>
   );
-};
+});
 
 const ChatListStyled = styled(Box)`
-  height: 100%;
   overflow: auto;
   line-height: 2rem;
 `;

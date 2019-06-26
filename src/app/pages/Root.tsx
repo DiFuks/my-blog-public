@@ -1,12 +1,17 @@
 import * as React from 'react';
 
-import { LayoutContainer as Layout } from '@app/layout/LayoutContainer';
 import { Info } from '@app/info/Info';
 
-export const Root: React.FC = React.memo(() => (
-  <Layout title='Главная страница'>
-    <Info/>
-  </Layout>
-));
+export interface IProps {
+  setLayoutTitle: (title: string) => void;
+}
 
-export { Root as default };
+export const Root: React.FC<IProps> = ({setLayoutTitle}) => {
+  React.useEffect(() => {
+    setLayoutTitle('Главная страница');
+  }, []);
+
+  return (
+    <Info/>
+  );
+};

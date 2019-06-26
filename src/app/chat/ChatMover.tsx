@@ -1,30 +1,28 @@
 import * as React from 'react';
-import { Flex } from 'grid-styled';
-import styled from 'styled-components';
 import { Rnd } from 'react-rnd';
 
-export const ChatMover: React.FC = ({children}) => {
+import { calculatePositionOnMove, calculatePositionOnPageResize } from './helpers/calculatePosition';
+
+const CHAT_WIDTH = 240;
+
+const CHAT_HEIGHT = 300;
+
+export const ChatMover: React.FC = React.memo(({children}) => {
   const rndInit = {
-    width: '220px',
-    height: '300px',
-    x: document.body.clientWidth - 240,
-    y: document.body.clientHeight - 340,
+    width: `${CHAT_WIDTH}px`,
+    height: `${CHAT_HEIGHT}px`,
+    x: document.body.clientWidth - CHAT_WIDTH - 20,
+    y: document.body.clientHeight - CHAT_HEIGHT - 20,
   };
 
   const [rndState, setRndState] = React.useState(rndInit);
 
   React.useEffect(() => {
     const onResize = () => {
-      const parsedWidth = parseInt(rndState.width, 10);
-
-      const parsedHeight = parseInt(rndState.height, 10);
-
       setRndState({
         ...rndState,
-        x: (rndState.x + parsedWidth > document.body.clientWidth)
-          ? document.body.clientWidth - parsedWidth : rndState.x,
-        y: (rndState.y + parsedHeight > document.body.clientHeight)
-          ? document.body.clientHeight - parsedHeight : rndState.y,
+        x: calculatePositionOnPageResize(rndState.x, rndState.width, document.body.clientWidth),
+        y: calculatePositionOnPageResize(rndState.y, rndState.height, document.body.clientHeight),
       });
     };
 
@@ -34,34 +32,30 @@ export const ChatMover: React.FC = ({children}) => {
   }, [rndState]);
 
   return (
-    <RndWrapperStyled>
-      <Rnd
-        dragHandleClassName='head'
-        default={rndInit}
-        style={{width: rndState.width, height: rndState.height, zIndex: 1}}
-        position={{ x: rndState.x, y: rndState.y }}
-        onDragStop={(e, d) => {
-          setRndState({
-            ...rndState,
-            x: d.x < 0 ? 0 : d.x,
-            y: d.y < 0 ? 0 : d.y,
-          });
-        }}
-        onResize={(e, direction, ref, delta, position) => {
-          setRndState({
-            ...rndState,
-            width: ref.style.width,
-            height: ref.style.height,
-            ...position,
-          });
-        }}
-      >
-        {children}
-      </Rnd>
-    </RndWrapperStyled>
+    <Rnd
+      dragHandleClassName='head'
+      default={rndInit}
+      minWidth={CHAT_WIDTH}
+      minHeight={CHAT_HEIGHT}
+      style={{width: rndState.width, height: rndState.height, zIndex: 1}}
+      position={{ x: rndState.x, y: rndState.y }}
+      onDragStop={(e, d) => {
+        setRndState({
+          ...rndState,
+          x: calculatePositionOnMove(d.x, rndState.width, document.body.clientWidth),
+          y: calculatePositionOnMove(d.y, rndState.height, document.body.clientHeight),
+        });
+      }}
+      onResize={(e, direction, ref, delta, position) => {
+        setRndState({
+          ...rndState,
+          width:  ref.style.width,
+          height: ref.style.height,
+          ...position,
+        });
+      }}
+    >
+      {children}
+    </Rnd>
   );
-};
-
-const RndWrapperStyled = styled(Flex)`
-  position: absolute;
-`;
+});

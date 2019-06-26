@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { LayoutContainer as Layout } from '@app/layout/LayoutContainer';
 import { PostContainer as Post } from '@app/post/PostContainer';
 
 interface IProps {
@@ -10,10 +9,15 @@ interface IProps {
     };
   };
   title: string;
+  setLayoutTitle: (title: string) => void;
 }
 
-export const PostPage: React.FC<IProps> = ({match: {params: {url}}, title}) => (
-  <Layout title={title}>
+export const PostPage: React.FC<IProps> = ({match: {params: {url}}, title, setLayoutTitle}) => {
+  React.useEffect(() => {
+    setLayoutTitle(title);
+  }, [title]);
+
+  return (
     <Post url={url}/>
-  </Layout>
-);
+  );
+};

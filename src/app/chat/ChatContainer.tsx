@@ -8,14 +8,12 @@ import { Creators } from './duck/actions';
 import { Chat } from './Chat';
 
 const mapStateToProps = (state: IRootState) => ({
-  id: state.chat.id,
-  messages: state.chat.messages,
+  isOpen: state.chat.isOpen,
+  menuNeedHide: state.menu.needHide,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  requestId: () => dispatch(Creators.chatRequestId()),
-  sendMessage: (id: string, text: string) => dispatch(Creators.chatSendMessage(id, text)),
-  chatInit: (id: string) => dispatch(Creators.chatInit(id)),
+  toggleIsOpen: (isOpen: boolean) => dispatch(Creators.chatToggle(isOpen)),
 });
 
 export const ChatContainer = connect(

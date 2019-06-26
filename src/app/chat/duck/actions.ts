@@ -6,6 +6,7 @@ export const enum Types {
   CHAT_SEND_MESSAGE = 'CHAT_SEND_MESSAGE',
   CHAT_REFRESH_MESSAGES = 'CHAT_REFRESH_MESSAGES',
   CHAT_INIT = 'CHAT_INIT',
+  CHAT_TOGGLE = 'CHAT_TOGGLE',
 }
 
 export const Creators = {
@@ -28,5 +29,9 @@ export const Creators = {
   chatInit: (id: string) => ({
     type: Types.CHAT_INIT,
     id: id,
+  } as const),
+  chatToggle: (isOpen: boolean) => ({
+    type: Types.CHAT_TOGGLE,
+    isOpen: isOpen,
   } as const),
 };

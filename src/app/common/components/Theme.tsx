@@ -23,6 +23,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 1.6rem;
     min-height: 100%;
+    overflow: hidden;
+    width: 100%;
     @media (min-width: ${ScreenWidthBreakpoints.TABLET}px) {
       height: 100%;
     }

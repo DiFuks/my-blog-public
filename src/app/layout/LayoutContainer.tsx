@@ -10,6 +10,7 @@ import { Layout } from './Layout';
 
 const mapStateToProps = (state: IRootState) => ({
   menuIsOpen: state.submenu.isActive,
+  title: state.layout.title,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

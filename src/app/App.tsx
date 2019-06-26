@@ -9,6 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import { sagas } from '@app/sagas';
 import { Router } from '@app/pages/Router';
 import { Theme } from '@app/common/components/Theme';
+import { LayoutContainer as Layout } from '@app/layout/LayoutContainer';
 
 import { createRootReducer } from './reducers';
 
@@ -32,7 +33,9 @@ export const App: React.FC<{}> = React.memo(() => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Theme>
-        <Router/>
+        <Layout>
+          <Router/>
+        </Layout>
       </Theme>
     </ConnectedRouter>
   </Provider>
