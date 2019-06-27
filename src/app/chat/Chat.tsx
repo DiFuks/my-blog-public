@@ -8,18 +8,34 @@ import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
 
 import { ChatWindowContainer as ChatWindow } from './ChatWindowContainer';
 import { ChatMover } from './ChatMover';
+import { onBotRequestCallback } from '@app/common/helpers/socketConnectionManager';
 
 export interface IProps {
+  id: string;
   isOpen: boolean;
-  toggleIsOpen: (isOpen: boolean) => void;
   menuNeedHide: boolean;
+  toggleIsOpen: (isOpen: boolean) => void;
+  requestId: () => void;
+  chatInit: (id: string) => void;
 }
 
 export interface IPropsStyled {
   isHide: StringBoolean;
 }
 
-export const Chat: React.FC<IProps> = ({isOpen, toggleIsOpen, menuNeedHide}) => {
+export const Chat: React.FC<IProps> = ({id, requestId, chatInit, isOpen, toggleIsOpen, menuNeedHide}) => {
+  React.useEffect(() => {
+    if (!id) {
+      requestId();
+    } else {
+      chatInit(id);
+
+      onBotRequestCallback(id, () => {
+        chatInit(id);
+      });
+    }
+  }, [id]);
+
   const onChatHidden = () => {
     toggleIsOpen(false);
     localStorageRemove(LocalStorageKeys.CHAT_IS_OPEN);

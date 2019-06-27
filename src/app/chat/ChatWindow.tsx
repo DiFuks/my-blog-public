@@ -7,57 +7,40 @@ import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
 import { IMessage } from './duck/reducer';
 import { ChatList } from './ChatList';
 import { ChatSenderContainer as ChatSender } from './ChatSenderContainer';
-import { onBotRequestCallback } from '@app/common/helpers/socketConnectionManager';
 
 export interface IProps {
   id: string;
-  requestId: () => void;
-  chatInit: (id: string) => void;
   messages: IMessage[];
   onHiddenClick: () => void;
 }
 
-export const ChatWindow: React.FC<IProps> = ({id, requestId, chatInit, messages, onHiddenClick}) => {
-  React.useEffect(() => {
-    if (!id) {
-      requestId();
-    } else {
-      chatInit(id);
-
-      onBotRequestCallback(id, () => {
-        chatInit(id);
-      });
-    }
-  }, []);
-
-  return (
-    <ChatStyled>
-      <ChatHeadStyled
-        className='head'
-      >
-        <ChatTitleStyled>
-          Чат
-        </ChatTitleStyled>
-        <ChatSubtitleStyled>
-          сообщения приходят мне в telegram
-        </ChatSubtitleStyled>
-        <ChatHideStyled
-          onClick={onHiddenClick}
+export const ChatWindow: React.FC<IProps> = ({id, messages, onHiddenClick}) => (
+  <ChatStyled>
+    <ChatHeadStyled
+      className='head'
+    >
+      <ChatTitleStyled>
+        Чат
+      </ChatTitleStyled>
+      <ChatSubtitleStyled>
+        сообщения приходят мне в telegram
+      </ChatSubtitleStyled>
+      <ChatHideStyled
+        onClick={onHiddenClick}
+      />
+    </ChatHeadStyled>
+    <ChatWrapperStyled>
+      <ChatListWrapperStyled>
+        <ChatList
+          messages={messages}
         />
-      </ChatHeadStyled>
-      <ChatWrapperStyled>
-        <ChatListWrapperStyled>
-          <ChatList
-            messages={messages}
-          />
-        </ChatListWrapperStyled>
-        <ChatSender
-          id={id}
-        />
-      </ChatWrapperStyled>
-    </ChatStyled>
-  );
-};
+      </ChatListWrapperStyled>
+      <ChatSender
+        id={id}
+      />
+    </ChatWrapperStyled>
+  </ChatStyled>
+);
 
 const ChatStyled = styled(Flex)`
   background: ${Colors.GREY_60};
