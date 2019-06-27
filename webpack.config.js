@@ -42,6 +42,7 @@ Encore
         'API_URL': JSON.stringify(process.env.API_URL),
         'SITE_URL': JSON.stringify(process.env.SITE_URL),
         'DISQUS_SHORTNAME': JSON.stringify(process.env.DISQUS_SHORTNAME),
+        'SOCKET_URL': JSON.stringify(process.env.SOCKET_URL),
     }))
     .addPlugin(new CircularDependencyPlugin({
         exclude: /a\.js|node_modules/,

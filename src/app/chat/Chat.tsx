@@ -69,7 +69,7 @@ const ChatButtonStyled = styled.button<IPropsStyled>`
   transition: color .2s ease, right .2s ease, box-shadow .2s ease;
   cursor: pointer;
   border: none;
-  box-shadow: 0 0 8px 0 ${Colors.GREY_120};
+  box-shadow: 0 0 8px 0 ${Colors.GREY_80};
   color: ${Colors.GREY_200};
   border-radius: 10px 0 0 10px;
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
@@ -81,7 +81,7 @@ const ChatButtonStyled = styled.button<IPropsStyled>`
   &:hover {
     color: ${Colors.WHITE};
     right: -.1rem;
-    box-shadow: 0 0 5px 0 ${Colors.WHITE};
+    box-shadow: 0 0 5px 0 ${Colors.GREY_160};
   }
 `;
 

@@ -7,6 +7,7 @@ import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
 import { IMessage } from './duck/reducer';
 import { ChatList } from './ChatList';
 import { ChatSenderContainer as ChatSender } from './ChatSenderContainer';
+import { onBotRequestCallback } from '@app/common/helpers/socketConnectionManager';
 
 export interface IProps {
   id: string;
@@ -22,6 +23,10 @@ export const ChatWindow: React.FC<IProps> = ({id, requestId, chatInit, messages,
       requestId();
     } else {
       chatInit(id);
+
+      onBotRequestCallback(id, () => {
+        chatInit(id);
+      });
     }
   }, []);
 
