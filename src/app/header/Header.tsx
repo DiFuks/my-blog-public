@@ -26,6 +26,9 @@ const HeaderStyled = styled(Flex)`
   letter-spacing: 0.03rem;
   flex-shrink: 0;
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
+    opacity: .9;
+  }
+  @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
     position: fixed;
     z-index: 10;
   }

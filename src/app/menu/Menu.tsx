@@ -97,17 +97,17 @@ const MenuStyled = styled(Flex)`
   z-index: 1;
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
     width: 0;
-    opacity: .9;
   }
 `;
 
 const MenuWrapperStyled = styled(Flex)<IPropsStyled>`
   flex-direction: column;
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
+    opacity: .9;
     width: 100vw;
     flex-direction: row;
     justify-content: space-between;
-    background: ${Colors.GREY_51};
+    background: ${Colors.GREY_45};
     position: fixed;
     transition: top .3s ease, bottom .3s ease;
     ${props => props.position === 'top' && css`
