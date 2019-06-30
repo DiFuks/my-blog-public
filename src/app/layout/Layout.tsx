@@ -60,6 +60,7 @@ const ContentStyled = styled.main`
   display: flex;
   box-sizing: border-box;
   flex-grow: 1;
+  height: 100%;
 `;
 
 const ContentWrapperStyled = styled(Flex)<IPropsStyled>`

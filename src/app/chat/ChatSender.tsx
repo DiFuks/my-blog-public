@@ -39,11 +39,6 @@ export const ChatSender: React.FC<IProps> = ({id, sendMessage, status}) => {
         disabled={status === FetchingStatuses.IN_PROGRESS}
         value={message}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
-        onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => {
-          e.preventDefault();
-          e.stopPropagation();
-          window.scrollTo(0, 0);
-        }}
         onKeyDown={status !== FetchingStatuses.IN_PROGRESS && onEnterDown}
       />
       {status !== FetchingStatuses.IN_PROGRESS && (
