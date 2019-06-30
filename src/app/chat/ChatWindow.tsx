@@ -60,6 +60,8 @@ const ChatWrapperStyled = styled(Flex)`
   word-wrap: break-word;
   flex-grow: 1;
   justify-content: space-between;
+  height: 100%;
+  overflow: auto;
 `;
 
 const ChatHideStyled = styled(Box)`
