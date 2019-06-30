@@ -10,7 +10,7 @@ function* onInit() {
 
 function* refreshData() {
   try {
-    const response = yield call(fetchData, '/post/list');
+    const response = yield call(fetchData, '/post/categories');
 
     const data = yield response.json();
 

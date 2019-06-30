@@ -105,6 +105,7 @@ const PostStyled = styled.div<IPropsStyled>`
   line-height: 1.4;
   transition: filter 1s ease;
   filter: blur(0);
+  width: 100%;
   ${props => (props.fetch_status === FetchingStatuses.IN_PROGRESS || props.fetch_status === FetchingStatuses.NONE) &&
   css`
       animation: ${fadeId} 1s infinite;

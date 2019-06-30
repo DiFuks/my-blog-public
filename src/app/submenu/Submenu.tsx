@@ -59,10 +59,9 @@ export const Submenu: React.FC<IProps> = ({
 
   return (
     <SubmenuStyled show={isActive}>
-      {items.map((item, index) => (
+      {items.map(item => (
         <SubmenuItem
           key={item.url}
-          id={index + 1}
           url={item.url}
           isActive={item.url === activeUrl}
           isDisableTabindex={isActive !== SubmenuStates.ACTIVE}

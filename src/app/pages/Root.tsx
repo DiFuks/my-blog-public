@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Info } from '@app/info/Info';
+import { InfoContainer as Info } from '@app/info/InfoContainer';
 
 export interface IProps {
   setLayoutTitle: (title: string) => void;

@@ -7,7 +7,6 @@ import { Colors, Routes, StringBoolean } from '@app/common/constants';
 import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
 
 export interface IProps {
-  id: number;
   url: string;
   children: React.ReactChild;
   submenuDisable: () => void;
@@ -19,9 +18,9 @@ export interface IPropsStyled {
   active?: StringBoolean;
 }
 
-export const SubmenuItem: React.FC<IProps> = ({id, children, submenuDisable, url, isActive, isDisableTabindex}) => (
+export const SubmenuItem: React.FC<IProps> = ({children, submenuDisable, url, isActive, isDisableTabindex}) => (
   <SubmenuItemStyled
-    to={Routes.POST.replace(':url', url)}
+    to={Routes.CATEGORY.replace(':url', url)}
     onClick={() => submenuDisable()}
     active={getStringByBoolean(isActive)}
     tabIndex={isDisableTabindex ? -1 : 0}
@@ -29,7 +28,7 @@ export const SubmenuItem: React.FC<IProps> = ({id, children, submenuDisable, url
     <Box
       px={'2rem'}
     >
-      {id}
+      ‣
     </Box>
     {children}
   </SubmenuItemStyled>

@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-      "esModuleInterop": true,
       "baseUrl": ".",
       "target": "es6",
       "module": "esnext",
@@ -11,6 +10,7 @@
       "sourceMap": true,
       "experimentalDecorators": true,
       "types": ["node"],
+      "allowSyntheticDefaultImports": true,
       "paths": {
         "@app/*": ["src/app/*"]
       },

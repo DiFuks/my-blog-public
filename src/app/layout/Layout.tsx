@@ -63,17 +63,20 @@ const ContentStyled = styled.main`
 `;
 
 const ContentWrapperStyled = styled(Flex)<IPropsStyled>`
-  display: flex;
   padding: 3rem;
-  height: 100%;
-  overflow: hidden;
-  transition: filter .2s linear, transform .2s linear;
+  overflow: auto;
+  transition: transform .2s linear, opacity .2s ease;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  width: 100%;
+  height: calc(100vh - 2.5rem);
+  flex-direction: column;
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
     padding: 7.5rem 3rem;
   }
   ${props => props.menu_is_open === SubmenuStates.ACTIVE && css`
     overflow: hidden;
-    filter: blur(3px);
+    opacity: .5;
     transform: scale(.98);
   `}
 `;
