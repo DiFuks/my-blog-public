@@ -17,6 +17,8 @@ export const ChatMover: React.FC = React.memo(({children}) => {
 
   const [rndState, setRndState] = React.useState(rndInit);
 
+  const [isDrag, setIsDrag] = React.useState(false);
+
   React.useEffect(() => {
     const onResize = () => {
       setRndState({
@@ -37,14 +39,18 @@ export const ChatMover: React.FC = React.memo(({children}) => {
       default={rndInit}
       minWidth={CHAT_WIDTH}
       minHeight={CHAT_HEIGHT}
-      style={{width: rndState.width, height: rndState.height, zIndex: 1}}
+      style={{width: rndState.width, height: rndState.height, zIndex: 1, opacity: isDrag ? .9 : 1}}
       position={{ x: rndState.x, y: rndState.y }}
+      onDragStart={() => {
+        setIsDrag(true);
+      }}
       onDragStop={(e, d) => {
         setRndState({
           ...rndState,
           x: calculatePositionOnMove(d.x, rndState.width, document.body.clientWidth),
           y: calculatePositionOnMove(d.y, rndState.height, document.body.clientHeight),
         });
+        setIsDrag(false);
       }}
       onResize={(e, direction, ref, delta, position) => {
         setRndState({
