@@ -1,3 +1,4 @@
+import { calculateNeedHide } from '@app/menu/helpers/calculateNeedHide';
 import * as React from 'react';
 import { Flex } from 'grid-styled';
 import { Link } from 'react-router-dom';
@@ -35,15 +36,9 @@ export const Menu: React.FC<IProps> = ({
 
   React.useEffect(() => {
     const handleScroll = () => {
-      const windowPositionTop = document.body.getBoundingClientRect().top;
+      changeMenuNeedHide(calculateNeedHide(scrollPosition.current));
 
-      const windowPositionBottom = document.body.getBoundingClientRect().bottom;
-
-      changeMenuNeedHide(windowPositionTop < -50 && windowPositionTop < scrollPosition.current ||
-        windowPositionBottom - window.innerHeight < 100,
-      );
-
-      scrollPosition.current = windowPositionTop;
+      scrollPosition.current = document.body.getBoundingClientRect().top;
     };
 
     window.addEventListener('scroll', handleScroll);
