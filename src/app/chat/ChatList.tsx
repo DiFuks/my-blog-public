@@ -16,7 +16,7 @@ export const ChatList: React.FC<IProps> = React.memo(({messages}) => {
 
   React.useEffect(() => {
     setTimeout(() => {
-      chatList.current.scrollIntoView({ behavior: 'smooth' });
+      chatList.current.scrollIntoView(false);
     }, 300);
   }, [messages]);
 

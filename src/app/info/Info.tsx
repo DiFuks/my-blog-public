@@ -25,7 +25,7 @@ export const Info: React.FC<IProps> = ({isInit, items, init}) => {
         <Box
           fontSize='2.5rem'
           mb='2rem'
-          mt='4rem'
+          mt={['4rem', '4rem', '2rem']}
         >
           Привет!
         </Box>
@@ -45,7 +45,7 @@ export const Info: React.FC<IProps> = ({isInit, items, init}) => {
         mb='2rem'
         fontSize='2.5rem'
       >
-        Последние посты:
+        Новые посты:
       </Box>
       <CategoryList items={items}/>
     </InfoWrapperStyled>

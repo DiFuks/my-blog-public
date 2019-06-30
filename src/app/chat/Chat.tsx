@@ -89,7 +89,7 @@ export const Chat: React.FC<IProps> = ({id, requestId, chatInit, isOpen, toggleI
 const ChatButtonStyled = styled.button<IPropsStyled>`
   position: fixed;
   padding: 1rem 2rem 1rem 1rem;
-  background: ${Colors.GREY_60};
+  background: ${Colors.GREY_45};
   right: -1rem;
   bottom: 8rem;
   transition: color .2s ease, right .2s ease;
