@@ -40,7 +40,7 @@ export const Menu: React.FC<IProps> = ({
       const windowPositionBottom = document.body.getBoundingClientRect().bottom;
 
       changeMenuNeedHide(windowPositionTop < -50 && windowPositionTop < scrollPosition.current ||
-        windowPositionBottom === window.innerHeight,
+        windowPositionBottom - window.innerHeight < 100,
       );
 
       scrollPosition.current = windowPositionTop;

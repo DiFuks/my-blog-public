@@ -10,7 +10,7 @@ import { SubmenuStates } from './duck/constants';
 const mapStateToProps = (state: IRootState) => ({
   isActive: state.submenu.isActive,
   items: state.submenu.items,
-  activeUrl: state.post.url,
+  activeUrl: state.category.url,
   fetchStatus: state.submenu.fetchStatus,
 });
 
