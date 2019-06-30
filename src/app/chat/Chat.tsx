@@ -111,7 +111,7 @@ const ChatButtonStyled = styled.button<IPropsStyled>`
 `;
 
 const MobileWindowStyled = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -123,7 +123,7 @@ const MobileWindowStyled = styled.div`
 `;
 
 const DesktopWindowStyled = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   @media (max-width: ${ScreenWidthBreakpoints.DESKTOP}px) {
