@@ -32,7 +32,7 @@ export const ChatSender: React.FC<IProps> = ({id, sendMessage, status}) => {
     <TextAreaWrapperStyled>
       <TextAreaStyled
         placeholder={
-          status === FetchingStatuses.IN_PROGRESS && 'Отпрвка...' ||
+          status === FetchingStatuses.IN_PROGRESS && 'Отправка...' ||
           status === FetchingStatuses.FAILED &&  'Ошибка отправки' ||
           'Сообщение'
         }
