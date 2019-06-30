@@ -1,3 +1,4 @@
+import { disableBodyScroll, enableBodyScroll } from '@app/common/helpers/bodyScroll';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -36,8 +37,17 @@ export const Chat: React.FC<IProps> = ({id, requestId, chatInit, isOpen, toggleI
     }
   }, [id]);
 
+  React.useEffect(() => {
+    if (window.outerWidth < ScreenWidthBreakpoints.DESKTOP && isOpen) {
+      disableBodyScroll();
+    } else {
+      enableBodyScroll();
+    }
+  }, [isOpen]);
+
   const onChatHidden = () => {
     toggleIsOpen(false);
+
     localStorageRemove(LocalStorageKeys.CHAT_IS_OPEN);
   };
 

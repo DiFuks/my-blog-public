@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { disableBodyScroll, enableBodyScroll } from '@app/common/helpers/bodyScroll';
 
 import { Colors, FetchingStatuses, ScreenWidthBreakpoints } from '@app/common/constants';
 
@@ -48,11 +49,11 @@ export const Submenu: React.FC<IProps> = ({
 
   React.useEffect(() => {
     if (isActive === SubmenuStates.ACTIVE) {
-      document.body.style.overflow = 'hidden';
+      disableBodyScroll();
     }
 
     if (isActive !== SubmenuStates.ACTIVE) {
-      document.body.style.overflow = 'auto';
+      enableBodyScroll();
     }
   }, [isActive]);
 

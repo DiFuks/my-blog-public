@@ -46,6 +46,8 @@ const TextAreaStyled = styled.textarea`
   resize: none;
   font-size: 1.2rem;
   width: 100%;
+  border: 1px solid ${Colors.GREY_200};
+  border-radius: 0;
 `;
 
 const ButtonStyled = styled.button`
@@ -54,7 +56,6 @@ const ButtonStyled = styled.button`
   top: 50%;
   width: 3.5rem;
   height: 3.5rem;
-  border-radius: 50%;
   background: transparent;
   cursor: pointer;
   padding: 0;
