@@ -36,6 +36,7 @@ export const ChatSender: React.FC<IProps> = ({id, sendMessage, status}) => {
           status === FetchingStatuses.FAILED &&  'Ошибка отправки' ||
           'Сообщение'
         }
+        disabled={status === FetchingStatuses.IN_PROGRESS}
         value={message}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
         onKeyDown={status !== FetchingStatuses.IN_PROGRESS && onEnterDown}
@@ -68,6 +69,9 @@ const TextAreaStyled = styled.textarea`
   border: none;
   box-shadow: 0 0 1px 0 ${Colors.GREY_200};
   border-radius: 3px;
+  :disabled {
+    cursor: progress;
+  }
 `;
 
 const ButtonStyled = styled.button`
