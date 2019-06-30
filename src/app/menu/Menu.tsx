@@ -37,7 +37,7 @@ export const Menu: React.FC<IProps> = ({
     const handleScroll = () => {
       const windowPosition = document.body.getBoundingClientRect().top;
 
-      changeMenuNeedHide(windowPosition !== 0 && windowPosition < scrollPosition.current);
+      changeMenuNeedHide(windowPosition < -50 && windowPosition < scrollPosition.current);
 
       scrollPosition.current = windowPosition;
     };
