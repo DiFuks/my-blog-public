@@ -69,10 +69,12 @@ const ContentWrapperStyled = styled(Flex)<IPropsStyled>`
   flex-grow: 1;
   flex-wrap: wrap;
   width: 100%;
-  height: calc(100vh - 2.5rem);
   flex-direction: column;
   @media (max-width: ${ScreenWidthBreakpoints.TABLET}px) {
     padding: 7.5rem 3rem;
+  }
+  @media (min-width: ${ScreenWidthBreakpoints.DESKTOP}px) {
+    height: calc(100vh - 2.5rem);
   }
   ${props => props.menu_is_open === SubmenuStates.ACTIVE && css`
     overflow: hidden;
