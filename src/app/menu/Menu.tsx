@@ -35,11 +35,15 @@ export const Menu: React.FC<IProps> = ({
 
   React.useEffect(() => {
     const handleScroll = () => {
-      const windowPosition = document.body.getBoundingClientRect().top;
+      const windowPositionTop = document.body.getBoundingClientRect().top;
 
-      changeMenuNeedHide(windowPosition < -50 && windowPosition < scrollPosition.current);
+      const windowPositionBottom = document.body.getBoundingClientRect().bottom;
 
-      scrollPosition.current = windowPosition;
+      changeMenuNeedHide(windowPositionTop < -50 && windowPositionTop < scrollPosition.current ||
+        windowPositionBottom === window.innerHeight,
+      );
+
+      scrollPosition.current = windowPositionTop;
     };
 
     window.addEventListener('scroll', handleScroll);
