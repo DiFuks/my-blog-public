@@ -17,6 +17,7 @@ export const CategoryList: React.FC<IProps> = ({items}) => (
           pr={[0, 0, '2rem']}
           pb='3rem'
           width={['100%', '100%', '33.333333%']}
+          key={item.url}
         >
           <CategoryItem
             category={item.category}
