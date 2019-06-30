@@ -26,16 +26,19 @@ export const CategoryItem: React.FC<IProps> = React.memo(({category, title, desc
 ));
 
 const CategoryItemStyled = styled(Link)`
+  box-shadow: 0 0 1px 0 ${Colors.GREY_160};
   display: flex;
   text-decoration: none;
   width: 100%;
-  background: ${Colors.GREY_60};
+  background: ${Colors.GREY_45};
   flex-direction: column;
   transition: opacity .2s ease, transform .2s ease;
   cursor: pointer;
   color: ${Colors.GREY_200};
   justify-content: space-between;
   opacity: .8;
+  border-radius: 3px;
+  overflow: hidden;
   &:hover {
     opacity: 1;
     transform: scale(1.03);
@@ -46,6 +49,7 @@ const CategoryStyled = styled(Box)`
   padding: 1rem 2rem;
   background: ${Colors.GREY_37};
   text-align: center;
+  font-size: 1.4rem;
 `;
 
 const TitleStyled = styled(Box)`
@@ -65,5 +69,6 @@ const DescriptionStyled = styled(Box)`
 const DateStyled = styled(Box)`
   padding: 1rem 2rem;
   text-align: right;
-  font-size: 1.4rem;
+  color: ${Colors.GREY_100};
+  font-size: 1.2rem;
 `;

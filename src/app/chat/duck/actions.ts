@@ -1,4 +1,5 @@
 import { IMessage } from '@app/chat/duck/reducer';
+import { FetchingStatuses } from '@app/common/constants';
 
 export const enum Types {
   CHAT_REQUEST_ID = 'CHAT_REQUEST_ID',
@@ -7,6 +8,7 @@ export const enum Types {
   CHAT_REFRESH_MESSAGES = 'CHAT_REFRESH_MESSAGES',
   CHAT_INIT = 'CHAT_INIT',
   CHAT_TOGGLE = 'CHAT_TOGGLE',
+  CHAT_REFRESH_FETCH_STATUS = 'CHAT_REFRESH_FETCH_STATUS',
 }
 
 export const Creators = {
@@ -33,5 +35,9 @@ export const Creators = {
   chatToggle: (isOpen: boolean) => ({
     type: Types.CHAT_TOGGLE,
     isOpen: isOpen,
+  } as const),
+  chatRefreshFetchStatus: (status: FetchingStatuses) => ({
+    type: Types.CHAT_REFRESH_FETCH_STATUS,
+    status: status,
   } as const),
 };

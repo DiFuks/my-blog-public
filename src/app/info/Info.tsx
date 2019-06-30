@@ -25,7 +25,7 @@ export const Info: React.FC<IProps> = ({isInit, items, init}) => {
         <Box
           fontSize='2.5rem'
           mb='2rem'
-          mt='5rem'
+          mt='4rem'
         >
           Привет!
         </Box>
@@ -57,10 +57,10 @@ const InfoStyled = styled(Flex)`
   width: 100%;
   border-bottom: 1px solid ${Colors.GREY_80};
   padding-bottom: 4rem;
+  line-height: 1.4;
 `;
 
 const InfoWrapperStyled = styled(Flex)`
   flex-direction: column;
-  overflow: auto;
   flex-shrink: 0;
 `;

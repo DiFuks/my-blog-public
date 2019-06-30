@@ -43,10 +43,13 @@ export const ChatWindow: React.FC<IProps> = ({id, messages, onHiddenClick}) => (
 );
 
 const ChatStyled = styled(Flex)`
-  background: ${Colors.GREY_60};
+  background: ${Colors.GREY_45};
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
+  box-shadow: 0 0 1px 0 ${Colors.GREY_160};
+  border-radius: 3px;
+  overflow: hidden;
 `;
 
 const ChatWrapperStyled = styled(Flex)`
@@ -63,8 +66,8 @@ const ChatHideStyled = styled(Box)`
   width: 2rem;
   height: 2rem;
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  right: .8rem;
+  top: .8rem;
   cursor: pointer;
   :hover {
     :before, :after {
@@ -75,7 +78,7 @@ const ChatHideStyled = styled(Box)`
     content: "";
     position: absolute;
     width: 1.8rem;
-    height: .2rem;
+    height: .1rem;
     transform: rotate(45deg);
     transition: background .2s ease;
     top: 1rem;
@@ -91,7 +94,7 @@ const ChatHideStyled = styled(Box)`
     top: 1.5rem;
     &:after, :before {
       width: 3rem;
-      height: .2rem;
+      height: .1rem;
     }
   }
 `;

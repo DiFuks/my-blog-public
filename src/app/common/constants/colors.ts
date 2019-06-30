@@ -5,6 +5,7 @@ export const enum Colors {
   GREY_51 = 'rgb(51,51,51)',
   GREY_60 = 'rgb(60,60,60)',
   GREY_80 = 'rgb(80,80,80)',
+  GREY_100 = 'rgb(100,100,100)',
   GREY_160 = 'rgb(160,160,160)',
   GREY_186 = 'rgb(186,186,186)',
   GREY_200 = 'rgb(200,200,200)',

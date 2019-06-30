@@ -17,7 +17,7 @@ export const Header: React.FC<IProps> = React.memo(({children}) => (
 const HeaderStyled = styled(Flex)`
   width: 100%;
   height: 2.5rem;
-  background: ${Colors.GREY_60};
+  background: ${Colors.GREY_45};
   color: ${Colors.GREY_186};
   justify-content: center;
   align-items: center;

@@ -90,7 +90,7 @@ export const Menu: React.FC<IProps> = ({
 };
 
 const MenuStyled = styled(Flex)`
-  background: ${Colors.GREY_51};
+  background: ${Colors.GREY_45};
   width: 5rem;
   flex-direction: column;
   justify-content: space-between;

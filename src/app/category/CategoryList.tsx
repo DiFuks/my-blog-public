@@ -14,7 +14,7 @@ export const CategoryList: React.FC<IProps> = ({items}) => (
   <CategoryListStyled>
     {items.map(item => (
         <CategoryItemWrapperStyled
-          pr={[0, 0, '2rem']}
+          pr={[0, 0, '4rem']}
           pb='3rem'
           width={['100%', '100%', '33.333333%']}
           key={item.url}

@@ -1,11 +1,11 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { IMessage } from '@app/chat/duck/reducer';
+import { FetchingStatuses, LocalStorageKeys } from '@app/common/constants';
 
 import { fetchData } from '@app/common/helpers/fetchData';
 import { localStorageRemove, localStorageSet } from '@app/common/helpers/localStorageData';
-import { LocalStorageKeys } from '@app/common/constants';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 
 import { Creators, Types } from './actions';
-import { IMessage } from '@app/chat/duck/reducer';
 
 function* onRequest() {
   yield takeEvery(Types.CHAT_REQUEST_ID, refreshId);
@@ -36,17 +36,25 @@ function* refreshId() {
 }
 
 function* sendMessage(action: ReturnType<typeof Creators.chatSendMessage>) {
-  const response = yield call(fetchData, '/bot/send/', {
-    method: 'POST',
-    body: JSON.stringify({
-      id: action.id,
-      message: action.message,
-    }),
-  });
+  yield put(Creators.chatRefreshFetchStatus(FetchingStatuses.IN_PROGRESS));
 
-  const data: IMessage[] = yield response.json();
+  try {
+    const response = yield call(fetchData, '/bot/send/', {
+      method: 'POST',
+      body: JSON.stringify({
+        id: action.id,
+        message: action.message,
+      }),
+    });
 
-  yield put(Creators.chatRefreshMessages(data));
+    const data: IMessage[] = yield response.json();
+
+    yield put(Creators.chatRefreshMessages(data));
+
+    yield put(Creators.chatRefreshFetchStatus(FetchingStatuses.SUCCESS));
+  } catch (e) {
+    yield put(Creators.chatRefreshFetchStatus(FetchingStatuses.FAILED));
+  }
 }
 
 function* chatInit(action: ReturnType<typeof Creators.chatInit>) {
