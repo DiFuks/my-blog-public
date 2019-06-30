@@ -40,7 +40,6 @@ export const Chat: React.FC<IProps> = ({id, requestId, chatInit, isOpen, toggleI
   React.useEffect(() => {
     if (window.outerWidth < ScreenWidthBreakpoints.DESKTOP && isOpen) {
       disableBodyScroll();
-      document.body.style.height = '100px';
     } else {
       enableBodyScroll();
     }
@@ -124,7 +123,7 @@ const MobileWindowStyled = styled.div`
 `;
 
 const DesktopWindowStyled = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   @media (max-width: ${ScreenWidthBreakpoints.DESKTOP}px) {
