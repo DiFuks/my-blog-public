@@ -2,7 +2,7 @@ import defaultsDeep from 'lodash-es/defaultsDeep';
 
 import { Locales } from '@app/common/constants';
 
-export const fetchData = (url: string, options: any = {}, locale: Locales = Locales.RU) => {
+export const fetchData = (url: string, options: any = {}, locale: Locales = DEFAULT_LOCALE as Locales) => {
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
