@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box, Flex } from 'grid-styled';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
 
@@ -20,10 +21,14 @@ export const ChatWindow: React.FC<IProps> = ({id, messages, onHiddenClick}) => (
       className='head'
     >
       <ChatTitleStyled>
-        Чат
+        <FormattedMessage
+          id='chat.title'
+        />
       </ChatTitleStyled>
       <ChatSubtitleStyled>
-        сообщения приходят мне в telegram
+        <FormattedMessage
+          id='chat.description'
+        />
       </ChatSubtitleStyled>
       <ChatHideStyled
         onClick={onHiddenClick}

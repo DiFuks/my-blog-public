@@ -7,3 +7,4 @@ export { StringBoolean } from './stringBoolean';
 export { PostTypes } from './postTypes';
 export { LocalStorageKeys } from './localStorageKeys';
 export { ChatMessageTypes } from './chatMessageTypes';
+export { Locales } from './locales';

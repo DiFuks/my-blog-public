@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box, Flex } from 'grid-styled';
 import styled from 'styled-components';
+import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 
 import { Colors } from '@app/common/constants';
 import { IInfoItem } from '@app/category/duck/reducer';
@@ -27,25 +28,18 @@ export const Info: React.FC<IProps> = ({isInit, items, init}) => {
           mb='2rem'
           mt={['4rem', '4rem', '2rem']}
         >
-          Привет!
+          <FormattedMessage id='page.hello'/>
         </Box>
-        <Box
-          mb={'2rem'}
-        >
-          <p>Этот сайт был сделан в качестве портфолио.</p>
-          <p>Но не хочется, чтобы он был совсем без души.</p>
-          <p>
-            Поэтому тут я буду рассказывать о своём знакомстве с программированием, различными языками и технологиями.
-          </p>
+        <Box>
+          <FormattedHTMLMessage id='page.info'/>
         </Box>
-        <Box>А может ещё что-то.</Box>
       </InfoStyled>
       <Box
         mt='4rem'
         mb='2rem'
         fontSize='2.5rem'
       >
-        Новые посты:
+        <FormattedMessage id='page.new-posts'/>
       </Box>
       <CategoryList items={items}/>
     </InfoWrapperStyled>

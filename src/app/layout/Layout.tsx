@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Flex } from 'grid-styled';
 import styled, { css } from 'styled-components';
+import { injectIntl, InjectedIntl } from 'react-intl';
 
 import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
 import { Header } from '@app/header/Header';
@@ -16,15 +17,16 @@ export interface IProps {
   title: string;
   menuIsOpen: SubmenuStates;
   submenuDisable: (menuIsOpen: SubmenuStates) => void;
+  intl: InjectedIntl;
 }
 
 export interface IPropsStyled {
   menu_is_open: SubmenuStates;
 }
 
-export const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDisable}) => {
+const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDisable, intl}) => {
   React.useEffect(() => {
-    setTitle(title);
+    setTitle(title, intl.formatMessage({id: 'page.postfix'}));
   }, [title]);
 
   return (
@@ -48,6 +50,10 @@ export const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDi
     </LayoutStyled>
   );
 };
+
+const LayoutIntl = injectIntl(Layout);
+
+export { LayoutIntl as Layout };
 
 const LayoutStyled = styled(Flex)`
   height: 100%;

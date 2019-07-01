@@ -5,7 +5,7 @@ export interface IState {
 }
 
 const initState: IState = {
-  title: 'Главная страница',
+  title: '',
 };
 
 type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;

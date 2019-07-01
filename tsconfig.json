@@ -11,8 +11,11 @@
       "experimentalDecorators": true,
       "types": ["node"],
       "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": false,
       "paths": {
-        "@app/*": ["src/app/*"]
+        "@app/*": ["src/app/*"],
+        "@translations/*": ["src/translations/*"]
       },
       "typeRoots": ["./src/typings"]
     },

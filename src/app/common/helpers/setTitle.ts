@@ -1,3 +1,3 @@
-export const setTitle = (title: string) => {
-  document.title = title ? `${title} | Блог Димы Фукса` : 'Блог Димы Фукса';
+export const setTitle = (title: string, postfix: string) => {
+  document.title = title ? `${title} | ${postfix}` : postfix;
 };

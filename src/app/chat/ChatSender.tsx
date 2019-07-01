@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box } from 'grid-styled';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 import { Colors, FetchingStatuses, Icons } from '@app/common/constants';
 import { Icon } from '@app/icon/Icon';
@@ -30,17 +31,23 @@ export const ChatSender: React.FC<IProps> = ({id, sendMessage, status}) => {
 
   return (
     <TextAreaWrapperStyled>
-      <TextAreaStyled
-        placeholder={
-          status === FetchingStatuses.IN_PROGRESS && 'Отправка...' ||
-          status === FetchingStatuses.FAILED &&  'Ошибка отправки' ||
-          'Сообщение'
+      <FormattedMessage
+        id={
+          status === FetchingStatuses.IN_PROGRESS && 'chat.sending' ||
+          status === FetchingStatuses.FAILED && 'chat.failed' ||
+          'chat.message'
         }
-        disabled={status === FetchingStatuses.IN_PROGRESS}
-        value={message}
-        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
-        onKeyDown={status !== FetchingStatuses.IN_PROGRESS && onEnterDown}
-      />
+      >
+        {(msg: string) => (
+          <TextAreaStyled
+            placeholder={msg}
+            disabled={status === FetchingStatuses.IN_PROGRESS}
+            value={message}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
+            onKeyDown={status !== FetchingStatuses.IN_PROGRESS && onEnterDown}
+          />
+        )}
+      </FormattedMessage>
       {status !== FetchingStatuses.IN_PROGRESS && (
         <ButtonStyled onClick={onMessageSend}>
           <Icon

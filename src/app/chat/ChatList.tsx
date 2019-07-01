@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Box } from 'grid-styled';
 import styled from 'styled-components';
 import * as moment from 'moment';
+import { injectIntl, InjectedIntl, FormattedMessage } from 'react-intl';
 
 import { ChatMessageTypes, Colors } from '@app/common/constants';
 
@@ -9,9 +10,10 @@ import { IMessage } from './duck/reducer';
 
 export interface IProps {
   messages: IMessage[];
+  intl: InjectedIntl;
 }
 
-export const ChatList: React.FC<IProps> = React.memo(({messages}) => {
+const ChatList: React.FC<IProps> = React.memo(({messages, intl}) => {
   const chatList = React.useRef<HTMLDivElement>();
 
   React.useEffect(() => {
@@ -23,7 +25,7 @@ export const ChatList: React.FC<IProps> = React.memo(({messages}) => {
   return (
     <ChatListStyled>
       {messages.map((item, index) => {
-        const currentDate = moment(item.date).locale('ru').format('Do MMM');
+        const currentDate = moment(item.date).locale(intl.locale).format('Do MMM');
 
         const prevDate = messages[index - 1] && moment(messages[index - 1].date).locale('ru').format('Do MMM');
 
@@ -39,9 +41,13 @@ export const ChatList: React.FC<IProps> = React.memo(({messages}) => {
             )}
             <ChatTextStyled>
               <ChatAuthorStyled>
-                {item.type === ChatMessageTypes.USER ? 'Я:' : 'Дима:'}
+                {item.type === ChatMessageTypes.USER ? (
+                  <FormattedMessage id={'chat.me'}/>
+                ) : (
+                  <FormattedMessage id={'chat.dima'}/>
+                )}
               </ChatAuthorStyled>
-              {'\u00A0' + item.message}
+              {`:\u00A0${item.message}`}
             </ChatTextStyled>
             <ChatTimeStyled
               fontSize='1rem'
@@ -56,6 +62,10 @@ export const ChatList: React.FC<IProps> = React.memo(({messages}) => {
     </ChatListStyled>
   );
 });
+
+const ChatListIntl = injectIntl(ChatList);
+
+export { ChatListIntl as ChatList };
 
 const ChatListStyled = styled(Box)`
   overflow: auto;
