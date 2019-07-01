@@ -5,25 +5,28 @@ import { addLocaleData, IntlProvider } from 'react-intl';
 import localeEn from 'react-intl/locale-data/en';
 import localeRu from 'react-intl/locale-data/ru';
 
-import { Locales, LocalStorageKeys } from '@app/common/constants';
-import { localStorageGet } from '@app/common/helpers/localStorageData';
+import { Locales } from '@app/common/constants';
+import { getLocaleFromDevice } from '@app/common/helpers/getLocaleFromDevice';
 
-import messagesEn from '@translations/en.json';
 import messagesRu from '@translations/ru.json';
+import messagesEn from '@translations/en.json';
 
 import { App } from './App';
 
-addLocaleData([...localeEn, ...localeRu]);
+addLocaleData([...localeRu, ...localeEn]);
 
 const messages = {
   [Locales.RU]: messagesRu,
   [Locales.EN]: messagesEn,
 };
 
-const language = (localStorageGet(LocalStorageKeys.LOCALE) || navigator.language.split(/[-_]/)[0]) as Locales;
+const locale = getLocaleFromDevice();
 
 ReactDOM.render(
-  <IntlProvider locale={language} messages={messages[language]}>
+  <IntlProvider
+    locale={locale}
+    messages={messages[locale]}
+  >
     <App/>
   </IntlProvider>,
   document.getElementById('app'),

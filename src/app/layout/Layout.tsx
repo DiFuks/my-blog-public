@@ -3,7 +3,7 @@ import { Flex } from 'grid-styled';
 import styled, { css } from 'styled-components';
 import { injectIntl, InjectedIntl } from 'react-intl';
 
-import { Colors, ScreenWidthBreakpoints } from '@app/common/constants';
+import { Colors, Locales, ScreenWidthBreakpoints } from '@app/common/constants';
 import { Header } from '@app/header/Header';
 import { MenuContainer as Menu } from '@app/menu/MenuContainer';
 import { SubmenuContainer as Submenu } from '@app/submenu/SubmenuContainer';
@@ -18,16 +18,21 @@ export interface IProps {
   menuIsOpen: SubmenuStates;
   submenuDisable: (menuIsOpen: SubmenuStates) => void;
   intl: InjectedIntl;
+  setLocale: (locale: Locales) => void;
 }
 
 export interface IPropsStyled {
   menu_is_open: SubmenuStates;
 }
 
-const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDisable, intl}) => {
+const Layout: React.FC<IProps> = ({children, title, menuIsOpen, submenuDisable, intl, setLocale}) => {
   React.useEffect(() => {
     setTitle(title, intl.formatMessage({id: 'page.postfix'}));
   }, [title]);
+
+  React.useEffect(() => {
+    setLocale(intl.locale as Locales);
+  }, []);
 
   return (
     <LayoutStyled>

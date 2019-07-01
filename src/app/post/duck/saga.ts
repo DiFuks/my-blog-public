@@ -1,8 +1,9 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 import * as httpStatusCodes from 'http-status-codes';
 
 import { FetchingStatuses } from '@app/common/constants';
 import { fetchData } from '@app/common/helpers/fetchData';
+import { getLocale } from '@app/common/selectors/getLocale';
 
 import { Creators, Types } from './actions';
 
@@ -18,7 +19,9 @@ function* refreshData(action: ReturnType<typeof Creators.postChangeActive>) {
   yield put(Creators.postRefreshFetchStatus(FetchingStatuses.IN_PROGRESS));
 
   try {
-    const response: Response = yield call(fetchData, `/post/detail/${action.url}`);
+    const locale = yield select(getLocale);
+
+    const response: Response = yield call(fetchData, `/post/detail/${action.url}`, {}, locale);
 
     if (response.status !== httpStatusCodes.OK) {
       yield put(Creators.postRefreshFetchStatus(FetchingStatuses.FAILED));
