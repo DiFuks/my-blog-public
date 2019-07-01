@@ -27,7 +27,7 @@ const ChatList: React.FC<IProps> = React.memo(({messages, intl}) => {
       {messages.map((item, index) => {
         const currentDate = moment(item.date).locale(intl.locale).format('Do MMM');
 
-        const prevDate = messages[index - 1] && moment(messages[index - 1].date).locale('ru').format('Do MMM');
+        const prevDate = messages[index - 1] && moment(messages[index - 1].date).locale(intl.locale).format('Do MMM');
 
         return (
           <ChatMessageStyled
