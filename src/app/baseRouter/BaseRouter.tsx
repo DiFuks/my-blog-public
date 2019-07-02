@@ -6,7 +6,7 @@ import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Locales } from '@app/common/constants';
-import { getUrlByLocale } from '@app/common/helpers/getUrlByLocale';
+import { getBaseUrlByLocale } from '@app/common/helpers/getBaseUrlByLocale';
 import { redirectToUserLocale } from '@app/common/helpers/redirectToUserLocale';
 
 import messagesRu from '@translations/ru.json';
@@ -29,10 +29,10 @@ export const BaseRouter: React.FC = ({children}) => {
       {Object.values(Locales).map((key: Locales) => (
         <Route
           key={key}
-          path={getUrlByLocale(key)}
+          path={getBaseUrlByLocale(key)}
           component={() => (
             <BrowserRouter
-              basename={getUrlByLocale(key)}
+              basename={getBaseUrlByLocale(key)}
             >
               <IntlProvider
                 locale={key}

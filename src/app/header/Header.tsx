@@ -4,8 +4,9 @@ import { InjectedIntl, injectIntl } from 'react-intl';
 import styled from 'styled-components';
 
 import { Colors, Locales, ScreenWidthBreakpoints, LocalStorageKeys } from '@app/common/constants';
-import { getUrlByLocale } from '@app/common/helpers/getUrlByLocale';
+import { getBaseUrlByLocale } from '@app/common/helpers/getBaseUrlByLocale';
 import { localStorageSet } from '@app/common/helpers/localStorageData';
+import { getUrlWithoutLocale } from '@app/common/helpers/getUrlWithoutLocale';
 
 export interface IProps {
   children: string;
@@ -15,13 +16,11 @@ export interface IProps {
 const Header: React.FC<IProps> = React.memo(({children, intl}) => {
   const localeToSwitch = intl.locale === Locales.RU ? Locales.EN : Locales.RU;
 
-  const urlToSwitch = getUrlByLocale(localeToSwitch);
-
   return (
     <HeaderStyled>
       {children}
       <HeaderLocaleStyled
-        href={urlToSwitch}
+        href={getBaseUrlByLocale(localeToSwitch) + getUrlWithoutLocale(intl.locale as Locales)}
         onClick={() => {
           localStorageSet(LocalStorageKeys.LOCALE, localeToSwitch);
         }}
