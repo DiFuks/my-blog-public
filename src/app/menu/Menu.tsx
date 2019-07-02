@@ -13,7 +13,6 @@ import { MenuSocials } from './MenuSocials';
 import { MenuItem } from './MenuItem';
 
 export interface IProps {
-  activePathName: string;
   submenuIsActive: SubmenuStates;
   changeSubmenuActive: (isActive: SubmenuStates) => void;
   menuNeedHide: boolean;
@@ -26,7 +25,6 @@ export interface IPropsStyled {
 }
 
 export const Menu: React.FC<IProps> = ({
-  activePathName,
   submenuIsActive,
   changeSubmenuActive,
   menuNeedHide,
@@ -57,7 +55,6 @@ export const Menu: React.FC<IProps> = ({
           tabIndex={0}
         >
           <MenuItem
-            isActive={Routes.ROOT === activePathName}
             onClick={() => changeSubmenuActive(submenuIsActive === SubmenuStates.ACTIVE
               ? SubmenuStates.DISABLE
               : SubmenuStates.INIT,

@@ -12,6 +12,7 @@ const mapStateToProps = (state: IRootState) => ({
   items: state.submenu.items,
   activeUrl: state.category.url,
   fetchStatus: state.submenu.fetchStatus,
+  locale: state.layout.locale,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

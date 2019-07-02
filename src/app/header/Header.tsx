@@ -1,10 +1,11 @@
-import { switchLocale } from '@app/common/helpers/switchLocale';
 import * as React from 'react';
 import { Flex } from 'grid-styled';
 import { InjectedIntl, injectIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import { Colors, Locales, ScreenWidthBreakpoints } from '@app/common/constants';
+import { Colors, Locales, ScreenWidthBreakpoints, LocalStorageKeys } from '@app/common/constants';
+import { getUrlByLocale } from '@app/common/helpers/getUrlByLocale';
+import { localStorageSet } from '@app/common/helpers/localStorageData';
 
 export interface IProps {
   children: string;
@@ -14,12 +15,15 @@ export interface IProps {
 const Header: React.FC<IProps> = React.memo(({children, intl}) => {
   const localeToSwitch = intl.locale === Locales.RU ? Locales.EN : Locales.RU;
 
+  const urlToSwitch = getUrlByLocale(localeToSwitch);
+
   return (
     <HeaderStyled>
       {children}
       <HeaderLocaleStyled
+        href={urlToSwitch}
         onClick={() => {
-          switchLocale(localeToSwitch);
+          localStorageSet(LocalStorageKeys.LOCALE, localeToSwitch);
         }}
       >
         {localeToSwitch}
@@ -53,10 +57,12 @@ const HeaderStyled = styled(Flex)`
   }
 `;
 
-const HeaderLocaleStyled = styled.div`
+const HeaderLocaleStyled = styled.a`
   position: absolute;
   right: 1rem;
   cursor: pointer;
+  text-decoration: none;
+  color: ${Colors.GREY_200};
   :hover {
     color: ${Colors.WHITE};
   }

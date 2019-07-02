@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { disableBodyScroll, enableBodyScroll } from '@app/common/helpers/bodyScroll';
 
-import { Colors, FetchingStatuses, ScreenWidthBreakpoints } from '@app/common/constants';
+import { Colors, FetchingStatuses, ScreenWidthBreakpoints, Locales } from '@app/common/constants';
 
 import { SubmenuStates } from './duck/constants';
 import { IMenuItem } from './duck/reducer';
@@ -19,6 +19,7 @@ export interface IProps {
   activeUrl: string;
   submenuDisable: () => void;
   fetchStatus: FetchingStatuses;
+  locale: Locales;
 }
 
 export const Submenu: React.FC<IProps> = ({
@@ -28,12 +29,13 @@ export const Submenu: React.FC<IProps> = ({
   activeUrl,
   submenuDisable,
   fetchStatus,
+  locale,
 }) => {
   React.useEffect(() => {
-    if (fetchStatus === FetchingStatuses.NONE) {
+    if (fetchStatus === FetchingStatuses.NONE && locale) {
       init();
     }
-  }, [fetchStatus]);
+  }, [fetchStatus, locale]);
 
   React.useEffect(() => {
     const onEscDown = (event: KeyboardEvent) => {

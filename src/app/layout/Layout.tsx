@@ -13,7 +13,6 @@ import { setTitle } from '@app/common/helpers/setTitle';
 const Chat = React.lazy(() => import('@app/chat/ChatContainer'));
 
 export interface IProps {
-  children?: React.ReactChild;
   title: string;
   menuIsOpen: SubmenuStates;
   submenuDisable: (menuIsOpen: SubmenuStates) => void;

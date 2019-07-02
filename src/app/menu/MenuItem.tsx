@@ -10,7 +10,6 @@ export interface IPropsStyled {
 }
 
 export interface IProps {
-  children: React.ReactChild;
   isActive?: boolean;
   onClick?: () => void;
 }

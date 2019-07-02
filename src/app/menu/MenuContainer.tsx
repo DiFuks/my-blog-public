@@ -9,7 +9,6 @@ import { Creators } from './duck/actions';
 import { Menu } from './Menu';
 
 const mapStateToProps = (state: IRootState) => ({
-  activePathName: state.router.location.pathname,
   submenuIsActive: state.submenu.isActive,
   menuNeedHide: state.menu.needHide,
 });

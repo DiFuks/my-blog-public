@@ -8,7 +8,6 @@ import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
 
 export interface IProps {
   url: string;
-  children: React.ReactChild;
   submenuDisable: () => void;
   isActive: boolean;
   isDisableTabindex: boolean;

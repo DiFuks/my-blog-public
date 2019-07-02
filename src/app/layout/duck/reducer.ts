@@ -1,5 +1,4 @@
 import { Locales } from '@app/common/constants';
-import { getLocaleFromDevice } from '@app/common/helpers/getLocaleFromDevice';
 
 import { Creators, Types } from './actions';
 
@@ -10,7 +9,7 @@ export interface IState {
 
 const initState: IState = {
   title: '',
-  locale: getLocaleFromDevice(),
+  locale: null,
 };
 
 type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
