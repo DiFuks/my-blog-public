@@ -7,7 +7,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Locales } from '@app/common/constants';
 import { getBaseUrlByLocale } from '@app/common/helpers/getBaseUrlByLocale';
-import { redirectToUserLocale } from '@app/common/helpers/redirectToUserLocale';
 
 import messagesRu from '@translations/ru.json';
 import messagesEn from '@translations/en.json';
@@ -19,30 +18,24 @@ const messages = {
   [Locales.EN]: messagesEn,
 };
 
-export const BaseRouter: React.FC = ({children}) => {
-  React.useEffect(() => {
-    redirectToUserLocale();
-  }, []);
-
-  return (
-    <Switch>
-      {Object.values(Locales).map((key: Locales) => (
-        <Route
-          key={key}
-          path={getBaseUrlByLocale(key)}
-          component={() => (
-            <BrowserRouter
-              basename={getBaseUrlByLocale(key)}
+export const BaseRouter: React.FC = ({children}) => (
+  <Switch>
+    {Object.values(Locales).map((key: Locales) => (
+      <Route
+        key={key}
+        path={getBaseUrlByLocale(key)}
+        component={() => (
+          <BrowserRouter
+            basename={getBaseUrlByLocale(key)}
+          >
+            <IntlProvider
+              locale={key}
+              messages={messages[key]}
             >
-              <IntlProvider
-                locale={key}
-                messages={messages[key]}
-              >
-                {children}
-              </IntlProvider>
-            </BrowserRouter>
-          )}/>
-      ))}
-    </Switch>
-  );
-};
+              {children}
+            </IntlProvider>
+          </BrowserRouter>
+        )}/>
+    ))}
+  </Switch>
+);

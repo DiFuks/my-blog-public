@@ -3,9 +3,8 @@ import { Flex } from 'grid-styled';
 import { InjectedIntl, injectIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import { Colors, Locales, ScreenWidthBreakpoints, LocalStorageKeys } from '@app/common/constants';
+import { Colors, Locales, ScreenWidthBreakpoints } from '@app/common/constants';
 import { getBaseUrlByLocale } from '@app/common/helpers/getBaseUrlByLocale';
-import { localStorageSet } from '@app/common/helpers/localStorageData';
 import { getUrlWithoutLocale } from '@app/common/helpers/getUrlWithoutLocale';
 
 export interface IProps {
@@ -21,9 +20,6 @@ const Header: React.FC<IProps> = React.memo(({children, intl}) => {
       {children}
       <HeaderLocaleStyled
         href={getBaseUrlByLocale(localeToSwitch) + getUrlWithoutLocale(intl.locale as Locales)}
-        onClick={() => {
-          localStorageSet(LocalStorageKeys.LOCALE, localeToSwitch);
-        }}
       >
         {localeToSwitch}
       </HeaderLocaleStyled>
