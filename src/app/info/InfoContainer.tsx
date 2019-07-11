@@ -5,14 +5,14 @@ import { IRootState } from '@app/reducers';
 
 import { Info } from './Info';
 import { Creators } from './duck/actions';
+import { Locales } from '@app/common/constants';
 
 const mapStateToProps = (state: IRootState) => ({
   items: state.info.items,
-  isInit: state.info.isInit,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  init: () => dispatch(Creators.infoInit(true)),
+  init: (locale: Locales) => dispatch(Creators.infoInit(locale)),
 });
 
 export const InfoContainer = connect(

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Flex } from 'grid-styled';
 import { InjectedIntl, injectIntl } from 'react-intl';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { Colors, Locales, ScreenWidthBreakpoints } from '@app/common/constants';
 import { getBaseUrlByLocale } from '@app/common/helpers/getBaseUrlByLocale';
@@ -19,7 +20,7 @@ const Header: React.FC<IProps> = React.memo(({children, intl}) => {
     <HeaderStyled>
       {children}
       <HeaderLocaleStyled
-        href={getBaseUrlByLocale(localeToSwitch) + getUrlWithoutLocale(intl.locale as Locales)}
+        to={getBaseUrlByLocale(localeToSwitch) + getUrlWithoutLocale(intl.locale as Locales)}
       >
         {localeToSwitch}
       </HeaderLocaleStyled>
@@ -52,7 +53,7 @@ const HeaderStyled = styled(Flex)`
   }
 `;
 
-const HeaderLocaleStyled = styled.a`
+const HeaderLocaleStyled = styled(Link)`
   position: absolute;
   right: 1rem;
   cursor: pointer;

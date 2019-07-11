@@ -3,8 +3,9 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/styles/hljs';
 import styled, { css, keyframes } from 'styled-components';
 import { DiscussionEmbed } from 'disqus-react';
+import { InjectedIntl, injectIntl } from 'react-intl';
 
-import { FetchingStatuses, Routes, PostTypes } from '@app/common/constants';
+import { FetchingStatuses, Routes, PostTypes, Locales } from '@app/common/constants';
 import { LoremText } from '@app/common/components/LoremText';
 import { SubmenuStates } from '@app/submenu/duck/constants';
 
@@ -12,10 +13,11 @@ import { IPost } from './duck/reducer';
 
 export interface IProps {
   url: string;
-  changeActive: (url: string) => void;
+  changeActive: (url: string, locale?: Locales) => void;
   data: IPost;
   fetchStatus: FetchingStatuses;
   menuIsOpen: SubmenuStates;
+  intl: InjectedIntl;
 }
 
 export interface IPropsStyled {
@@ -23,12 +25,12 @@ export interface IPropsStyled {
   fetch_status?: FetchingStatuses;
 }
 
-export const Post: React.FC<IProps> = ({url, changeActive, data, fetchStatus, menuIsOpen}) => {
+const Post: React.FC<IProps> = ({url, changeActive, data, fetchStatus, menuIsOpen, intl}) => {
   React.useEffect(() => {
-    changeActive(url);
+    changeActive(url, intl.locale as Locales);
 
     return () => changeActive(null);
-  }, [url]);
+  }, [url, intl.locale]);
 
   if (fetchStatus === FetchingStatuses.IN_PROGRESS || fetchStatus === FetchingStatuses.NONE) {
     return (
@@ -86,6 +88,10 @@ export const Post: React.FC<IProps> = ({url, changeActive, data, fetchStatus, me
     </PostStyled>
   );
 };
+
+const PostIntl = injectIntl(Post);
+
+export { PostIntl as Post };
 
 const fadeId = keyframes`
   0% {

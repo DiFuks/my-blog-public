@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Box } from 'grid-styled';
-import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 import { Colors, Routes, StringBoolean } from '@app/common/constants';
 import { getStringByBoolean } from '@app/common/helpers/getStringByBoolean';
+import { LinkLocalized } from '@app/common/components/LinkLocalized';
 
 export interface IProps {
   url: string;
@@ -33,7 +33,7 @@ export const SubmenuItem: React.FC<IProps> = ({children, submenuDisable, url, is
   </SubmenuItemStyled>
 );
 
-const SubmenuItemStyled = styled(Link)<IPropsStyled>`
+const SubmenuItemStyled = styled(LinkLocalized)<IPropsStyled>`
   height: 5rem;
   align-items: center;
   font-size: 1.4rem;

@@ -1,4 +1,4 @@
-import { FetchingStatuses } from '@app/common/constants';
+import { FetchingStatuses, Locales } from '@app/common/constants';
 
 import { IPost } from './reducer';
 
@@ -9,9 +9,10 @@ export const enum Types {
 }
 
 export const Creators = {
-  postChangeActive: (url: string) => ({
+  postChangeActive: (url: string, locale: Locales) => ({
     type: Types.POST_CHANGE_ACTIVE,
     url: url,
+    locale: locale,
   } as const),
   postRefreshData: (data: IPost) => ({
     type: Types.POST_REFRESH_DATA,

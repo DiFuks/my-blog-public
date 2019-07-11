@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IRootState } from '@app/reducers';
+import { Locales } from '@app/common/constants';
 
 import { Creators } from './duck/actions';
 import { Post } from './Post';
@@ -14,7 +15,7 @@ const mapStateToProps = (state: IRootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changeActive: (url: string) => dispatch(Creators.postChangeActive(url)),
+  changeActive: (url: string, locale: Locales) => dispatch(Creators.postChangeActive(url, locale)),
 });
 
 export const PostContainer = connect(

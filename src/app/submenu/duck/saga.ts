@@ -1,7 +1,6 @@
-import { call, put, takeEvery, all, select } from 'redux-saga/effects';
+import { call, put, takeEvery, all } from 'redux-saga/effects';
 
 import { fetchData } from '@app/common/helpers/fetchData';
-import { getLocale } from '@app/common/selectors/getLocale';
 
 import { Creators, Types } from './actions';
 
@@ -9,11 +8,9 @@ function* onInit() {
   yield takeEvery(Types.SUBMENU_INIT, refreshData);
 }
 
-function* refreshData() {
+function* refreshData(action: ReturnType<typeof Creators.submenuInit>) {
   try {
-    const locale = yield select(getLocale);
-
-    const response = yield call(fetchData, '/post/categories', {}, locale);
+    const response = yield call(fetchData, '/post/categories', {}, action.locale);
 
     const data = yield response.json();
 

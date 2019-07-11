@@ -1,20 +1,22 @@
 import * as React from 'react';
+import { InjectedIntl, injectIntl } from 'react-intl';
 
-import { CategoryList } from '@app/category/CategoryList';
-import { FetchingStatuses } from '@app/common/constants';
+import { FetchingStatuses, Locales } from '@app/common/constants';
 
 import { IInfoItem } from './duck/reducer';
+import { CategoryList } from './CategoryList';
 
 export interface IProps {
   url: string;
-  changeActive: (url: string) => void;
+  changeActive: (url: string, locale?: Locales) => void;
   items: IInfoItem[];
   fetchStatus: FetchingStatuses;
+  intl: InjectedIntl;
 }
 
-export const Category: React.FC<IProps> = ({url, items, changeActive, fetchStatus}) => {
+const Category: React.FC<IProps> = ({url, items, changeActive, fetchStatus, intl}) => {
   React.useEffect(() => {
-    changeActive(url);
+    changeActive(url, intl.locale as Locales);
 
     return () => changeActive(null);
   }, []);
@@ -29,3 +31,7 @@ export const Category: React.FC<IProps> = ({url, items, changeActive, fetchStatu
     <CategoryList items={items}/>
   );
 };
+
+const CategoryIntl = injectIntl(Category);
+
+export { CategoryIntl as Category };

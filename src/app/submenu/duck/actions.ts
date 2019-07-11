@@ -1,5 +1,6 @@
 import { SubmenuStates } from './constants';
 import { IMenuItem } from './reducer';
+import { Locales } from '@app/common/constants';
 
 export const enum Types {
   SUBMENU_CHANGE_ACTIVE = 'SUBMENU_CHANGE_ACTIVE',
@@ -16,8 +17,8 @@ export const Creators = {
     type: Types.SUBMENU_REFRESH_ITEMS,
     items,
   } as const),
-  submenuInit: (isInit: boolean) => ({
+  submenuInit: (locale: Locales) => ({
     type: Types.SUBMENU_INIT,
-    isInit,
+    locale: locale,
   } as const),
 };

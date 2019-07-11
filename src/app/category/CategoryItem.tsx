@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Box } from 'grid-styled';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import * as moment from 'moment';
 
 import { Colors, Routes } from '@app/common/constants';
+import { LinkLocalized } from '@app/common/components/LinkLocalized';
 
 export interface IProps {
   category: string;
@@ -18,14 +18,22 @@ export const CategoryItem: React.FC<IProps> = React.memo(({category, title, desc
   <CategoryItemStyled
     to={Routes.POST.replace(':url', url)}
   >
-    <CategoryStyled>{category}</CategoryStyled>
-    <TitleStyled>{title}</TitleStyled>
-    <DescriptionStyled>{description}</DescriptionStyled>
-    <DateStyled>{moment(date).format('DD.MM.YYYY')}</DateStyled>
+    <CategoryStyled>
+      {category}
+    </CategoryStyled>
+    <TitleStyled>
+      {title}
+    </TitleStyled>
+    <DescriptionStyled>
+      {description}
+    </DescriptionStyled>
+    <DateStyled>
+      {moment(date).format('DD.MM.YYYY')}
+    </DateStyled>
   </CategoryItemStyled>
 ));
 
-const CategoryItemStyled = styled(Link)`
+const CategoryItemStyled = styled(LinkLocalized)`
   box-shadow: 0 0 1px 0 ${Colors.GREY_160};
   display: flex;
   text-decoration: none;

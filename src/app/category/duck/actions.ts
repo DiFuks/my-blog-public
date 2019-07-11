@@ -1,5 +1,5 @@
 import { IInfoItem } from '@app/category/duck/reducer';
-import { FetchingStatuses } from '@app/common/constants';
+import { FetchingStatuses, Locales } from '@app/common/constants';
 
 export const enum Types {
   CATEGORY_CHANGE_ACTIVE = 'CATEGORY_CHANGE_ACTIVE',
@@ -8,9 +8,10 @@ export const enum Types {
 }
 
 export const Creators = {
-  categoryChangeActive: (url: string) => ({
+  categoryChangeActive: (url: string, locale: Locales) => ({
     type: Types.CATEGORY_CHANGE_ACTIVE,
     url: url,
+    locale: locale,
   } as const),
   categoryRefreshData: (items: IInfoItem[]) => ({
     type: Types.CATEGORY_REFRESH_DATA,

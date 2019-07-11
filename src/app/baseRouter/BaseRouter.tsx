@@ -2,10 +2,12 @@ import * as React from 'react';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import localeEn from 'react-intl/locale-data/en';
 import localeRu from 'react-intl/locale-data/ru';
-import { Switch, Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
 
 import { Locales } from '@app/common/constants';
+import { PagesRouter } from '@app/pages/PagesRouter';
+import { Theme } from '@app/common/components/Theme';
+import { LayoutContainer as Layout } from '@app/layout/LayoutContainer';
 import { getBaseUrlByLocale } from '@app/common/helpers/getBaseUrlByLocale';
 
 import messagesRu from '@translations/ru.json';
@@ -18,24 +20,26 @@ const messages = {
   [Locales.EN]: messagesEn,
 };
 
-export const BaseRouter: React.FC = ({children}) => (
+export const BaseRouter: React.FC = () => (
   <Switch>
     {Object.values(Locales).map((key: Locales) => (
       <Route
-        key={key}
-        path={getBaseUrlByLocale(key)}
+        path={getBaseUrlByLocale(key) + '/'}
         component={() => (
-          <BrowserRouter
-            basename={getBaseUrlByLocale(key)}
+          <IntlProvider
+            locale={key}
+            messages={messages[key]}
           >
-            <IntlProvider
-              locale={key}
-              messages={messages[key]}
-            >
-              {children}
-            </IntlProvider>
-          </BrowserRouter>
-        )}/>
+            <Theme>
+              <Layout>
+                <PagesRouter
+                  basePath={getBaseUrlByLocale(key)}
+                />
+              </Layout>
+            </Theme>
+          </IntlProvider>
+        )}
+      />
     ))}
   </Switch>
 );

@@ -1,6 +1,5 @@
-import { call, put, takeEvery, all, select } from 'redux-saga/effects';
+import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import { getLocale } from '@app/common/selectors/getLocale';
 import { fetchData } from '@app/common/helpers/fetchData';
 import { Creators, Types } from './actions';
 
@@ -8,10 +7,8 @@ function* onInit() {
   yield takeEvery(Types.INFO_INIT, refreshData);
 }
 
-function* refreshData() {
-  const locale = yield select(getLocale);
-
-  const response = yield call(fetchData, `/post/shortList`, {}, locale);
+function* refreshData(action: ReturnType<typeof Creators.infoInit>) {
+  const response = yield call(fetchData, `/post/shortList`, {}, action.locale);
 
   const data = yield response.json();
 

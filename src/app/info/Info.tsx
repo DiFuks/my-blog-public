@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { Box, Flex } from 'grid-styled';
 import styled from 'styled-components';
-import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
+import { FormattedHTMLMessage, FormattedMessage, InjectedIntl, injectIntl } from 'react-intl';
 
-import { Colors } from '@app/common/constants';
+import { Colors, Locales } from '@app/common/constants';
 import { IInfoItem } from '@app/category/duck/reducer';
 import { CategoryList } from '@app/category/CategoryList';
 
 export interface IProps {
-  isInit: boolean;
   items: IInfoItem[];
-  init: () => void;
+  init: (locale: Locales) => void;
+  intl: InjectedIntl;
 }
 
-export const Info: React.FC<IProps> = ({isInit, items, init}) => {
+const Info: React.FC<IProps> = ({items, init, intl}) => {
   React.useEffect(() => {
-    if (!isInit) {
-      init();
-    }
+    init(intl.locale as Locales);
   }, []);
 
   return (
@@ -45,6 +43,10 @@ export const Info: React.FC<IProps> = ({isInit, items, init}) => {
     </InfoWrapperStyled>
   );
 };
+
+const InfoIntl = injectIntl(Info);
+
+export { InfoIntl as Info };
 
 const InfoStyled = styled(Flex)`
   flex-direction: column;

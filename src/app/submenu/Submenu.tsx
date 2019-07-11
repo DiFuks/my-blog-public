@@ -2,11 +2,12 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { disableBodyScroll, enableBodyScroll } from '@app/common/helpers/bodyScroll';
 
-import { Colors, FetchingStatuses, ScreenWidthBreakpoints, Locales } from '@app/common/constants';
+import { Colors, ScreenWidthBreakpoints, Locales } from '@app/common/constants';
 
 import { SubmenuStates } from './duck/constants';
 import { IMenuItem } from './duck/reducer';
 import { SubmenuItemContainer as SubmenuItem } from './SubmenuItemContainer';
+import { InjectedIntl, injectIntl } from 'react-intl';
 
 export interface IPropsStyled {
   show: SubmenuStates;
@@ -15,27 +16,27 @@ export interface IPropsStyled {
 export interface IProps {
   isActive: SubmenuStates;
   items: IMenuItem[];
-  init: () => void;
+  init: (locale: Locales) => void;
   activeUrl: string;
   submenuDisable: () => void;
-  fetchStatus: FetchingStatuses;
-  locale: Locales;
+  intl: InjectedIntl;
+  submenuInit: () => void;
 }
 
-export const Submenu: React.FC<IProps> = ({
+const Submenu: React.FC<IProps> = ({
   isActive,
   init,
   items,
   activeUrl,
   submenuDisable,
-  fetchStatus,
-  locale,
+  intl,
+  submenuInit,
 }) => {
   React.useEffect(() => {
-    if (fetchStatus === FetchingStatuses.NONE && locale) {
-      init();
-    }
-  }, [fetchStatus, locale]);
+    init(intl.locale as Locales);
+
+    submenuInit();
+  }, []);
 
   React.useEffect(() => {
     const onEscDown = (event: KeyboardEvent) => {
@@ -52,9 +53,7 @@ export const Submenu: React.FC<IProps> = ({
   React.useEffect(() => {
     if (isActive === SubmenuStates.ACTIVE) {
       disableBodyScroll();
-    }
-
-    if (isActive !== SubmenuStates.ACTIVE) {
+    } else {
       enableBodyScroll();
     }
   }, [isActive]);
@@ -74,6 +73,10 @@ export const Submenu: React.FC<IProps> = ({
     </SubmenuStyled>
   );
 };
+
+const SubmenuIntl = injectIntl(Submenu);
+
+export { SubmenuIntl as Submenu };
 
 const animationIn = keyframes`
   0% {

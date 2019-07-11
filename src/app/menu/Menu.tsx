@@ -1,7 +1,6 @@
 import { calculateNeedHide } from '@app/menu/helpers/calculateNeedHide';
 import * as React from 'react';
 import { Flex } from 'grid-styled';
-import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 import { Colors, Icons, Routes, ScreenWidthBreakpoints, StringBoolean } from '@app/common/constants';
@@ -11,6 +10,7 @@ import { SubmenuStates } from '@app/submenu/duck/constants';
 
 import { MenuSocials } from './MenuSocials';
 import { MenuItem } from './MenuItem';
+import { LinkLocalized } from '@app/common/components/LinkLocalized';
 
 export interface IProps {
   submenuIsActive: SubmenuStates;
@@ -50,7 +50,7 @@ export const Menu: React.FC<IProps> = ({
         position='top'
         hide={getStringByBoolean(menuNeedHide)}
       >
-        <Link
+        <LinkLocalized
           to={Routes.ROOT}
           tabIndex={0}
         >
@@ -62,7 +62,7 @@ export const Menu: React.FC<IProps> = ({
           >
             <Icon icon={Icons.HOME}/>
           </MenuItem>
-        </Link>
+        </LinkLocalized>
         <ButtonStyled
           onClick={() => changeSubmenuActive(submenuIsActive === SubmenuStates.ACTIVE
             ? SubmenuStates.DISABLE
