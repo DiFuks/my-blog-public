@@ -1,5 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import * as httpStatusCodes from 'http-status-codes';
+import { push } from 'connected-react-router';
 
 import { FetchingStatuses } from '@app/common/constants';
 import { fetchData } from '@app/common/helpers/fetchData';
@@ -19,6 +20,12 @@ function* refreshData(action: ReturnType<typeof Creators.postChangeActive>) {
 
   try {
     const response: Response = yield call(fetchData, `/post/detail/${action.url}`, {}, action.locale);
+
+    if (response.status === httpStatusCodes.NOT_FOUND) {
+      yield put(push('/404'));
+
+      return;
+    }
 
     if (response.status !== httpStatusCodes.OK) {
       yield put(Creators.postRefreshFetchStatus(FetchingStatuses.FAILED));

@@ -10,5 +10,7 @@
   "page.postfix": "Dima Fuks blog",
   "page.info": "<p>This website was made as a portfolio.</p><p>But there is no wish that it was absolutely without soul.</p><p>Therefore here I will tell about the acquaintance to programming, different languages and technologies.</p><p>Maybe something else.</p>",
   "page.hello": "Hi!",
-  "page.new-posts": "New posts:"
+  "page.new-posts": "New posts:",
+  "page.not-found-image": "Not found image (sad fox)",
+  "page.not-found": "Page not found"
 }

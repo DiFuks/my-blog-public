@@ -15,7 +15,8 @@
       "esModuleInterop": false,
       "paths": {
         "@app/*": ["src/app/*"],
-        "@translations/*": ["src/translations/*"]
+        "@translations/*": ["src/translations/*"],
+        "@assets/*": ["src/assets/*"]
       },
       "typeRoots": ["./src/typings"]
     },
