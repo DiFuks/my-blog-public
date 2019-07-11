@@ -29,6 +29,7 @@
     "@types/react-syntax-highlighter": "^10.1.0",
     "@types/socket.io-client": "^1.4.32",
     "@types/styled-components": "^4.1.12",
+    "@types/uuid": "^3.4.5",
     "@types/webfontloader": "^1.6.29",
     "babel-plugin-styled-components": "^1.10.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
@@ -64,6 +65,7 @@
     "tslint-react": "^3.6.0",
     "tslint-react-a11y": "^1.0.0",
     "typescript": "^3.5.1",
+    "uuid": "^3.3.2",
     "webfontloader": "^1.6.28"
   }
 }

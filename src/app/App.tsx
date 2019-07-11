@@ -10,6 +10,7 @@ import { sagas } from '@app/sagas';
 import { BaseRouter } from '@app/baseRouter/BaseRouter';
 
 import { createRootReducer } from './reducers';
+import { generateUserSessionToken } from '@app/common/helpers/userSessionTokenManager';
 
 const history = createBrowserHistory();
 
@@ -27,10 +28,16 @@ const store = createStore(
 
 sagaMiddleware.run(sagas);
 
-export const App: React.FC<{}> = () => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <BaseRouter/>
-    </ConnectedRouter>
-  </Provider>
-);
+export const App: React.FC<{}> = () => {
+  React.useEffect(() => {
+    generateUserSessionToken();
+  });
+
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <BaseRouter/>
+      </ConnectedRouter>
+    </Provider>
+  );
+};

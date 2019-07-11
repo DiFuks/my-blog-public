@@ -24,6 +24,7 @@ export const BaseRouter: React.FC = () => (
   <Switch>
     {Object.values(Locales).map((key: Locales) => (
       <Route
+        key={key}
         path={getBaseUrlByLocale(key) + '/'}
         component={() => (
           <IntlProvider

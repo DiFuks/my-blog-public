@@ -910,6 +910,13 @@
   dependencies:
     source-map "^0.6.1"
 
+"@types/uuid@^3.4.5":
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.5.tgz#d4dc10785b497a1474eae0ba7f0cb09c0ddfd6eb"
+  integrity sha512-MNL15wC3EKyw1VLF+RoVO4hJJdk9t/Hlv3rt1OL65Qvuadm4BYo6g9ZJQqoq7X8NBFSsQXgAujWciovh2lpVjA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/webfontloader@^1.6.29":
   version "1.6.29"
   resolved "https://registry.yarnpkg.com/@types/webfontloader/-/webfontloader-1.6.29.tgz#c6b5f6eb8ca31d0aae6b02b6c1300349dd93ea8e"
