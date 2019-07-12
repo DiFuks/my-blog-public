@@ -1,4 +1,3 @@
-import { Locales } from '@app/common/constants';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -8,7 +7,6 @@ import { Creators as SubmenuCreators } from '@app/submenu/duck/actions';
 import { SubmenuStates } from '@app/submenu/duck/constants';
 
 import { Layout } from './Layout';
-import { Creators } from './duck/actions';
 
 const mapStateToProps = (state: IRootState) => ({
   menuIsOpen: state.submenu.isActive,
@@ -20,7 +18,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(SubmenuCreators.submenuChangeActive(menuIsOpen === SubmenuStates.INIT
       ? SubmenuStates.INIT : SubmenuStates.DISABLE,
     )),
-  setLocale: (locale: Locales) => dispatch(Creators.layoutSetLocale(locale)),
 });
 
 export const LayoutContainer = connect(

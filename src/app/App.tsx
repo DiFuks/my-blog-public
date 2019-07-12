@@ -31,7 +31,7 @@ sagaMiddleware.run(sagas);
 export const App: React.FC<{}> = () => {
   React.useEffect(() => {
     generateUserSessionToken();
-  });
+  }, []);
 
   return (
     <Provider store={store}>
