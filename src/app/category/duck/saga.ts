@@ -1,5 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import * as httpStatusCodes from 'http-status-codes';
+import { push } from 'connected-react-router';
 
 import { fetchData } from '@app/common/helpers/fetchData';
 import { FetchingStatuses } from '@app/common/constants';
@@ -18,6 +19,12 @@ function* refreshData(action: ReturnType<typeof Creators.categoryChangeActive>) 
 
   try {
     const response = yield call(fetchData, `/post/listByCategory/${action.url}`, {}, action.locale);
+
+    if (response.status === httpStatusCodes.NOT_FOUND) {
+      yield put(push('/404'));
+
+      return;
+    }
 
     if (response.status !== httpStatusCodes.OK) {
       yield put(Creators.categoryRefreshFetchStatus(FetchingStatuses.FAILED));
