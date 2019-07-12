@@ -11,6 +11,7 @@ export interface IPost {
   content: PostContent;
   title: string;
   id: string;
+  description: string;
 }
 
 export interface IState {

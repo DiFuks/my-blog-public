@@ -8,3 +8,8 @@ export const getPostTitle = createSelector(
   [getPostData],
   postData => postData ? postData.title : 'Загрузка',
 );
+
+export const getPostDescription = createSelector(
+  [getPostData],
+  postData => postData ? postData.description : 'Загрузка',
+);

@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { injectIntl, InjectedIntl } from 'react-intl';
 
 import { CategoryContainer as Category } from '@app/category/CategoryContainer';
+import { MainHelmet } from '@app/common/components/MainHelmet';
 
 interface IProps {
   match: {
@@ -9,15 +11,19 @@ interface IProps {
     };
   };
   title: string;
-  setLayoutTitle: (title: string) => void;
+  intl: InjectedIntl;
 }
 
-export const CategoryPage: React.FC<IProps> = ({match: {params: {url}}, title, setLayoutTitle}) => {
-  React.useEffect(() => {
-    setLayoutTitle(title);
-  }, [title]);
-
-  return (
+const CategoryPage: React.FC<IProps> = ({match: {params: {url}}, title, intl}) => (
+  <>
+    <MainHelmet
+      title={title}
+      description={`${title}. ${intl.formatMessage({id: 'page.category-description'})}`}
+    />
     <Category url={url}/>
-  );
-};
+  </>
+);
+
+const CategoryPageIntl = injectIntl(CategoryPage);
+
+export { CategoryPageIntl as CategoryPage };

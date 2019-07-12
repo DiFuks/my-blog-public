@@ -5,18 +5,18 @@ import styled from 'styled-components';
 
 import foxImage from '@assets/img/fox.svg';
 import { Colors } from '@app/common/constants';
+import { MainHelmet } from '@app/common/components/MainHelmet';
 
 export interface IProps {
-  setLayoutTitle: (title: string) => void;
   intl: InjectedIntl;
 }
 
-const NotFoundPage: React.FC<IProps> = ({intl, setLayoutTitle}) => {
-  React.useEffect(() => {
-    setLayoutTitle(intl.formatMessage({id: 'page.not-found'}));
-  });
-
-  return (
+const NotFoundPage: React.FC<IProps> = ({intl}) => (
+  <>
+    <MainHelmet
+      title={intl.formatMessage({id: 'page.not-found'})}
+      description={intl.formatMessage({id: 'page.not-found-image'})}
+    />
     <NotFoundStyled>
       <img
         src={foxImage}
@@ -28,12 +28,12 @@ const NotFoundPage: React.FC<IProps> = ({intl, setLayoutTitle}) => {
         />
       </Box>
     </NotFoundStyled>
-  );
-};
+  </>
+);
 
 const NotFoundPageIntl = injectIntl(NotFoundPage);
 
-export { NotFoundPageIntl as NotFoundPage };
+export default NotFoundPageIntl;
 
 const NotFoundStyled = styled(Flex)`
   align-items: center;

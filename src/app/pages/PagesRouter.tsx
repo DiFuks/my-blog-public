@@ -3,10 +3,10 @@ import { Route, Switch } from 'react-router';
 
 import { Routes, RoutesNames } from '@app/common/constants';
 
-const Root = React.lazy(() => import('./RootPageContainer'));
+const Root = React.lazy(() => import('./RootPage'));
 const PostPage = React.lazy(() => import('./PostPageContainer'));
 const Category = React.lazy(() => import('./CategoryPageContainer'));
-const NotFound = React.lazy(() => import('./NotFoundPageContainer'));
+const NotFound = React.lazy(() => import('./NotFoundPage'));
 
 export interface IProps {
   basePath: string;

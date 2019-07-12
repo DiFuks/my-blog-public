@@ -9,7 +9,6 @@ import { getBaseUrlByLocale } from '@app/common/helpers/getBaseUrlByLocale';
 import { getUrlWithoutLocale } from '@app/common/helpers/getUrlWithoutLocale';
 
 export interface IProps {
-  children: string;
   intl: InjectedIntl;
 }
 
