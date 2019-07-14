@@ -16,6 +16,10 @@ export const ChatSender: React.FC<IProps> = ({id, sendMessage, status}) => {
   const [message, setMessage] = React.useState('');
 
   const onMessageSend = () => {
+    if (message === '') {
+      return;
+    }
+
     sendMessage(id, message);
 
     setMessage('');
@@ -49,7 +53,7 @@ export const ChatSender: React.FC<IProps> = ({id, sendMessage, status}) => {
         )}
       </FormattedMessage>
       {status !== FetchingStatuses.IN_PROGRESS && (
-        <ButtonStyled onClick={onMessageSend}>
+        <ButtonStyled onClick={onMessageSend} disabled={message === ''}>
           <Icon
             viewBox='0 0 334.5 334.5'
             icon={Icons.SEND}
@@ -88,16 +92,22 @@ const ButtonStyled = styled.button`
   width: 3.5rem;
   height: 3.5rem;
   background: transparent;
-  cursor: pointer;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   color: ${Colors.GREY_160};
-  transition: color .2s ease;
+  transition: color .2s ease, opacity .2s ease;
   transform: translateY(-50%) scale(.8);
-  :hover {
+  cursor: default;
+  :disabled {
+    opacity: .7;
+  }
+  :not(:disabled) {
+    cursor: pointer;
+  }
+  :hover:not(:disabled) {
     color: ${Colors.WHITE};
   }
 `;
