@@ -19,7 +19,7 @@ const Category: React.FC<IProps> = ({url, items, changeActive, fetchStatus, intl
     changeActive(url, intl.locale as Locales);
 
     return () => changeActive(null);
-  }, []);
+  }, [url]);
 
   if (fetchStatus === FetchingStatuses.FAILED) {
     return (
