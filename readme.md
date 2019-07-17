@@ -26,7 +26,7 @@
 - [React Rnd](https://github.com/bokuweb/react-rnd)
 - [React Syntax Highlighter](https://github.com/conorhastings/react-syntax-highlighter#readme)
 - [Reselect](https://github.com/reduxjs/reselect)
-- [Socker.io Client](https://github.com/socketio/socket.io-client)
+- [Socket.io Client](https://github.com/socketio/socket.io-client)
 
 ## Разворачивание проекта для разработки
 
