@@ -114,8 +114,9 @@ const PostStyled = styled.div<IPropsStyled>`
   width: 100%;
   figure {
     margin: 2rem 0;
+    text-align: center;
     img {
-      width: 100%;
+      max-width: 100%;
     }
   }
   ${props => (props.fetch_status === FetchingStatuses.IN_PROGRESS || props.fetch_status === FetchingStatuses.NONE) &&
