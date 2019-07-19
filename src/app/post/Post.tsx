@@ -56,7 +56,7 @@ const Post: React.FC<IProps> = ({url, changeActive, data, fetchStatus, menuIsOpe
     >
       <h1>{data.title}</h1>
       {data.content.map((content, index) => {
-        if (content.type === PostTypes.TEXT) {
+        if (content.type === PostTypes.TEXT || content.type === PostTypes.IMAGE) {
           return (
             <div
               key={`${content.type}${index}`}
@@ -112,6 +112,12 @@ const PostStyled = styled.div<IPropsStyled>`
   transition: filter 1s ease;
   filter: blur(0);
   width: 100%;
+  figure {
+    margin: 2rem 0;
+    img {
+      width: 100%;
+    }
+  }
   ${props => (props.fetch_status === FetchingStatuses.IN_PROGRESS || props.fetch_status === FetchingStatuses.NONE) &&
   css`
       animation: ${fadeId} 1s infinite;
