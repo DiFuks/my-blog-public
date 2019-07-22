@@ -22,19 +22,19 @@ const messages = {
 
 export const BaseRouter: React.FC = () => (
   <Switch>
-    {Object.values(Locales).map((key: Locales) => (
+    {Object.values(Locales).map((locale: Locales) => (
       <Route
-        key={key}
-        path={getBaseUrlByLocale(key) + '/'}
+        key={locale}
+        path={getBaseUrlByLocale(locale) + '/'}
         component={() => (
           <IntlProvider
-            locale={key}
-            messages={messages[key]}
+            locale={locale}
+            messages={messages[locale]}
           >
             <Theme>
               <Layout>
                 <PagesRouter
-                  basePath={getBaseUrlByLocale(key)}
+                  basePath={getBaseUrlByLocale(locale)}
                 />
               </Layout>
             </Theme>
