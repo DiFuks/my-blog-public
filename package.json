@@ -38,7 +38,7 @@
     "circular-dependency-plugin": "^5.0.2",
     "connected-react-router": "^6.3.2",
     "copy-webpack-plugin": "^5.0.3",
-    "disqus-react": "^1.0.5",
+    "disqus-react": "^1.0.6",
     "dotenv": "^7.0.0",
     "grid-styled": "^5.0.2",
     "history": "^4.9.0",
