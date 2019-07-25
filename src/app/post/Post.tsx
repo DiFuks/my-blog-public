@@ -5,7 +5,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { DiscussionEmbed } from 'disqus-react';
 import { InjectedIntl, injectIntl } from 'react-intl';
 
-import { FetchingStatuses, Routes, PostTypes, Locales } from '@app/common/constants';
+import { FetchingStatuses, Routes, PostTypes, Locales, Colors } from '@app/common/constants';
 import { LoremText } from '@app/common/components/LoremText';
 import { SubmenuStates } from '@app/submenu/duck/constants';
 
@@ -118,6 +118,9 @@ const PostStyled = styled.div<IPropsStyled>`
     img {
       max-width: 100%;
     }
+  }
+  p a {
+    color: ${Colors.GREY_200};
   }
   ${props => (props.fetch_status === FetchingStatuses.IN_PROGRESS || props.fetch_status === FetchingStatuses.NONE) &&
   css`
