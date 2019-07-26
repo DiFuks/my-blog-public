@@ -119,7 +119,7 @@ const PostStyled = styled.div<IPropsStyled>`
       max-width: 100%;
     }
   }
-  p a {
+  p a, li a {
     color: ${Colors.GREY_200};
   }
   li {
