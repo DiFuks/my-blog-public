@@ -108,7 +108,7 @@ const fadeId = keyframes`
 const PostStyled = styled.div<IPropsStyled>`
   height: 100%;
   overflow: scroll;
-  line-height: 1.4;
+  line-height: 1.6;
   transition: filter 1s ease;
   filter: blur(0);
   width: 100%;
@@ -121,6 +121,9 @@ const PostStyled = styled.div<IPropsStyled>`
   }
   p a {
     color: ${Colors.GREY_200};
+  }
+  li {
+    margin-bottom: 2rem;
   }
   ${props => (props.fetch_status === FetchingStatuses.IN_PROGRESS || props.fetch_status === FetchingStatuses.NONE) &&
   css`
