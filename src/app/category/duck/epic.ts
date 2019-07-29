@@ -16,9 +16,9 @@ const onInit: Epic<ActionTypes | CallHistoryMethodAction> = action$ => action$.p
   mergeMap(action =>
     getJson<IInfoItem[]>(`/post/listByCategory/${action.url}`, {}, action.locale).pipe(
       map(response => Creators.categoryRefreshData(response)),
-      catchError(e => e.status === httpStatusCodes.NOT_FOUND
-        && of(push('404'))
-        || of(Creators.categoryRefreshFetchStatus(FetchingStatuses.FAILED)),
+      catchError(e => of(e.status === httpStatusCodes.NOT_FOUND
+        && push('404')
+        || Creators.categoryRefreshFetchStatus(FetchingStatuses.FAILED)),
       ),
     ),
   ),
