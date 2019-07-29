@@ -14,7 +14,7 @@ const onInit: Epic<ActionTypes | CallHistoryMethodAction> = action$ => action$.p
   ofType<ReturnType<typeof Creators.categoryChangeActive>>(Types.CATEGORY_CHANGE_ACTIVE),
   filter(action => action.url !== null),
   mergeMap(action =>
-    getJson<IInfoItem[]>(`/post/listByCategory/${action.url}`).pipe(
+    getJson<IInfoItem[]>(`/post/listByCategory/${action.url}`, {}, action.locale).pipe(
       map(response => Creators.categoryRefreshData(response)),
       catchError(e => e.status === httpStatusCodes.NOT_FOUND
         && of(push('404'))
