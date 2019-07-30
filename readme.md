@@ -10,7 +10,7 @@
 - [Docker](https://docs.docker.com/get-started/)
 - [React](https://ru.reactjs.org)
 - [Redux](https://redux.js.org)
-- [Redux Saga](https://redux-saga.js.org/docs/introduction/BeginnerTutorial.html)
+- [Redux Observables](https://redux-observable.js.org)
 - [React Intl](https://github.com/formatjs/react-intl/blob/master/docs/README.md)
 - [React Helmet](https://github.com/nfl/react-helmet)
 - [Styled.Components](https://www.styled-components.com)
