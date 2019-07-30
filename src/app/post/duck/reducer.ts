@@ -26,7 +26,7 @@ const initState: IState = {
   fetchStatus: FetchingStatuses.NONE,
 };
 
-type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
+export type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
 
 export const reducer = (state = initState, action: ActionTypes): IState => (
   action.type === Types.POST_CHANGE_ACTIVE && {

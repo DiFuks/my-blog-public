@@ -10,7 +10,7 @@ const initialState: IState = {
   items: [],
 };
 
-type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
+export type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
 
 export const reducer = (state = initialState, action: ActionTypes): IState => (
   action.type === Types.INFO_REFRESH_ITEMS && {
