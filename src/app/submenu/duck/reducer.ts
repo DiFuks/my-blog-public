@@ -18,7 +18,7 @@ const initialState: IState = {
   isInit: false,
 };
 
-type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
+export type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
 
 export const reducer = (state = initialState, action: ActionTypes): IState => (
   action.type === Types.SUBMENU_CHANGE_ACTIVE && {

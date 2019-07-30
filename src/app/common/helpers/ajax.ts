@@ -12,3 +12,12 @@ export const getJson = <T>(url: string, options: any = {}, locale: Locales = DEF
 
   return rxjxAjax.getJSON<T>(API_URL + url, defaultsDeep(options, headers));
 };
+
+export const sendJson = (url: string, body: any, options: any = {}) => {
+  const headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  return rxjxAjax.post(API_URL + url, body, defaultsDeep(options, headers));
+};

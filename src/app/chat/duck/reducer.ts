@@ -23,7 +23,7 @@ const initState: IState = {
   status: FetchingStatuses.NONE,
 };
 
-type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
+export type ActionTypes = ReturnType<InferValueTypes<typeof Creators>>;
 
 export const reducer = (state = initState, action: ActionTypes): IState => (
   action.type === Types.CHAT_REFRESH_ID && {
@@ -33,6 +33,7 @@ export const reducer = (state = initState, action: ActionTypes): IState => (
   action.type === Types.CHAT_REFRESH_MESSAGES && {
     ...state,
     messages: action.messages,
+    status: FetchingStatuses.SUCCESS,
   } ||
   action.type === Types.CHAT_TOGGLE && {
     ...state,
