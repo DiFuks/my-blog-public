@@ -54,6 +54,10 @@ const InfoStyled = styled(Flex)`
   border-bottom: 1px solid ${Colors.GREY_80};
   padding-bottom: 4rem;
   line-height: 1.4;
+  
+  a {
+    color: #ffffff;
+  }
 `;
 
 const InfoWrapperStyled = styled(Flex)`
