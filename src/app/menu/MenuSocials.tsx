@@ -29,7 +29,7 @@ export const MenuSocials: React.FC = React.memo(() => (
       </MenuItem>
     </LinkStyled>
     <LinkStyled
-      href='https://t.me/ffuchs'
+      href='https://t.me/difuks'
       target='_blank'
       role='button'
     >
